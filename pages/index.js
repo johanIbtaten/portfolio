@@ -1,62 +1,77 @@
 import React from 'react';
-import BaseLayout from '../components/layouts/BaseLayout'
+import Typed from 'react-typed';
 
-class Index extends React.Component {    
-    static async getInitialProps() {
-        console.log('I am getInitialProps');
-        return {}
-    }
+import BaseLayout from '../components/layouts/BaseLayout';
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            title: 'I am Index page'
-        }
-        console.log('constructor');
-        
-    }
+import { Button, Container, Row, Col } from 'reactstrap';
 
-    // static getDerivedStateFromProps() {
-    //     console.log('getDerivedStateFromProps');
-    // }
-    
+class Index extends React.Component {
 
-    componentDidMount() {
-        console.log('componentDidMount');
-    }
+  constructor(props) {
+    super(props);
 
-    componentDidUpdate() {
-        console.log('componentDidUpdate');
-    }
-    
-    componentWillUnmount() {
-        console.log('componentWillUnmount');
-    }
+    this.roles = ['Developer', 'Tech Lover', 'Team Player', 'Course Creater', 'React.js', 'Angular'];
+  }
 
-    updateTitle() {
-        this.setState({title: 'I am updated page' })
-    }
+  render() {
 
-    
+    return (
+      <BaseLayout className="cover">
+        <div className="main-section">
+          <div className="background-image">
+            <img src="/static/images/background-index.png" />
+          </div>
+          <Container>
+            <Row>
+              <Col md="6">
+                <div className="hero-section">
+                  <div className={`flipper`}>
+                    <div className="back">
+                      <div className="hero-section-content">
+                        <h2> Full Stack Web Developer </h2>
+                        <div className="hero-section-content-intro">
+                          Have a look at my portfolio and job history.
+                        </div>
+                      </div>
+                      <img className="image" src="/static/images/section-1.jpg"/>
+                      <div className="shadow-custom">
+                        <div className="shadow-inner"> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+              <Col md="6" className="hero-welcome-wrapper">
+                <div className="hero-welcome-text">
+                  <h1>
+                    Welcome to the portfolio website of Filip Jerga.
+                    Get informed, collaborate and discover projects I was working on through the years!
+                  </h1>
+                </div>
+                <Typed
+                  loop
+                  typeSpeed={60}
+                  backSpeed={60}
+                  strings={this.roles}
+                  backDelay={1000}
+                  loopCount={0}
+                  showCursor
+                  className="self-typed"
+                  cursorChar="|"
+                />
 
-    render() {
-        console.log('render');
-        //let array = [<div>1</div>, <div>2</div>]
-        return (
-            <BaseLayout>
-                <h1>I am index page</h1>
-                <h2> {this.state.title} </h2>
-                <button onClick={() => this.updateTitle()}>Change title</button>
-                { /* array */ }
-            </BaseLayout>
-        )
-    }
+
+                <div className="hero-welcome-bio">
+                  <h1>
+                    Let's take a look on my work.
+                  </h1>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </BaseLayout>
+    )
+  }
 }
-
 export default Index;
-
-// <Header title={'I am the header'}>
-//     <h1>Header subtitle</h1>
-// </Header>
-
-// <button onClick={() => this.updateTitle()}>Change title</button>
