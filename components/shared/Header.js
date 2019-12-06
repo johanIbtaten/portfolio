@@ -11,6 +11,8 @@ import {
 
 import auth0 from '../../services/auth0';
 
+// On crée un composant BsNavLink qui permet de créer les liens du menu
+// en lui passant des props pour l'intitulé et l'url cible
 const BsNavLink = (props) => {
   const { route, title } = props;
 
@@ -21,15 +23,21 @@ const BsNavLink = (props) => {
   )
 }
 
+// On crée un composant Login qui est un span clickable
+// qui appelle la méthode auth0.login de la class auth0 qui
+// gère l'authentification auth0 
 const Login = () => {
   return (
     <span onClick={auth0.login} className="nav-link port-navbar-link clickable"> Login </span>
   )
 }
 
+// On crée un composant Login qui est un span clickable
+// qui appelle la méthode auth0.logout de la class Auth0 qui
+// gère l'authentification auth0 
 const Logout = () => {
   return (
-    <span className="nav-link port-navbar-link clickable"> Logout </span>
+    <span onClick={auth0.logout} className="nav-link port-navbar-link clickable"> Logout </span>
   )
 }
 
@@ -49,8 +57,9 @@ export default class Header extends React.Component {
   }
 
   render() {
-
-    const { isAuthenticated, user } = this.props;
+    // On récupère la variable isAuthenticated depuis les props
+    // que l'on a passé au composant
+    const { isAuthenticated } = this.props;
 
     return (
       <div>
@@ -74,12 +83,22 @@ export default class Header extends React.Component {
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/cv" title="Cv" />
               </NavItem>
+              { 
+                // Si l'utilisateur n'est pas authentifié
+                // on affiche Login
+                !isAuthenticated &&
               <NavItem className="port-navbar-item">
                 <Login />
-              </NavItem>            
+              </NavItem>
+              }
+              { 
+                // Si l'utilisateur est authentifié
+                // on affiche Logout
+                isAuthenticated &&
               <NavItem className="port-navbar-item">
                 <Logout />
-              </NavItem>              
+              </NavItem>
+              }            
             </Nav>
           </Collapse>
         </Navbar>

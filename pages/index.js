@@ -3,7 +3,7 @@ import Typed from 'react-typed';
 
 import BaseLayout from '../components/layouts/BaseLayout';
 
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 class Index extends React.Component {
 
@@ -16,7 +16,11 @@ class Index extends React.Component {
   render() {
 
     return (
-      <BaseLayout className="cover">
+      // On destructure la props this.props.auth pour la passer
+      // au composant BaseLayout équivaut à isAuthenticated={true} ou
+      // isAuthenticated={false} selon que l'utilisateur
+      // est authentifié ou pas.
+      <BaseLayout className="cover"  {...this.props.auth}>
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />
