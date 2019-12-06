@@ -14,6 +14,7 @@ class Index extends React.Component {
   }
 
   render() {
+    const { isAuthenticated, user } = this.props.auth;
 
     return (
       // On destructure la props this.props.auth pour la passer
@@ -48,6 +49,7 @@ class Index extends React.Component {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
+                    { isAuthenticated && <span> <b> {user.name} </b> </span> }
                     Welcome to the portfolio website of Filip Jerga.
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>

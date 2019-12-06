@@ -40,7 +40,8 @@ export default class MyApp extends App {
         
     // On teste l'utilisateur est toujours authentifié et que sa session
     // n'a pas expirée.
-    const isAuthenticated = auth0.serverAuth(reqCookies);
+    //const isAuthenticated = auth0.serverAuth(reqCookies);
+    const user = await auth0.serverAuth(reqCookies);
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
@@ -48,7 +49,8 @@ export default class MyApp extends App {
 
     // On récupère le booléen qui permet de savoir si l'utilisateur
     // est toujours authentifié ou pas dans une variable auth
-    const auth = { isAuthenticated };
+    // const auth = { isAuthenticated };
+    const auth = { user, isAuthenticated: !!user };
 
     // On place auth dans les props de la page
     return { pageProps, auth }
