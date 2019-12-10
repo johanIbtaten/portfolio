@@ -66,13 +66,18 @@ class Auth0 {
     Cookies.set('jwt', authResult.idToken);
     Cookies.set('expiresAt', expiresAt);
   }
-
+  
+  login() {
+    // Cette méthode appelle la page de connexion via auth0
+    this.auth0.authorize();
+  }
+  
   logout() {
     // On supprime le cookie de session
     Cookies.remove('user');
     Cookies.remove('jwt');
     Cookies.remove('expiresAt');
-
+    
     // On se déconnecte de auth0
     // On redirige l'utilisateur vers la page d'accueil
     this.auth0.logout({
@@ -80,62 +85,77 @@ class Auth0 {
       clientID: 'jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt'
     })
   }
-
-  // isAuthenticated() {
-  //   const expiresAt = Cookies.getJSON('expiresAt')
-  //   return new Date().getTime() < expiresAt
-  // }
-
   
-  login() {
-    // Cette méthode appelle la page de connexion via auth0
-    this.auth0.authorize();
+  async appAuth(reqCookies) {
+    if (reqCookies) {
+      // On récupère le token de session
+      const token = getCookieFromReq(reqCookies, 'jwt');
+      const verifiedToken = await this.verifyToken(token);
+
+      return verifiedToken;
+    }
+
+    return undefined;
   }
 
-  // clientAuth() {
-  //   return this.isAuthenticated
-  // }
-
-  // serverAuth(reqCookies) {
-  //   if (reqCookies) {
-  //     // On récupère le timestamp du cookie de session auhentifiée
-  //     const expiresAt = getCookieFromReq(reqCookies, 'expiresAt'); 
-      
-  //     if (!expiresAt) {
-  //       return undefined
-  //     }
-
-  //     // On retourne si le cookie de session auhentifiée
-  //     // a expiré ou pas
-  //     return new Date().getTime() < expiresAt
-  //   }
-  // }    
-
-
   async getJWKS() {
+    // Récupère l'objet JWKS depuis le end point fourni par auth0.com
+    // Cette objet permet de fournir le kid et le x5c qui est
+    // le certificat ou clé public qui permet de vérifier
+    // l'authenticité de la signature du JWT par auth0.com
+    // qui lui seul possède la clé privé qui a encodé la signature
+    // du JWT
     const res = await axios.get('https://dev-wsx0dcuw.auth0.com/.well-known/jwks.json');
     const jwks = res.data;
     return jwks;
   }
+  // Format du JWKS
+  // {
+  //     "keys": [
+  //         {
+  //             "alg": "RS256",
+  //             "kty": "RSA",
+  //             "use": "sig",
+  //             "n": "2KnHG7L9HuQ831zwfBbJr_VADBXZRHweiQbw68mZxxWi0UdxVpN5lyZIZPo4VzxcaZf0z4L50w11RLFuD0FMi4DifZbrdCYtzHqtDEwJHPlyfITAXmkige7eUbabIFAicJw4gd--DrDnbwrjUEb3sM_P2TqwGAURRkmapqEjgj8SXi8vS9E-XslyPWP-THgp5uTR5ZqD9RIs28aYfdxF8FcaLhEaCuzry0MUdityIAaludJmbgI90k_ot73QasugG8Ik8xwCmvUQvZy9jRpRd1CBj_cw1h5zxCKICtYo8rSz76uusaqb3Mo3xCh7taZO_hQrMYz-VkUokHQRiReZXQ",
+  //             "e": "AQAB",
+  //             "kid": "QTVBMTFBQzU1MDVEMUJGMkExMUZEQUFGQTVBQUVCM0VGNTZGQUIwQg",
+  //             "x5t": "QTVBMTFBQzU1MDVEMUJGMkExMUZEQUFGQTVBQUVCM0VGNTZGQUIwQg",
+  //             "x5c": [
+  //                 "MIIDBzCCAe+gAwIBAgIJCFpR0Bc6FGHPMA0GCSqGSIb3DQEBCwUAMCExHzAdBgNVBAMTFmRldi13c3gwZGN1dy5hdXRoMC5jb20wHhcNMTkxMjA0MTQzODAyWhcNMzMwODEyMTQzODAyWjAhMR8wHQYDVQQDExZkZXYtd3N4MGRjdXcuYXV0aDAuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2KnHG7L9HuQ831zwfBbJr/VADBXZRHweiQbw68mZxxWi0UdxVpN5lyZIZPo4VzxcaZf0z4L50w11RLFuD0FMi4DifZbrdCYtzHqtDEwJHPlyfITAXmkige7eUbabIFAicJw4gd++DrDnbwrjUEb3sM/P2TqwGAURRkmapqEjgj8SXi8vS9E+XslyPWP+THgp5uTR5ZqD9RIs28aYfdxF8FcaLhEaCuzry0MUdityIAaludJmbgI90k/ot73QasugG8Ik8xwCmvUQvZy9jRpRd1CBj/cw1h5zxCKICtYo8rSz76uusaqb3Mo3xCh7taZO/hQrMYz+VkUokHQRiReZXQIDAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBT2TLAu7jY95lVxT21aij2AEuBRmzAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZIhvcNAQELBQADggEBACDTB2e5CpeiwElUghhVgpX8gK7PaWpFK/nE3ZZSEyjxRb12l2ZGK3KskASANa+cFNhGGQD/KUOXRrME3Y3OORYsds5goJw9CXLTjUiDpGfbemZ5oagU7GMN1XahDT4k/R1QkwOZPLciihcsJIrmzDHWymb/u/+YEfQ1OtOl7Hp3V/Y09d35/ZR65ErjQgJQ+fbSjSsXXxrQAR/XpKCc6WmaYf++Cw+NMBo+Jf01LOlRhhVHn0F/tx99+yPuZ2F/T5icTzXXfUoqY1FXlTrIpFdUmc602+mu7kV0XduU56Njc9wiQY2ynqKGQlnA19L+6waatbaAkfB4SVPKsv4JosE="
+  //             ]
+  //         }
+  //     ]
+  // }
 
 
   async verifyToken(token) {
     if (token) {
+      // On décode notre jwt stocké côté client dans un cookie
       const decodedToken = jwt.decode(token, { complete: true});
 
       if (!decodedToken) { return undefined; }
 
+      // On récupère l'objet JWKS (Json Web Keys Set)
       const jwks = await this.getJWKS();
       const jwk = jwks.keys[0];
 
-      // BUILD CERTIFICATE
+      // BUILD CERTIFICATE ou clé public à partir du JWKS
       let cert = jwk.x5c[0];
       cert = cert.match(/.{1,64}/g).join('\n');
       cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
-
+      console.log('cert', cert);
+      // On fait une première vérification en comparant les kid
+      // de la partie header de notre JWT et du JWKS
       if (jwk.kid === decodedToken.header.kid) {
         try {
+          // On vérifie la signature de notre JWT (token)
+          // grâce au certificat (clé public) et la librairie jwt
+          // (Synchronous) If a callback is not supplied, function acts
+          // synchronously. Returns the payload decoded if the signature 
+          // is valid and optional expiration, audience, 
+          // or issuer are valid. If not, it will throw the error.
           const verifiedToken = jwt.verify(token, cert);
+          console.log(verifiedToken);
           const expiresAt = verifiedToken.exp * 1000;
 
           return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
@@ -147,47 +167,23 @@ class Auth0 {
 
     return undefined;
   }
-
-
-//   async clientAuth() {
-//     const token = Cookies.getJSON('jwt');
-//     const verifiedToken = await this.verifyToken(token);
-
-//     return verifiedToken;
-//   }
-
-
-//   async serverAuth(req) {
-//     if (req.headers.cookie) {
-
-//       const token = getCookieFromReq(req, 'jwt');
-//       const verifiedToken = await this.verifyToken(token);
-
-//       return verifiedToken;
-//     }
-
-//     return undefined;
-//   }
-
-async serverAuth(reqCookies) {
-  if (reqCookies) {
-    // On récupère le token de session
-    const token = getCookieFromReq(reqCookies, 'jwt');
-    const verifiedToken = await this.verifyToken(token);
-
-    return verifiedToken;
-  }
-
-  return undefined;
-}
-   
-
-
-
-
-
-
-
+  // Sortie de verifiedToken (payload du JWT vérifié)  
+  // {
+  //   at_hash: "ki16R7yTPnbVtwqW7VmRcg"
+  //   aud: "jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt"
+  //   exp: 1576009219
+  //   family_name: "Nash"
+  //   given_name: "Joé"
+  //   iat: 1575973219
+  //   iss: "https://dev-wsx0dcuw.auth0.com/"
+  //   locale: "fr"
+  //   name: "Joé Nash"
+  //   nickname: "j.ibtaten"
+  //   nonce: "r57XADuKFxODlS24RPeV9DyngtR.3X_c"
+  //   picture: "https://lh5.googleusercontent.com/-wCqrU2LOPp8/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rfdfe0BExv6VTGfvihpjIIgzo3lig/photo.jpg"
+  //   sub: "google-oauth2|110516752539915891476"
+  //   updated_at: "2019-12-10T10:20:19.706Z"
+  // }
 }
 
 

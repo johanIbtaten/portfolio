@@ -33,16 +33,16 @@ export default class MyApp extends App {
     // Comme ça l'application est toujours au courant si il y a
     // un cookie d'authentification présent.
     const reqCookies = getCookies(ctx.req);
-
-    console.log(reqCookies)
     
-    //const isAuthenticated = process.browser ? auth0.clientAuth() : auth0.serverAuth(reqCookies);
-        
     // On teste l'utilisateur est toujours authentifié et que sa session
     // n'a pas expirée.
-    //const isAuthenticated = auth0.serverAuth(reqCookies);
-    const user = await auth0.serverAuth(reqCookies);
+    const user = await auth0.appAuth(reqCookies);
 
+    // getInitialProps() de _app.js prend le Component page en
+    // paramètre et cherche si il ya une méthode getInitialProps
+    // présente, si oui elle transmet les props à la page.
+    // Si la page est entouré par un HOC, penser à placer 
+    // getInitialProps() au niveau du HOC.
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }

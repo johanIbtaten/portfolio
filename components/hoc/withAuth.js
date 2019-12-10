@@ -9,11 +9,13 @@ import BasePage from '../BasePage';
   // class withAuth extends React.Component {
   return class withAuth extends React.Component {
 
-  // static async getInitialProps(args) {
-  //   const pageProps = await Component.getInitialProps && await Component.getInitialProps(args);
+  // Permet de récupérer les props du getInitialProps() du component
+  // passé en paramètre pour les transmettre au component.
+  static async getInitialProps(args) {
+    const pageProps = await Component.getInitialProps && await Component.getInitialProps(args);
 
-  //   return { ...pageProps };
-  // }
+    return { ...pageProps };
+  }
 
   renderProtectedPage() {
     const { isAuthenticated, user } = this.props.auth;
