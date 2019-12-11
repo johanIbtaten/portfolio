@@ -7,7 +7,7 @@ const BaseLayout = (props) => {
   return (
     <div className="layout-container">
       {/*
-      On ^passe la props isAuthenticated au composant Header
+      On passe la props isAuthenticated au composant Header
       */}
       <Header isAuthenticated={isAuthenticated}/>
       <main className={`cover ${className}`}>

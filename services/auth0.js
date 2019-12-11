@@ -143,7 +143,6 @@ class Auth0 {
       let cert = jwk.x5c[0];
       cert = cert.match(/.{1,64}/g).join('\n');
       cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
-      console.log('cert', cert);
       // On fait une première vérification en comparant les kid
       // de la partie header de notre JWT et du JWKS
       if (jwk.kid === decodedToken.header.kid) {
