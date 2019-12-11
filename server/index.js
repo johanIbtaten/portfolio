@@ -5,7 +5,7 @@ const routes = require('../routes');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const authService = require('./services/auth');
+const {checkJwt, checkRole} = require('./services/auth');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -43,7 +43,11 @@ app.prepare()
   // authService.checkJWT est un middleware appelé avant la fonction
   // qui renvoie la réponse.
   // server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
-  server.get('/api/v1/secret', authService.checkJwt, (req, res) => {
+  server.get('/api/v1/secret', checkJwt, (req, res) => {
+    return res.json(secretData);
+  })
+
+  server.get('/api/v1/onlysiteowner', checkJwt, checkRole('siteOwner'), (req, res) => {
     return res.json(secretData);
   })
 
