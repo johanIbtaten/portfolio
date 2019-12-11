@@ -3,10 +3,17 @@ import axios from 'axios';
 import { getCookies, getCookieFromReq } from '../helpers/utils';
 
 const setAuthHeader = (req) => {
+  // Si il y a une requête côté serveur on récupère
+  // les cookies du header sinon on les récupère depuis le navigateur
   const reqCookies = getCookies(req);
+  
+  // On récupère le token JWT depuis les cookies
   const token = getCookieFromReq(reqCookies, 'jwt');
 
+  // Si on récupère un token JWT depuis les cookies
   if (token) {
+    // On ajoute un attribut authorization au header
+    // avec pour valeur `Bearer ${token}`
     return { headers: {'authorization': `Bearer ${token}`}};
   }
 
@@ -14,10 +21,19 @@ const setAuthHeader = (req) => {
 }
 
 export const getSecretData = async (req) => {
+  // On déclare l'url du endpoint que l'on souhaite requêter
   const url = 'http://localhost:3000/api/v1/secret';
 
   try {
+    // On requête le endpoint avec axios en lui passant
+    // l'url, le header modifié avec setAuthHeader pour que
+    // le endpoint du serveur puisse vérifier que l'utilisateur
+    // qui effectue la requête est bien authentifié avec son token JWT
+    // si oui axios retourne la réponse, sinon axios retourne 
+    // une erreur 401 
     return await axios.get(url, setAuthHeader(req)).then(response => response.data)
+  
+    // On catch une éventuelle erreur 401 UnauthorizedError
   } catch (error) {
     console.log(error)
   }

@@ -17,5 +17,6 @@ class Owner extends React.Component {
   }
 }
 
-// export default withAuth('siteOwner')(Owner);
-export default withAuth(Owner);
+// On passe en paramètre de withAuth le role de l'utilisateur authentifié
+// qui peut accéder à ce composant
+export default withAuth('siteOwner')(Owner);

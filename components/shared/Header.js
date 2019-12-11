@@ -86,6 +86,9 @@ export default class Header extends React.Component {
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/secret" title="Secret" />
               </NavItem>
+              <NavItem className="port-navbar-item">
+                <BsNavLink route="/owner" title="Owner" />
+              </NavItem>
               { 
                 // Si l'utilisateur n'est pas authentifié
                 // on affiche Login
