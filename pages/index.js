@@ -21,7 +21,7 @@ class Index extends React.Component {
       // au composant BaseLayout équivaut à isAuthenticated={true} ou
       // isAuthenticated={false} selon que l'utilisateur
       // est authentifié ou pas.
-      <BaseLayout className="cover"  {...this.props.auth}>
+      <BaseLayout className="cover" {...this.props.auth} headerType="index">
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />

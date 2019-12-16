@@ -59,11 +59,11 @@ export default class Header extends React.Component {
   render() {
     // On récupère la variable isAuthenticated depuis les props
     // que l'on a passé au composant
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, user, className } = this.props;
 
     return (
       <div>
-        <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+        <Navbar className= {`port-navbar port-base absolute ${className}`} color="transparent" dark expand="md">
           <NavbarBrand className="port-navbar-brand" href="/">Filip Jerga</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -88,6 +88,9 @@ export default class Header extends React.Component {
               </NavItem>
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/owner" title="Owner" />
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                <BsNavLink route="/portfolioNew" title="portfolioNew" />
               </NavItem>
               { 
                 // Si l'utilisateur n'est pas authentifié
