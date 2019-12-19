@@ -14,8 +14,7 @@ class Portfolios extends React.Component {
     let portfolios = [];     
     try {
       // On récupère les objets portfolio dans le tableau portfolios
-      // depuis la bdd grâce à la fonction getPortfolios() qui utilise
-      // axios
+      // depuis la bdd grâce à la fonction getPortfolios() qui utilise axios
       portfolios = await getPortfolios();
     } catch(err) {
       console.error(err);
@@ -24,33 +23,43 @@ class Portfolios extends React.Component {
     return {portfolios};
   }
 
-  // navigateToEdit(portfolioId, e) {
-  //   e.stopPropagation();
-  //   Router.pushRoute(`/portfolios/${portfolioId}/edit`)
-  // }
+  navigateToEdit(portfolioId, e) {
+    e.stopPropagation();
+    Router.pushRoute(`/portfolios/${portfolioId}/edit`)
+  }
 
-  // deletePortfolio(portfolioId) {
-  //   deletePortfolio(portfolioId)
-  //     .then(() => {
-  //       Router.pushRoute('/portfolios');
-  //     })
-  //     .catch(err => console.error(err));
-  // }
+  displayDeleteWarning(portfolioId, e) {
+    e.stopPropagation();
+    const isConfirm = confirm('Are you sure you want to delete this portfolio???');
+
+    if (isConfirm) {
+      this.deletePortfolio(portfolioId);
+    }
+  }
+
+  deletePortfolio(portfolioId) {
+    deletePortfolio(portfolioId)
+      .then(() => {
+        Router.pushRoute('/portfolios');
+      })
+      .catch(err => console.error(err));
+  }
 
   renderPortfolios(portfolios) {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
+    console.log("isAuthenticated", isAuthenticated);
+    console.log("isSiteOwner", isSiteOwner);
+    console.log("this.props.auth", this.props.auth);
 
     return portfolios.map((portfolio, index) => {
       return (
         <Col key={index} md="4">
          <PortfolioCard portfolio={portfolio}>
-          { isAuthenticated && isSiteOwner &&
-            { /*
+         { isAuthenticated && isSiteOwner &&
               <React.Fragment>
                 <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
                 <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
               </React.Fragment>            
-            */ } 
           }
          </PortfolioCard>
         </Col>
@@ -65,9 +74,6 @@ class Portfolios extends React.Component {
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-page" title="Portfolios">
-          { /*
-            <h1> I am Portfolios Page </h1>
-          */ } 
           <ul>
             <Row>
             { this.renderPortfolios(portfolios) }
@@ -80,3 +86,5 @@ class Portfolios extends React.Component {
 }
 
 export default Portfolios;
+
+// { isAuthenticated && isSiteOwner &&

@@ -4,6 +4,8 @@ import { getCookies } from "../helpers/utils.js";
 
 import auth0 from '../services/auth0';
 
+import config from '../server/config/index'
+
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss';
@@ -47,10 +49,15 @@ export default class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    // On récupère le booléen qui permet de savoir si l'utilisateur
-    // est toujours authentifié ou pas dans une variable auth
-    // const auth = { isAuthenticated };
-    const auth = { user, isAuthenticated: !!user };
+    // On déclare une variable isSiteOwner qui a pour valeur un booléen
+    // qui est à true si le user (payload du token JWT) possède un
+    // attribut user[config.NAMESPACE + '/role'] ayant pour valeur 'siteOwner'
+    const isSiteOwner = user && user[config.NAMESPACE + '/role'] === 'siteOwner';
+
+    // On crée un objet auth qui donne des information sur l'utilisateur
+    // avec user sur son authentification avec isAuthenticated et
+    // sur son role avec isSiteOwner
+    const auth = { user, isAuthenticated: !!user, isSiteOwner };
 
     // On place auth dans les props de la page
     return { pageProps, auth }
