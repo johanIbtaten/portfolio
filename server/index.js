@@ -6,6 +6,9 @@ const routes = require('../routes');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const bookRoutes = require('./routes/book');
+const portfolioRoutes = require('./routes/portfolio');
+
 const {checkJwt, checkRole} = require('./services/auth');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -43,60 +46,11 @@ app.prepare()
   // using bodyParser to parse JSON bodies into JS objects
   server.use(bodyParser.json());
 
-  //server.use('/api/v1/books', bookRoutes);
-  server.post('/api/v1/books', (req, res) => {
-    const bookData = req.body;
-    const book = new Book(bookData);
+  server.use('/api/v1/books', bookRoutes);
 
-    book.save((err, createdBook) => {
-      if (err) {
-        return res.status(422).send(err);
-      }
-
-      return res.json(createdBook);
-    });
-  })
-
-  server.get('/api/v1/books', (req, res) => {
-    Book.find({}, (err, allBooks) => {
-      if (err) {
-        return res.status(422).send(err);
-      }  
-      return res.json(allBooks);
-    })
-  })
-
-  server.patch('/api/v1/books/:id', (req, res) => {
-    const bookId = req.params.id;
-    const bookData = req.body;
-
-    Book.findById(bookId, (err, foundBook) => {
-      if (err) {
-        return res.status(422).send(err);
-      }
-
-      foundBook.set(bookData);
-      foundBook.save((err, savedBook) => {
-        if (err) {
-          return res.status(422).send(err);
-        }
-
-        return res.json(foundBook);
-      });
-    })
-  })
-
-  server.delete('/api/v1/books/:id', (req, res) => {
-    const bookId = req.params.id;
-
-    Book.deleteOne({_id: bookId}, (err, deletedBook) => {
-      if (err) {
-        return res.status(422).send(err);
-      }
-
-      return res.json({status: 'DELETED'});
-    })
-  })
+  // On passe en argument les routes portfolioRoutes
+  // avec comme base du enpoint /api/v1/portfolios
+  server.use('/api/v1/portfolios', portfolioRoutes);
 
   // enabling CORS for all requests
   //server.use(cors());

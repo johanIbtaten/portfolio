@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, CardText, CardTitle, Button } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardText, CardTitle } from 'reactstrap';
 import PortfolioCardDetail from './PortfolioCardDetail';
 
 export default class PortfolioCard extends React.Component {

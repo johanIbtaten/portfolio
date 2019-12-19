@@ -1,60 +1,76 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
-import { Link } from '../routes'
-import { Col, Row, Card, CardHeader, CardBody, CardText, CardTitle, Button } from 'reactstrap';
+import { Col, Row, Button } from 'reactstrap';
+import PortfolioCard from '../components/portfolios/PortfolioCard';
 
-import axios from 'axios';
+import { Router } from '../routes';
+
+import { getPortfolios, deletePortfolio } from '../actions';
 
 class Portfolios extends React.Component {
 
   static async getInitialProps() {
-    let posts = [];   
-
+    let portfolios = [];     
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-      posts = response.data;
+      // On récupère les objets portfolio dans le tableau portfolios
+      // depuis la bdd grâce à la fonction getPortfolios() qui utilise
+      // axios
+      portfolios = await getPortfolios();
     } catch(err) {
       console.error(err);
     }
 
-    return {posts: posts.splice(0, 10)};
+    return {portfolios};
   }
 
-  renderPosts(posts) {
-    return posts.map((post, index) => {
+  // navigateToEdit(portfolioId, e) {
+  //   e.stopPropagation();
+  //   Router.pushRoute(`/portfolios/${portfolioId}/edit`)
+  // }
+
+  // deletePortfolio(portfolioId) {
+  //   deletePortfolio(portfolioId)
+  //     .then(() => {
+  //       Router.pushRoute('/portfolios');
+  //     })
+  //     .catch(err => console.error(err));
+  // }
+
+  renderPortfolios(portfolios) {
+    const { isAuthenticated, isSiteOwner } = this.props.auth;
+
+    return portfolios.map((portfolio, index) => {
       return (
-        <Col md="4">
-        <React.Fragment key={index}>
-          <span>
-            <Card className="portfolio-card">
-              <CardHeader className="portfolio-card-header">Some Position {index}</CardHeader>
-              <CardBody>
-                <p className="portfolio-card-city"> Some Location {index} </p>
-                <CardTitle className="portfolio-card-title">Some Company {index}</CardTitle>
-                <CardText className="portfolio-card-text">Some Description {index}</CardText>
-                <div className="readMore"> </div>
-              </CardBody>
-            </Card>
-          </span>
-        </React.Fragment>
-      </Col>
+        <Col key={index} md="4">
+         <PortfolioCard portfolio={portfolio}>
+          { isAuthenticated && isSiteOwner &&
+            { /*
+              <React.Fragment>
+                <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
+                <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
+              </React.Fragment>            
+            */ } 
+          }
+         </PortfolioCard>
+        </Col>
       )
     })
   }
 
   render() {
-    const { posts } = this.props;
+    const { portfolios } = this.props;
+    const { isAuthenticated, isSiteOwner } = this.props.auth;
 
     return (
       <BaseLayout {...this.props.auth}>
-        <BasePage className="portfolio-page" title="Filip Jerga - Learn About My Experience">
+        <BasePage className="portfolio-page" title="Portfolios">
           { /*
             <h1> I am Portfolios Page </h1>
           */ } 
           <ul>
             <Row>
-            { this.renderPosts(posts) }
+            { this.renderPortfolios(portfolios) }
             </Row>
           </ul>
         </BasePage>

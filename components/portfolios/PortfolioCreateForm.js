@@ -15,6 +15,7 @@ const validateInputs = (values) => {
   Object.entries(values).forEach(([key, value]) => {
     // Si le champ n'existe dans l'objet values ou 
     // que la clé est enDate
+    debugger
     if (!values[key] && key !== 'endDate') {
       // Le champ est alors requis
       errors[key] = `Field ${key} is required!`;
@@ -39,14 +40,31 @@ const validateInputs = (values) => {
   return errors;
 }
 
+// On récupère les props passées au composant dont la fonction
+// gestionnaire de soumission onSubmit
 const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
   <div>
     <Formik
       initialValues={initialValues}
       validate={validateInputs}
+      /*
+      On récupère la fonction gestionnaire de soumission
+      pour la passer en props à Formik. Elle pourra
+      accéder aux valeurs du formulaire ainsi qu'au formikBag
+      qui comportent presque toute les props de Formik. Formik
+      appellera dans son code la fonction avec les arguments
+      suivants onSubmit(values, formikBag) Ici les paramètres 
+      attendus du gestionnaire de soumission sont 
+      (portfolioData, {setSubmitting}) 
+      */
       onSubmit={onSubmit}
-    >
-      {({ isSubmitting }) => (
+    > 
+      { // Formik utilise la props de rendu children pour que le JSX
+        // children puisse accéder à diverses propriétés fournies par
+        // Formik dont isSubmitting qui est déstructuré depuis l'objet
+        // des props passées en paramètre par Formik 
+        // (Voir les props https://jaredpalmer.com/formik/docs/api/formik)
+        ({ isSubmitting }) => (
         <Form>
           { /*
           On crée un composant Formik Field qui affiche et passe des
@@ -90,6 +108,10 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
               {error}
             </Alert>
           }
+          { /*
+          Si le formulaire est en train d'être soumis (isSubmitting à true)
+          on désactive le bouton de soumission pour éviter des erreurs.
+          */ } 
           <Button color="success" size="lg" type="submit" disabled={isSubmitting}>
             Create
           </Button>

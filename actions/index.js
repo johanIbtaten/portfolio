@@ -1,6 +1,16 @@
 import axios from 'axios';
 
+const config = require('../server/config');
+
 import { getCookies, getCookieFromReq } from '../helpers/utils';
+
+// On configure axios
+const axiosInstance = axios.create({
+  baseURL: `${config.BASE_URL}/api/v1`,
+  // Si la requête n'aboutit pas après 3s (3000ms) on considère
+  // qu'elle a échoué.
+  timeout: 3000
+});
 
 const setAuthHeader = (req) => {
   // Si il y a une requête côté serveur on récupère
@@ -39,66 +49,52 @@ export const getSecretData = async (req) => {
   }
 }
 
-// const axiosInstance = axios.create({
-//   baseURL: `${process.env.BASE_URL}/api/v1`,
-//   timeout: 3000
-// });
+const rejectPromise = (resError) => {
+  let error = {};
+
+  // Si il y a une erreur
+  if (resError && resError.response && resError.response.data) {
+
+    // On place le message de l'erreur dans la variable error
+    error = resError.response.data;
+  } else {
+    error = resError;
+  }
+
+  // On retourne une promesse rejetée avec error
+  return Promise.reject(error);
+}
+
+export const getPortfolios = async () => {
+  return await axiosInstance.get('/portfolios').then(response => response.data);
+}
 
 
-// const setAuthHeader = (req) => {
-//   const token = req ? getCookieFromReq(req, 'jwt') : Cookies.getJSON('jwt');
+export const getPortfolioById = async (id) => {
+  return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
+}
 
-//   if (token) {
-//     return { headers: {'authorization': `Bearer ${token}`}};
-//   }
+// Le client envoie une requête post au endpoint de server avec les
+// données portfolioData pour créer un portfolio dans la bdd et le
+// Bearer token JWT dans le header pour vérifier l'authentification 
+// et le rôle de l'utilisateur qui a le droit créer un nouveau portfolio.
+export const createPortfolio = async (portfolioData) => {
+  return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
+    .then(response => response.data)
+    // Si la bdd nous renvoie une erreur on la traite dans la
+    // fonction rejectPromise()
+    .catch(error => rejectPromise(error))
+}
 
-//   return undefined;
-// }
+export const updatePortfolio = async (portfolioData) => {
+  return await axiosInstance.patch(`/portfolios/${portfolioData._id}`, portfolioData, setAuthHeader())
+    .then(response => response.data)
+    .catch(error => rejectPromise(error))
+}
 
-// const rejectPromise = (resError) => {
-//   let error = {};
-
-//   if (resError && resError.response && resError.response.data) {
-//     error = resError.response.data;
-//   } else {
-//     error = resError;
-//   }
-
-//   return Promise.reject(error);
-// }
-
-
-// export const getSecretData = async (req) => {
-//   const url = '/secret';
-
-//   return await axiosInstance.get(url, setAuthHeader(req)).then(response => response.data);
-// }
-
-// export const getPortfolios = async () => {
-//   return await axiosInstance.get('/portfolios').then(response => response.data);
-// }
-
-
-// export const getPortfolioById = async (id) => {
-//   return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
-// }
-
-
-// export const createPortfolio = async (portfolioData) => {
-//   return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
-//     .then(response => response.data)
-//     .catch(error => rejectPromise(error))
-// }
-
-// export const updatePortfolio = async (portfolioData) => {
-//   return await axiosInstance.patch(`/portfolios/${portfolioData._id}`, portfolioData, setAuthHeader())
-//     .then(response => response.data)
-//     .catch(error => rejectPromise(error))
-// }
-
-// export const deletePortfolio = (portfolioId) => {
-//   return axiosInstance.delete(`/portfolios/${portfolioId}`, setAuthHeader()).then(response => response.data);
-// }
+export const deletePortfolio = (portfolioId) => {
+  return axiosInstance.delete(`/portfolios/${portfolioId}`, setAuthHeader()).then(response => response.data);
+}
 
 // // ------------ BLOG ACTIONS --------------
 

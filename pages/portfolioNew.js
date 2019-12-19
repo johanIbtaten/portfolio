@@ -11,6 +11,7 @@ import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
 import moment from 'moment';
 
+// On déclare les valeurs par défaut des champs de formulaire
 const INITIAL_VALUES = { title: '',
                          company: '',
                          location: '',
@@ -24,6 +25,8 @@ class PortfolioNew extends React.Component {
   constructor(props){
     super();
 
+    // On initialise un state pour les erreurs de soumission
+    // du formulaire.
     this.state = {
       error: undefined
     }
@@ -31,26 +34,36 @@ class PortfolioNew extends React.Component {
     this.savePortfolio = this.savePortfolio.bind(this);
   }
 
+  // Cette fonction est le gestionnaire se soumission 
+  // elle va être passée en props au composant Formik avec
+  // la props onSubmit
   savePortfolio(portfolioData, {setSubmitting}) {
-  //savePortfolio() {
-    //alert('yes')
-    setTimeout(() => {
-      alert(JSON.stringify(portfolioData, null, 2));
-      setSubmitting(false);
-    }, 400);
-    // setSubmitting(true);
 
-    // createPortfolio(portfolioData)
-    //   .then((portfolio) => {
-    //     setSubmitting(false);
-    //     this.setState({error: undefined});
-    //     Router.pushRoute('/portfolios');
-    //   })
-    //   .catch((err) => {
-    //     const error = err.message || 'Server Error!';
-    //     setSubmitting(false);
-    //     this.setState({error});
-    //   })
+    // On appelle la fonction createPortfolio() qui va
+    // sauvegarder le nouveau portfolio à partir des données 
+    // du formulaire
+    createPortfolio(portfolioData)
+      .then((portfolio) => {
+
+        // Une fois le portfolio sauvegardé 
+        // on débloque le formulaire en mettant la props
+        // isSubmitting à false grâce au setter setSubmitting()
+        setSubmitting(false);
+
+        // On réinitilaise les erreurs
+        this.setState({error: undefined});
+
+        // On redirige l'utilisateur vers la page des portfolios
+        Router.pushRoute('/portfolios');
+      })
+      .catch((err) => {
+        // On récupère le message de l'erreur et on le
+        // place dans le state error
+        const error = err.message || 'Server Error!';
+        console.log(error);
+        setSubmitting(false);
+        this.setState({error});
+      })
   }
 
   render() {
@@ -68,9 +81,18 @@ class PortfolioNew extends React.Component {
               la fonction de sauvegarde du portfolio à appeler en cas 
               de submit du formulaire.
               */ }
-              <PortfolioCreateForm initialValues={INITIAL_VALUES}
-                                   error={error}
-                                   onSubmit={this.savePortfolio} />
+              <PortfolioCreateForm 
+                initialValues={INITIAL_VALUES}
+                /*
+                On passe l'erreur de soumission du formulaire
+                au composant.
+                */
+                error={error}
+                /* 
+                On passe la fonction gestionnaire se soumission 
+                this.savePortfolio dans la props onSubmit
+                */
+                onSubmit={this.savePortfolio} />
             </Col>
           </Row>         
         </BasePage>
@@ -80,5 +102,12 @@ class PortfolioNew extends React.Component {
 }
 
 // Cette page est autorisée seulemement pour le siteOwner connecté
-//export default withAuth('siteOwner')(PortfolioNew);
-export default PortfolioNew;
+export default withAuth('siteOwner')(PortfolioNew);
+
+//export default PortfolioNew;
+//savePortfolio() {
+    // setTimeout(() => {
+    //   alert(JSON.stringify(portfolioData, null, 2));
+    //   setSubmitting(false);
+    // }, 400);
+    // setSubmitting(true);
