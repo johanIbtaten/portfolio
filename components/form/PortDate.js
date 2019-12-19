@@ -10,8 +10,9 @@ export default class PortDate extends React.Component {
   constructor(props) {
     super(props);
 
-    // On initialise dateValue avec la date par défaut ou la date
-    // du jour si elle n'est pas déclarée
+    // On initialise dateValue avec la date récupérée depuis
+    // la props initialValues du formulaire ou la date du jour 
+    // si elle n'est pas déclarée.
     const dateValue = props.initialDate ? moment(props.initialDate) : moment();
     
     // Si il n'y a pas de date isHidden est à true

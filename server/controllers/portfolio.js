@@ -35,7 +35,9 @@ exports.getPortfolioById = (req, res) => {
   // On utilise la méthode findById de mangoose pour récupérer l'objet
   // portfolio à mettre à jour.
   Portfolio.findById(portfolioId)
+            // Permet de récupérer tous les champs sauf le champ __v
            .select('-__v')
+            // Execute la requête
            .exec((err, foundPortfolio) => {
     if (err) {
       return res.status(422).send(err);
