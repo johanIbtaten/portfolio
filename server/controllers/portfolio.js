@@ -8,6 +8,9 @@ exports.getPortfolios = (req, res) => {
   // implémenté par la librairie mangoose.
   // {} en paramètre permet de récupérer tous les portfolios.
   Portfolio.find({})
+            // Permet de trier les portfolios selon leur startDate
+            // 1 représente ascendant (ordre croissant) et
+            // -1 descendant (ordre décroissant)
            .sort({'startDate': 1})
            .exec((err, allPortfolios) => {
 

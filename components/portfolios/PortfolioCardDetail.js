@@ -6,6 +6,8 @@ class PortfolioCardDetail extends React.Component {
 
 
   render() {
+    // toggle est un handler qui permet de fermer ou ouvrir 
+    // la fenêtre modal en changeant la valeur isOpen du state
     const { isOpen, toggle, portfolio } = this.props;
 
     return (

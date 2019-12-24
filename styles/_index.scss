@@ -35,6 +35,7 @@
     width: 360px;
     left: 6%;
     z-index: 1;
+    color: white;
 
     &-intro {
       font-size: 17px;
@@ -112,4 +113,83 @@
 .shadow-custom-2 {
   border: 2px solid #f37d49;
   box-shadow: -17px 13px 41px rgba(13,78,158,0.3);
+}
+
+.cover-0 {
+}
+
+.cover-1 {
+  //background-image: linear-gradient(45deg, rgb(254, 202, 83), rgb(253, 157, 97));
+}
+
+.service-link {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  font-style: italic;
+  font-size: 13px;
+
+  > a {
+    color: white;
+  }
+}
+
+// Conteneur, détermine la perspective
+.flip-container {
+	perspective: 1000px;
+}
+
+// Flip le conteneur au survol ou à l'intervalle de temps
+.flip-container:hover .flipper, .flip-container.hover .flipper
+, .flip-container.isFlipping  .flipper 
+{
+  transform: rotateY(180deg);
+}
+
+// Détermine la taille de la carte
+.flip-container, .front, .back {
+	width: 400px;
+	height: 500px;
+}
+
+// Détermine la vitesse de la rotation
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+.flipper h2 {
+  font-weight: 600;
+}
+
+.front, .back {
+  // N'affiche pas le dos au moment de la rotation
+	backface-visibility: hidden;
+
+  // Positionne le front et le back l'un sur l'autre dans .flipper
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front {
+  // Positionne le panneau front au-dessus du panneau back
+  z-index: 2;
+  
+	// pour firefox 31
+  transform: rotateY(0deg);
+
+  // Place l'image de fond du panneau
+  background-image: url('/static/images/section-1.jpg'); 
+  background-size : cover;
+}
+
+.back {
+  // Effectue la rotation du panneau back
+  transform: rotateY(180deg);
+
+  background-image: url('/static/images/section-2.jpg'); 
+  background-size : cover;
 }

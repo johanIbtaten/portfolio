@@ -23,9 +23,17 @@ export default class PortfolioCard extends React.Component {
     const { portfolio, children } = this.props;
     const { isOpen } = this.state;
 
-    return (
+    return (      
+      /* 
+      Si on clique sur le span on ouvre la fenêtre modal en passant
+      le state isOpen à true
+      */      
       <span onClick={this.handleToggle}>
-
+        { /*
+        On passe la fonction handleToggle et le portfolio en paramètre
+        ainsi que isOpen pour informer le composant modal 
+        PortfolioCardDetail de s'ouvrir ou pas.
+        */ } 
         <PortfolioCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/>
 
         <Card className="portfolio-card">

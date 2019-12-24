@@ -15,7 +15,7 @@ export default class PortDate extends React.Component {
     // si elle n'est pas déclarée.
     const dateValue = props.initialDate ? moment(props.initialDate) : moment();
     
-    // Si il n'y a pas de date isHidden est à true
+    // Si il n'y a pas de initialDate isHidden est à true
     const isHidden = props.initialDate ? false : true;
 
     // On initialise le state

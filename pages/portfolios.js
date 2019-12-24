@@ -30,9 +30,15 @@ class Portfolios extends React.Component {
 
   displayDeleteWarning(portfolioId, e) {
     e.stopPropagation();
+    // On affiche une boite de dialogue confirm() avant de valider
+    // la suppression et on récupère la réponse sous forme d'un
+    // booléen isConfirm à true on répond oui au confirm()
     const isConfirm = confirm('Are you sure you want to delete this portfolio???');
 
+    // La suppression est confirmée
     if (isConfirm) {
+      
+      // Alors on appelle la fonction de suppression du portfolio
       this.deletePortfolio(portfolioId);
     }
   }
@@ -55,7 +61,12 @@ class Portfolios extends React.Component {
       return (
         <Col key={index} md="4">
          <PortfolioCard portfolio={portfolio}>
-         { isAuthenticated && isSiteOwner &&
+         { // Si l'utilisateur est connecté et si il est le siteOwner
+           // alors on affiche les boutons d'édition et 
+           // de suppression de portfolio. Ces éléments JSX sont des
+           // enfants du composant PortfolioCard ils seront donc
+           // passés à ce composant dans la props children.
+           isAuthenticated && isSiteOwner &&
               <React.Fragment>
                 <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
                 <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
@@ -74,11 +85,15 @@ class Portfolios extends React.Component {
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-page" title="Portfolios">
-          <ul>
-            <Row>
-            { this.renderPortfolios(portfolios) }
-            </Row>
-          </ul>
+        { isAuthenticated && isSiteOwner &&
+          <Button onClick={() => Router.pushRoute('/portfolios/new')}
+                  color="success"
+                  className="create-port-btn">Create Portfolio
+          </Button>
+        }
+        <Row>
+          { this.renderPortfolios(portfolios) }
+        </Row>
         </BasePage>
       </BaseLayout>
     )
