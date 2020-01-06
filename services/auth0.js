@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { getCookieFromReq } from '../helpers/utils';
 
-//const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_ID = process.env.CLIENT_ID;
 
 class Auth0 {
 
@@ -14,11 +14,10 @@ class Auth0 {
     // les paramètres de notre compte auth0
     this.auth0 = new auth0.WebAuth({
       domain: 'dev-wsx0dcuw.auth0.com',
-      clientID: 'jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt',
-      //redirectUri: `${process.env.BASE_URL}/callback`,
+      clientID: CLIENT_ID,
       // Une fois connecté on redirige l'utilisateur vers la
       // page callback
-      redirectUri: 'http://localhost:3000/callback',
+      redirectUri: `${process.env.BASE_URL}/callback`,
       responseType: 'token id_token',
       scope: 'openid profile'
     });
@@ -57,14 +56,11 @@ class Auth0 {
   }
 
   setSession(authResult) {
-    //console.log(authResult)
     // On ajoute à la date de connexion à auth0 le temps d'expiration en ms x 1000 
     // (pour le transformer en secondes) de l'access token définit sur auth0.com 
     // qui est de 7200s par default
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    Cookies.set('user', authResult.idTokenPayload);
     Cookies.set('jwt', authResult.idToken);
-    Cookies.set('expiresAt', expiresAt);
   }
   
   login() {
@@ -74,15 +70,13 @@ class Auth0 {
   
   logout() {
     // On supprime le cookie de session
-    Cookies.remove('user');
     Cookies.remove('jwt');
-    Cookies.remove('expiresAt');
     
     // On se déconnecte de auth0
     // On redirige l'utilisateur vers la page d'accueil
     this.auth0.logout({
-      returnTo: 'http://localhost:3000',
-      clientID: 'jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt'
+      returnTo: process.env.BASE_URL,
+      clientID: CLIENT_ID
     })
   }
   

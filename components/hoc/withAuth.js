@@ -2,9 +2,6 @@ import React from 'react';
 import BaseLayout from '../layouts/BaseLayout';
 import BasePage from '../BasePage';
 
-// On déclare l'url de base de notre application
-const namespace = 'http://localhost:3000'
-
 // On déclare un fonction fléchée qui prend en paramètre role
 // qui définit le role qui peut afficher ce composant
 // cette fonction retourne un autre fonction qui prend 
@@ -27,7 +24,7 @@ export default role => Component =>
     // Si il y a un user on récupère le role contenu dans user
     // qui correspond au payload du JWT au niveau de la clé
     // `${namespace}/role`
-    const userRole = user && user[`${namespace}/role`];
+    const userRole = user && user[`${process.env.NAMESPACE}/role`];
     
     // Par défaut l'utilisateur n'est pas autorisé.
     let isAuthorized = false;

@@ -53,8 +53,6 @@ class Portfolios extends React.Component {
 
   renderPortfolios(portfolios) {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
-    console.log("isAuthenticated", isAuthenticated);
-    console.log("isSiteOwner", isSiteOwner);
     console.log("this.props.auth", this.props.auth);
 
     return portfolios.map((portfolio, index) => {

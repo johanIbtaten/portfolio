@@ -15,7 +15,6 @@ const validateInputs = (values) => {
   Object.entries(values).forEach(([key, value]) => {
     // Si le champ n'existe dans l'objet values ou 
     // que la clé est enDate
-    debugger
     if (!values[key] && key !== 'endDate') {
       // Le champ est alors requis
       errors[key] = `Field ${key} is required!`;

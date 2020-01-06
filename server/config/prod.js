@@ -1,6 +1,5 @@
-// ADD HERE VALUES BEFORE DEPLOY!!!!!!!
 module.exports = {
-  //DB_URI:
-  //NAMESPACE:
+  //DB_URI: 'mongodb+srv://johan:test@cluster0-ymoa5.mongodb.net/test?retryWrites=true&w=majority'
+  DB_URI: process.env.DB_URI
 }
 

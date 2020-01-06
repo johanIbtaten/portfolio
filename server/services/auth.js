@@ -1,9 +1,6 @@
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
-// On déclare l'url de base de notre application
-const namespace = 'http://localhost:3000'
-
 // MIDDLEWARES
 
 // Récupère le JWT (token) dans le header de la requête et
@@ -25,7 +22,7 @@ const checkJwt = jwt({
   }),
 
   // Validate the audience and the issuer.
-  audience: 'jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt',
+  audience: process.env.CLIENT_ID,
   issuer: `https://dev-wsx0dcuw.auth0.com/`,
   algorithms: ['RS256']
 });
@@ -40,7 +37,7 @@ const checkRole = role => (req, res, next) => {
   // qui correspond à son role stocké dans son token JWT
   // et que cette valeur est égale au role passé
   // en argument qui est le role autorisé.
-  if (user && user[namespace + '/role'] && (user[namespace + '/role'] === role)) {
+  if (user && user[process.env.NAMESPACE + '/role'] && (user[process.env.NAMESPACE + '/role'] === role)) {
     // On passe avec next() à la fonction suivante dans l'appel get()
     // c'est cette dernière qui va retourner les données
     next();

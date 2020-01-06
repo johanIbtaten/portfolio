@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-const config = require('../server/config');
-
 import { getCookies, getCookieFromReq } from '../helpers/utils';
 
 // On configure axios
 const axiosInstance = axios.create({
-  baseURL: `${config.BASE_URL}/api/v1`,
+  baseURL: `${process.env.BASE_URL}/api/v1`,
   // Si la requête n'aboutit pas après 3s (3000ms) on considère
   // qu'elle a échoué.
   timeout: 3000

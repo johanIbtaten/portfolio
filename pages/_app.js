@@ -48,11 +48,13 @@ export default class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
+    
+    console.log(process.env.NODE_ENV)
 
     // On déclare une variable isSiteOwner qui a pour valeur un booléen
     // qui est à true si le user (payload du token JWT) possède un
     // attribut user[config.NAMESPACE + '/role'] ayant pour valeur 'siteOwner'
-    const isSiteOwner = user && user[config.NAMESPACE + '/role'] === 'siteOwner';
+    const isSiteOwner = user && user[process.env.NAMESPACE + '/role'] === 'siteOwner';
 
     // On crée un objet auth qui donne des information sur l'utilisateur
     // avec user sur son authentification avec isAuthenticated et
