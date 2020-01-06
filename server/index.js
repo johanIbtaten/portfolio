@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const path = require('path');
 const mongoose = require('mongoose');
 const routes = require('../routes');
 
@@ -17,6 +18,13 @@ const handle = routes.getRequestHandler(app);
 const config = require('./config');
 
 const Book = require('./models/book');
+
+const robotsOptions = {
+  root: path.join(__dirname, "../static"),
+  headers: {
+    'Content-Type': 'text/plain;charset=UTF-8'
+  }
+}
 
 let secretData = [
     {
@@ -72,6 +80,10 @@ app.prepare()
   server.get('/api/v1/onlysiteowner', checkJwt, checkRole('siteOwner'), (req, res) => {
     return res.json(secretData);
   })
+
+  server.get('/robots.txt', (req, res) => {
+    return res.status(200).sendFile('robots.txt', robotsOptions);
+  });
 
   server.get('*', (req, res) => {
     return handle(req, res)

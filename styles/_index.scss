@@ -30,12 +30,9 @@
   position: relative;
 
   &-content {
-    position: absolute;
-    bottom: 20px;
-    width: 360px;
-    left: 6%;
     z-index: 1;
     color: white;
+    padding: 0 15px 35px;
 
     &-intro {
       font-size: 17px;
@@ -77,10 +74,10 @@
 
 @media (max-width: 991px) {
   .hero-section {
-    width: 341px;
+    width: 100%;
 
     &-content {
-      width: 341px;
+      width: 100%;
     }
   }
 
@@ -91,8 +88,14 @@
 
 .background-image {
   position: absolute;
-  width: 1762px;
-  height: 493px;
+  
+  width: 100%;
+  height: 500px;
+  background-image: url('/static/images/background-index.png');
+  img {
+    width: 100%;
+    max-width: 1548px;
+  }
 }
 
 .shadow-custom {
@@ -148,8 +151,8 @@
 
 // Détermine la taille de la carte
 .flip-container, .front, .back {
-	width: 400px;
-	height: 500px;
+	width: 100%;
+	max-width: 400px;
 }
 
 // Détermine la vitesse de la rotation
@@ -157,7 +160,10 @@
 	transition: 0.6s;
 	transform-style: preserve-3d;
 
-	position: relative;
+  position: relative;
+  
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .flipper h2 {
@@ -168,10 +174,9 @@
   // N'affiche pas le dos au moment de la rotation
 	backface-visibility: hidden;
 
-  // Positionne le front et le back l'un sur l'autre dans .flipper
-	position: absolute;
-	top: 0;
-	left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  flex: none;  
 }
 
 .front {
@@ -182,14 +187,17 @@
   transform: rotateY(0deg);
 
   // Place l'image de fond du panneau
-  background-image: url('/static/images/section-1.jpg'); 
-  background-size : cover;
+  //background-image: url('/static/images/section-1.jpg');
+  background-color: #048DD3;
+
 }
 
 .back {
   // Effectue la rotation du panneau back
   transform: rotateY(180deg);
 
-  background-image: url('/static/images/section-2.jpg'); 
-  background-size : cover;
+  //background-image: url('/static/images/section-2.jpg');
+  background-color: #F27D48;
+
+  margin-left: -100%;
 }

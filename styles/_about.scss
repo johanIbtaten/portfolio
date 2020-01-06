@@ -9,7 +9,7 @@
   .fadein {
     opacity: 0;
 
-    @include animation(fadein 2s);
+    @include animation(fadein 1s);
     @include animation-fill-mode(forwards);
   }
 
@@ -20,12 +20,12 @@
   }
 
   .subtitle {
-    @include animation-detail(2.2s);
+    @include animation-detail(1.7s);
     font-size: 33px;
   }
 
   .subsubTitle {
-    @include animation-detail(3.6s);
+    @include animation-detail(2.7s);
     font-size: 18px;
   }
 
