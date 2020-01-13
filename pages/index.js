@@ -103,7 +103,7 @@ class Index extends React.Component {
                     Welcome to the portfolio website of Filip Jerga.
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>
-
+                  { /*     
                   <FontAwesomeIcon icon={['fab', 'facebook']} />
                   <FontAwesomeIcon icon={['fab', 'twitter']} />
                   <FontAwesomeIcon icon={['fab', 'google']} />
@@ -112,15 +112,13 @@ class Index extends React.Component {
                   <FontAwesomeIcon icon="archway" size="lg" />
                   <FontAwesomeIcon icon="archway" size="6x" />
 
-                  { /*
-                  Une simple chaine de caractère dans l'attribut icon fait
-                  référence à la version solid de l'icone 
-                  */ } 
+                  
+                  // Une simple chaine de caractère dans l'attribut icon fait
+                  // référence à la version solid de l'icone                   
                   <FontAwesomeIcon icon="address-book" size="6x" />
-                  { /*
-                  Si l'on souhaite un autre version, il faut la préciser
-                  avec un préfixe, ici far pour la version regular
-                  */ } 
+                  
+                  // Si l'on souhaite un autre version, il faut la préciser
+                  // avec un préfixe, ici far pour la version regular
                   <FontAwesomeIcon icon={['far', 'address-book']} size="6x" />
 
                   <ul class="fa-ul">
@@ -132,6 +130,7 @@ class Index extends React.Component {
 
                   <a href="#" className="btn btn-warning btn-lg mr-3">Hello</a>
                   <a href="#" className="btn btn-warning btn-lg"><FontAwesomeIcon icon="address-book" transform="grow-8" /></a>
+                  */ } 
 
                 </div>
                 <Typed

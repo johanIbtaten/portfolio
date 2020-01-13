@@ -1,6 +1,8 @@
 @import './shared/fonts';
 @import './shared/colors';
 @import './shared/mixins';
+@import './shared/functions';
+@import './shared/variables';
 
 
 // PAGES
@@ -57,4 +59,14 @@ html, body {
   }
 }
 
-// --------- BASE PAGE -------------
+// ---------- Utils ------------
+.shadow-soft {
+  box-shadow: 0 0.25rem 1.875rem rgba(42, 53, 79, 0.05) !important;
+}
+
+// ---------- Boostrap override ------------
+
+.btn {
+  border-radius: 0.125rem;
+  padding: .70rem 1.2rem;
+}

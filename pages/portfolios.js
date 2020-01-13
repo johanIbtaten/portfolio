@@ -66,8 +66,9 @@ class Portfolios extends React.Component {
            // passés à ce composant dans la props children.
            isAuthenticated && isSiteOwner &&
               <React.Fragment>
+                <hr/>
                 <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
-                <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger">Delete</Button>
+                <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, e)} color="danger" className="float-right">Delete</Button>
               </React.Fragment>            
           }
          </PortfolioCard>

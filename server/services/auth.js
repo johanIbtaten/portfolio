@@ -1,6 +1,9 @@
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
+const config = require('../config');
+const NAMESPACE = config.NAMESPACE;
+
 // MIDDLEWARES
 
 // Récupère le JWT (token) dans le header de la requête et
@@ -22,7 +25,7 @@ const checkJwt = jwt({
   }),
 
   // Validate the audience and the issuer.
-  audience: process.env.CLIENT_ID,
+  audience: 'jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt',
   issuer: `https://dev-wsx0dcuw.auth0.com/`,
   algorithms: ['RS256']
 });
@@ -33,11 +36,14 @@ const checkRole = role => (req, res, next) => {
   // avant de la passer au suivant.
   const user = req.user;
 
+  console.log('usercheckRole', user);
+  console.log("NAMESPACE", NAMESPACE);
+
   // Si il y a un user, une valeur user[namespace + '/role']
   // qui correspond à son role stocké dans son token JWT
   // et que cette valeur est égale au role passé
   // en argument qui est le role autorisé.
-  if (user && user[process.env.NAMESPACE + '/role'] && (user[process.env.NAMESPACE + '/role'] === role)) {
+  if (user && user[NAMESPACE + '/role'] && (user[NAMESPACE + '/role'] === role)) {
     // On passe avec next() à la fonction suivante dans l'appel get()
     // c'est cette dernière qui va retourner les données
     next();

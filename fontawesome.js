@@ -5,7 +5,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { 
     faArchway,
     faAddressBook,
-    faSpinner
+    faSpinner,
+    faCheckCircle
   } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -15,7 +16,8 @@ import {
 import {
     faGoogle,
     faFacebook,
-    faTwitter
+    faTwitter,    
+    faGithub
   } from '@fortawesome/free-brands-svg-icons';
 
   // Ajout des icones à la librairie
@@ -23,10 +25,11 @@ library.add(
     faArchway,
     faAddressBook,
     faSpinner,
-
+    faCheckCircle,
+    faGithub,
     faAddressBookRegular,
-
     faGoogle,
     faFacebook,
-    faTwitter
+    faTwitter,
+    faGithub
 );
