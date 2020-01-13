@@ -72,7 +72,7 @@ export default class PortDate extends React.Component {
       <FormGroup>
       <Label>{label}</Label>
         <div className="input-group">
-          { !isHidden &&
+          { //!isHidden &&
             <DatePicker
               selected={dateValue}
               onChange={this.handleChange}
@@ -88,16 +88,19 @@ export default class PortDate extends React.Component {
         { // Si le champ est canBeDisabled et n'est isHidden on
           // affiche le bouton qui permet de cacher le 
           // Datepicker endDate 
-          canBeDisabled && !isHidden && <Button onClick={() => this.toggleDate(null)}>Still Working Here...</Button>}
+          //canBeDisabled && !isHidden && <Button onClick={() => this.toggleDate(null)}>Still Working Here...</Button>
+        }
 
         { // Si le champ est canBeDisabled et est isHidden on
           // affiche le bouton qui permet d'afficher le 
           // Datepicker endDate et on affiche Still Working Here            
-          canBeDisabled && isHidden &&
+          //canBeDisabled && isHidden &&
+          /*          
           <React.Fragment>
             <span> Still Working Here </span>
             <Button onClick={() => this.toggleDate(dateValue)}> Set End Date </Button>
           </React.Fragment>
+          */ 
         }
 
 

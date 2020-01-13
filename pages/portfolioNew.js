@@ -13,12 +13,12 @@ import moment from 'moment';
 
 // On déclare les valeurs par défaut des champs de formulaire
 const INITIAL_VALUES = { title: '',
-                         company: '',
-                         location: '',
-                         position: '',
                          description: '',
-                         startDate: moment(),
-                         endDate: moment() };
+                         technoList: '',
+                         targetLink: '',
+                         githubLink: '',
+                         startDate: moment()
+                        };
 
 class PortfolioNew extends React.Component {
 

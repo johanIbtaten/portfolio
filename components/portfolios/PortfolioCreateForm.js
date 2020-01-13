@@ -15,7 +15,7 @@ const validateInputs = (values) => {
   Object.entries(values).forEach(([key, value]) => {
     // Si le champ n'existe dans l'objet values ou 
     // que la clé est enDate
-    if (!values[key] && key !== 'endDate') {
+    if (!values[key]) {
       // Le champ est alors requis
       errors[key] = `Field ${key} is required!`;
     }
@@ -25,14 +25,14 @@ const validateInputs = (values) => {
   // du champ startDate du formulaire et on la formate avec
   // la librairie moment()
   const startDate = moment(values.startDate);
-  const endDate = moment(values.endDate);
+  //const endDate = moment(values.endDate);
 
   // Si startDate et endDate existent et que la enDate 
   // est avant la startDate ce qui est incohérent
-  if (startDate && endDate && endDate.isBefore(startDate)) {
-    // Alors on ajoute un message d'erreur à l'objet errors
-    errors.endDate = 'End Date cannot be before start date!!!';
-  }
+  // if (startDate && endDate && endDate.isBefore(startDate)) {
+  //   // Alors on ajoute un message d'erreur à l'objet errors
+  //   errors.endDate = 'End Date cannot be before start date!!!';
+  // }
 
   // On retourne l'objet errors qui contient les messages d'erreur 
   // à afficher.
@@ -72,33 +72,27 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
           <Field type="text"
                  name="title"
                  label="Title"
-                 component={PortInput}/>
-          <Field type="text"
-                 name="company"
-                 label="Company"
-                 component={PortInput}/>
-          <Field type="text"
-                 name="location"
-                 label="Location"
-                 component={PortInput}/>
-          <Field type="text"
-                 name="position"
-                 label="Position"
-                 component={PortInput}/>
+                 component={PortInput}/>          
           <Field type="textarea"
                  name="description"
                  label="Description"
                  component={PortInput}/>
-
+          <Field type="textarea"
+                 rows="7"
+                 name="technoList"
+                 label="technoList"
+                 component={PortInput}/>
+          <Field type="text"
+                 name="targetLink"
+                 label="targetLink"
+                 component={PortInput}/>
+          <Field type="text"
+                 name="githubLink"
+                 label="githubLink"
+                 component={PortInput}/>            
           <Field name="startDate"
                  label="Start Date"
                  initialDate={initialValues.startDate}
-                 component={PortDate}/>
-
-          <Field name="endDate"
-                 label="End Date"
-                 canBeDisabled={true}
-                 initialDate={initialValues.endDate}
                  component={PortDate}/>
           { // Si il y a des erreurs au niveau de la sauvegarde
             // du formulaire on affiche le message d'erreur

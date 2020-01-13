@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardHeader, CardBody, CardText, CardTitle, Button } from 'reactstrap';
-import PortfolioCardDetail from './PortfolioCardDetail';
+//import PortfolioCardDetail from './PortfolioCardDetail';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -26,6 +26,7 @@ export default class PortfolioCard extends React.Component {
   render() {
     const { portfolio, children } = this.props;
     const { isOpen } = this.state;
+    const technoList = portfolio.technoList.split(";").map(item => item.trim());
 
     return (      
       /* 
@@ -37,9 +38,9 @@ export default class PortfolioCard extends React.Component {
         On passe la fonction handleToggle et le portfolio en paramètre
         ainsi que isOpen pour informer le composant modal 
         PortfolioCardDetail de s'ouvrir ou pas.
-        */ } 
         <PortfolioCardDetail toggle={this.handleToggle} portfolio={portfolio} isOpen={isOpen}/>
-
+        */ } 
+        { /*
         <Card className="portfolio-card">
           <CardHeader className="portfolio-card-header">{portfolio.position}</CardHeader>
           <CardBody>
@@ -51,25 +52,21 @@ export default class PortfolioCard extends React.Component {
             </div>
           </CardBody>
         </Card>
-        { /*        
         */ } 
 
         <Card className="portfolio-card">
           <CardImg className="imgView card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg" alt="Card image cap" />
           <CardBody className="shadow-soft">
-            <CardTitle className="portfolio-card-title">Remote workers, here's how to dodge</CardTitle>
-            <CardText className="portfolio-card-text">According to some historical records, some people out there have boundless energy, loads of free time, and ambition...</CardText>
+            <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
+            <CardText className="portfolio-card-text">{portfolio.description}</CardText>
             <CardText className="portfolio-card-text font-weight-bolder mb-2">Technologies :</CardText>
+            
             <ul className="fa-ul">
-              <li>
-                <FontAwesomeIcon icon="check-circle" listItem />List Item iqsu diu idu ioqsdu ioqsudiouqsiod
-              </li>
-              <li>
-                <FontAwesomeIcon icon="check-circle" listItem />List Item iqsu diu idu ioqsdu ioqsudiouqsiod
-              </li>
-              <li>
-                <FontAwesomeIcon icon="check-circle" listItem />List Item iqsu diu idu ioqsdu ioqsudiouqsiod
-              </li>
+              { technoList.map((technoItemList, index) => (
+                  <li key={index}>
+                    <FontAwesomeIcon icon="check-circle" listItem />{technoItemList}
+                  </li>
+              ))}
             </ul>
             <a href="#" className="btn btn-icon" >
               <FontAwesomeIcon icon={['fab', 'github']} transform="grow-16"/>
@@ -91,3 +88,12 @@ export default class PortfolioCard extends React.Component {
     )
   }
 }
+
+
+// Remote workers, here's how to dodge
+// According to some historical records, some people out there have boundless energy, loads of free time, and ambition...
+
+// react.js, next.js ;
+// Responsive, css in js;
+// Auth0, JWT token;
+// MongoDB Atlas, Endpoints
