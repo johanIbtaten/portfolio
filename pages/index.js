@@ -5,6 +5,8 @@ import BaseLayout from '../components/layouts/BaseLayout';
 
 import { Container, Row, Col } from 'reactstrap';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 class Index extends React.Component {
 
   constructor(props) {
@@ -62,38 +64,7 @@ class Index extends React.Component {
           */ } 
           </div>
           <Container>
-            <Row>
-            { /*
-            
-              <Col md="6">
-                <div className={`flip-container ${isFlipping ? 'isFlipping' : ''}`}>
-                  <div className="flipper">
-                    <div className="front">
-                      <div className="hero-section-content">
-                        <h2> Full Stack Web Developer </h2>
-                        <div className="hero-section-content-intro">
-                          Have a look at my portfolio and job history.
-                        </div>
-                      </div>
-                      <div className="shadow-custom">
-                        <div className="shadow-inner"> </div>
-                      </div>
-                    </div>
-                    <div className="back">
-                      <div className="hero-section-content">
-                        <h2> Get Your Projects Done </h2>
-                        <div className="hero-section-content-intro">
-                          Profesional and top quality service in web development.
-                        </div>
-                      </div>
-                      <div className="shadow-custom">
-                        <div className="shadow-inner"> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-            */ } 
+            <Row>            
               <Col md="6">
                 <div className={`mx-auto ml-md-0 mb-5 mb-md-0 flip-container ${isFlipping ? 'isFlipping' : ''}`}>
                   <div className="flipper">
@@ -124,6 +95,7 @@ class Index extends React.Component {
                   </div>
                 </div>
               </Col>
+
               <Col md="6" className="hero-welcome-wrapper text-center text-md-left">
                 <div className="hero-welcome-text">
                   <h1>
@@ -131,6 +103,36 @@ class Index extends React.Component {
                     Welcome to the portfolio website of Filip Jerga.
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>
+
+                  <FontAwesomeIcon icon={['fab', 'facebook']} />
+                  <FontAwesomeIcon icon={['fab', 'twitter']} />
+                  <FontAwesomeIcon icon={['fab', 'google']} />
+                  
+                  <FontAwesomeIcon icon="archway" size="xs" />
+                  <FontAwesomeIcon icon="archway" size="lg" />
+                  <FontAwesomeIcon icon="archway" size="6x" />
+
+                  { /*
+                  Une simple chaine de caractère dans l'attribut icon fait
+                  référence à la version solid de l'icone 
+                  */ } 
+                  <FontAwesomeIcon icon="address-book" size="6x" />
+                  { /*
+                  Si l'on souhaite un autre version, il faut la préciser
+                  avec un préfixe, ici far pour la version regular
+                  */ } 
+                  <FontAwesomeIcon icon={['far', 'address-book']} size="6x" />
+
+                  <ul class="fa-ul">
+                    <li><FontAwesomeIcon icon="spinner" listItem />List icons can</li>
+                    <li><FontAwesomeIcon icon="spinner" listItem />be used to</li>
+                    <li><FontAwesomeIcon icon="spinner" listItem />replace bullets</li>
+                    <li><FontAwesomeIcon icon="spinner" listItem />in lists</li>
+                  </ul>
+
+                  <a href="#" className="btn btn-warning btn-lg mr-3">Hello</a>
+                  <a href="#" className="btn btn-warning btn-lg"><FontAwesomeIcon icon="address-book" transform="grow-8" /></a>
+
                 </div>
                 <Typed
                   loop
