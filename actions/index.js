@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import { getCookies, getCookieFromReq } from '../helpers/utils';
 
+const API_URL = "http://localhost:3000";
+
 // On configure axios
 const axiosInstance = axios.create({
   baseURL: `${process.env.BASE_URL}/api/v1`,
@@ -72,17 +74,66 @@ export const getPortfolioById = async (id) => {
   return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
 }
 
-// Le client envoie une requête post au endpoint de server avec les
-// données portfolioData pour créer un portfolio dans la bdd et le
-// Bearer token JWT dans le header pour vérifier l'authentification 
-// et le rôle de l'utilisateur qui a le droit créer un nouveau portfolio.
+
+
 export const createPortfolio = async (portfolioData) => {
+
+  console.log(portfolioData);
+
+  //portfolioData.file = "uploads/1579012905286tree-736885_1280.jpg"
+  
   return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
+  // return await axiosInstance.post('/portfolios', portfolioData)
     .then(response => response.data)
     // Si la bdd nous renvoie une erreur on la traite dans la
     // fonction rejectPromise()
     .catch(error => rejectPromise(error))
 }
+
+
+// Le client envoie une requête post au endpoint de server avec les
+// données portfolioData pour créer un portfolio dans la bdd et le
+// Bearer token JWT dans le header pour vérifier l'authentification 
+// et le rôle de l'utilisateur qui a le droit créer un nouveau portfolio.
+export const uploadImage = async (portfolioData) => {
+  console.log('createPortfolio', portfolioData)
+  console.log('createPortfolioAfter', portfolioData.file)
+
+  let imageFormObj = new FormData();
+
+  imageFormObj.append("imageName", "multer-image-" + Date.now());
+  imageFormObj.append("imageData", portfolioData.file);
+
+  axios.post(`${API_URL}/image/uploadmulter`, imageFormObj)
+    .then((data) => {
+      // console.log('reponse', data);
+      // console.log('reponseDoc', data.data.document);      
+      alert("Image has been successfully uploaded using multer");
+
+      portfolioData.file = data.data.document.replace(/\\/g, "/");
+      //console.log('portfolioData', portfolioData)
+
+      // return Promise.resolve(createPortfolio(portfolioData))
+      return createPortfolio(portfolioData)
+      // if (data.data.success) {
+      //   //this.setDefaultImage("multer");
+      // }
+    })
+    .catch((err) => {
+      alert("Error while uploading image using multer");
+      //this.setDefaultImage("multer");
+  });
+  
+  // return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
+  // // return await axiosInstance.post('/portfolios', portfolioData)
+  //   .then(response => response.data)
+  //   // Si la bdd nous renvoie une erreur on la traite dans la
+  //   // fonction rejectPromise()
+  //   .catch(error => rejectPromise(error))
+}
+
+
+
 
 export const updatePortfolio = async (portfolioData) => {
   return await axiosInstance.patch(`/portfolios/${portfolioData._id}`, portfolioData, setAuthHeader())

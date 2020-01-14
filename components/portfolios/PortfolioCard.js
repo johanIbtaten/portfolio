@@ -28,6 +28,17 @@ export default class PortfolioCard extends React.Component {
     const { isOpen } = this.state;
     const technoList = portfolio.technoList.split(";").map(item => item.trim());
 
+    var divStyle = {
+      width: '100%',
+      //height: '400px'
+    };
+
+    var imgStyle = {
+      objectFit: 'cover',
+      width: '100%',
+      height: 245
+    };
+
     return (      
       /* 
       Si on clique sur le span on ouvre la fenêtre modal en passant
@@ -55,7 +66,12 @@ export default class PortfolioCard extends React.Component {
         */ } 
 
         <Card className="portfolio-card">
+        { /*        
           <CardImg className="imgView card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg" alt="Card image cap" />
+        */ } 
+          <div style={divStyle}>
+            <CardImg style={imgStyle} className="imgView card-img-top" src={portfolio.file} alt="Card image cap" />
+          </div>
           <CardBody className="shadow-soft">
             <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
             <CardText className="portfolio-card-text">{portfolio.description}</CardText>
@@ -77,7 +93,7 @@ export default class PortfolioCard extends React.Component {
             <div className="readMore">
               {children}
             </div>
-            {portfolio.startDate}
+            
           </CardBody>
         </Card>
         { /*        

@@ -5,7 +5,7 @@ import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 
 import { Row, Col } from 'reactstrap';
 
-import { createPortfolio } from '../actions';
+import { createPortfolio, uploadImage } from '../actions';
 
 import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
@@ -44,28 +44,28 @@ class PortfolioNew extends React.Component {
     // On appelle la fonction createPortfolio() qui va
     // sauvegarder le nouveau portfolio à partir des données 
     // du formulaire
-    // createPortfolio(portfolioData)
-    //   .then((portfolio) => {
+    uploadImage(portfolioData)
+      .then((portfolio) => {
 
-    //     // Une fois le portfolio sauvegardé 
-    //     // on débloque le formulaire en mettant la props
-    //     // isSubmitting à false grâce au setter setSubmitting()
-    //     setSubmitting(false);
+        // Une fois le portfolio sauvegardé 
+        // on débloque le formulaire en mettant la props
+        // isSubmitting à false grâce au setter setSubmitting()
+        setSubmitting(false);
 
-    //     // On réinitilaise les erreurs
-    //     this.setState({error: undefined});
+        // On réinitilaise les erreurs
+        this.setState({error: undefined});
 
-    //     // On redirige l'utilisateur vers la page des portfolios
-    //     Router.pushRoute('/portfolios');
-    //   })
-    //   .catch((err) => {
-    //     // On récupère le message de l'erreur et on le
-    //     // place dans le state error
-    //     const error = err.message || 'Server Error!';
-    //     console.log(error);
-    //     setSubmitting(false);
-    //     this.setState({error});
-    //   })
+        // On redirige l'utilisateur vers la page des portfolios
+        Router.pushRoute('/portfolios');
+      })
+      .catch((err) => {
+        // On récupère le message de l'erreur et on le
+        // place dans le state error
+        const error = err.message || 'Server Error!';
+        console.log(error);
+        setSubmitting(false);
+        this.setState({error});
+      })
   }
 
   render() {

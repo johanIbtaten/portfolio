@@ -13,7 +13,9 @@ const portfolioSchema = new Schema({
   technoList: setStringType(2048),
   targetLink: setStringType(256),
   githubLink: setStringType(256),
-  startDate: { type: Date, required: true}
+  startDate: { type: Date, required: true},
+  file: setStringType(512)
+ 
   /*company: setStringType(256),
   location: setStringType(128),
   position: setStringType(256),

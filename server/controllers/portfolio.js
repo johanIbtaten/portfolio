@@ -57,6 +57,8 @@ exports.savePortfolio = (req, res) => {
   // de la requête.
   const portfolioData = req.body;
 
+  console.log(portfolioData);
+
   // Si il y a les données du user (payload du token JWT) dans 
   // la requête, on crée un userId à partir de l'attibut sub du user
   const userId = req.user && req.user.sub;

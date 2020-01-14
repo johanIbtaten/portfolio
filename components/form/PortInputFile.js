@@ -16,7 +16,8 @@ export default class PortInputFile extends React.Component {
   render() {
     const { 
       label,
-      type,      
+      type,
+      field,      
       form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
       ...props
      } = this.props;
