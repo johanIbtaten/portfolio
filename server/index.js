@@ -4,7 +4,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 const routes = require('../routes');
 
-const cors = require('cors');
+var ImageRouter = require('./routes/image');
+
+//const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const bookRoutes = require('./routes/book');
@@ -54,6 +56,8 @@ app.prepare()
   // using bodyParser to parse JSON bodies into JS objects
   server.use(bodyParser.json());
 
+  server.use('/uploads', express.static('uploads'));
+
   server.use('/api/v1/books', bookRoutes);
 
   // On passe en argument les routes portfolioRoutes
@@ -96,6 +100,8 @@ app.prepare()
       res.status(401).send({title: 'Unauthorized', detail: 'Unauthorized Access JOJO!'});
     }
   });
+
+  server.use('/image', ImageRouter);
 
   const PORT = process.env.PORT || 3000;
 

@@ -5,6 +5,7 @@ import PortInput from '../form/PortInput';
 import PortDate from '../form/PortDate';
 
 import moment from 'moment';
+import PortInputFile from '../form/PortInputFile';
 
 const validateInputs = (values) => {
   let errors = {};
@@ -45,7 +46,7 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
   <div>
     <Formik
       initialValues={initialValues}
-      validate={validateInputs}
+      /*validate={validateInputs}*/
       /*
       On récupère la fonction gestionnaire de soumission
       pour la passer en props à Formik. Elle pourra
@@ -94,6 +95,10 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
                  label="Start Date"
                  initialDate={initialValues.startDate}
                  component={PortDate}/>
+          <Field type="file"
+                 name="file"
+                 label="file"
+                 component={PortInputFile}/>     
           { // Si il y a des erreurs au niveau de la sauvegarde
             // du formulaire on affiche le message d'erreur
             error &&

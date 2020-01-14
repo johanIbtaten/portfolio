@@ -17,7 +17,8 @@ const INITIAL_VALUES = { title: '',
                          technoList: '',
                          targetLink: '',
                          githubLink: '',
-                         startDate: moment()
+                         startDate: moment(),
+                         file: ''
                         };
 
 class PortfolioNew extends React.Component {
@@ -38,32 +39,33 @@ class PortfolioNew extends React.Component {
   // elle va être passée en props au composant Formik avec
   // la props onSubmit
   savePortfolio(portfolioData, {setSubmitting}) {
+    console.log(portfolioData)
 
     // On appelle la fonction createPortfolio() qui va
     // sauvegarder le nouveau portfolio à partir des données 
     // du formulaire
-    createPortfolio(portfolioData)
-      .then((portfolio) => {
+    // createPortfolio(portfolioData)
+    //   .then((portfolio) => {
 
-        // Une fois le portfolio sauvegardé 
-        // on débloque le formulaire en mettant la props
-        // isSubmitting à false grâce au setter setSubmitting()
-        setSubmitting(false);
+    //     // Une fois le portfolio sauvegardé 
+    //     // on débloque le formulaire en mettant la props
+    //     // isSubmitting à false grâce au setter setSubmitting()
+    //     setSubmitting(false);
 
-        // On réinitilaise les erreurs
-        this.setState({error: undefined});
+    //     // On réinitilaise les erreurs
+    //     this.setState({error: undefined});
 
-        // On redirige l'utilisateur vers la page des portfolios
-        Router.pushRoute('/portfolios');
-      })
-      .catch((err) => {
-        // On récupère le message de l'erreur et on le
-        // place dans le state error
-        const error = err.message || 'Server Error!';
-        console.log(error);
-        setSubmitting(false);
-        this.setState({error});
-      })
+    //     // On redirige l'utilisateur vers la page des portfolios
+    //     Router.pushRoute('/portfolios');
+    //   })
+    //   .catch((err) => {
+    //     // On récupère le message de l'erreur et on le
+    //     // place dans le state error
+    //     const error = err.message || 'Server Error!';
+    //     console.log(error);
+    //     setSubmitting(false);
+    //     this.setState({error});
+    //   })
   }
 
   render() {

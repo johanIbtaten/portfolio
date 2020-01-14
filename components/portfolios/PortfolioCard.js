@@ -61,7 +61,7 @@ export default class PortfolioCard extends React.Component {
             <CardText className="portfolio-card-text">{portfolio.description}</CardText>
             <CardText className="portfolio-card-text font-weight-bolder mb-2">Technologies :</CardText>
             
-            <ul className="fa-ul">
+            <ul className="fa-ul">            
               { technoList.map((technoItemList, index) => (
                   <li key={index}>
                     <FontAwesomeIcon icon="check-circle" listItem />{technoItemList}
@@ -77,6 +77,7 @@ export default class PortfolioCard extends React.Component {
             <div className="readMore">
               {children}
             </div>
+            {portfolio.startDate}
           </CardBody>
         </Card>
         { /*        

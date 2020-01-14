@@ -11,7 +11,7 @@ exports.getPortfolios = (req, res) => {
             // Permet de trier les portfolios selon leur startDate
             // 1 représente ascendant (ordre croissant) et
             // -1 descendant (ordre décroissant)
-           .sort({'startDate': 1})
+           .sort({'startDate': -1})
            .exec((err, allPortfolios) => {
 
     // Si il y a une erreur, le serveur répondra avec un header
