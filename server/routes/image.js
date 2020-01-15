@@ -29,51 +29,32 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-/* 
-    stores image in uploads folder
-    using multer and creates a reference to the 
-    file
-*/
+// Sauvegarde l'image dans le dossier uploads et renvoie le chemin du fichier
 ImageRouter.route("/uploadmulter").post(upload.single('imageData'), (req, res, next) => {
         //console.log('req.body.imageName',req.body.imageName);
-        console.log('req.file.path',req.file.path);
-
-        const newImage = new Image({
-            imageName: req.body.imageName,
-            imageData: req.file.path
+        console.log('req.file.path', req.file.path); ///////////////////////////////////////
+        console.log('req.file.originalname', req.file.originalname); ///////////////////////////////////////
+        console.log('req.file', req.file); ///////////////////////////////////////
+        
+        return res.status(200).json({
+            success: true,
+            document: req.file.path
         });
 
-        newImage.save()
-            .then((result) => {
-                console.log(result);
-                res.status(200).json({
-                    success: true,
-                    document: req.file.path
-                });
-            })
-            .catch((err) => next(err));
+        // const newImage = new Image({
+        //     imageName: req.body.imageName,
+        //     imageData: req.file.path
+        // });
+
+        // newImage.save()
+        //     .then((result) => {
+        //         console.log(result);
+        //         res.status(200).json({
+        //             success: true,
+        //             document: req.file.path
+        //         });
+        //     })
+        //     .catch((err) => next(err));
     });
-
-/*
-    upload image in base64 format, thereby,
-    directly storing it in mongodb datanase
-    along with images uploaded using firebase
-    storage
-*/    
-// ImageRouter.route("/uploadbase").post((req, res, next) => {
-//         const newImage = new Image({
-//             imageName: req.body.imageName,
-//             imageData: req.body.imageData
-//         });
-
-//         newImage.save()
-//             .then((result) => {
-//                 res.status(200).json({
-//                     success: true,
-//                     document: result
-//                 });
-//             })
-//             .catch((err) => next(err));
-//     });
 
 module.exports = ImageRouter;

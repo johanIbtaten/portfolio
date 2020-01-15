@@ -5,7 +5,7 @@ import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 
 import { Row, Col } from 'reactstrap';
 
-import { updatePortfolio, getPortfolioById } from '../actions';
+import { uploadImageAndSavePortfolio, getPortfolioById } from '../actions';
 
 import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
@@ -43,11 +43,13 @@ class PortfolioEdit extends React.Component {
   // fonction updatePortfolio()
   updatePortfolio(portfolioData, {setSubmitting}) {
     setSubmitting(true);
-    updatePortfolio(portfolioData)
+    uploadImageAndSavePortfolio(portfolioData, 'update', this.props.portfolio.file)
       .then((portfolio) => {
         setSubmitting(false);
         this.setState({error: undefined});
-        Router.pushRoute('/portfolios');
+        
+        // Router.replace() permet de forcer le render de la page cible
+        Router.replace('/portfolios');
       })
       .catch((err) => {
         const error = err.message || 'Server Error!';

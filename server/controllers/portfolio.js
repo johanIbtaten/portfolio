@@ -1,6 +1,12 @@
 // On importe le modèle Portfolio
 const Portfolio = require('../models/portfolio');
 
+// On importe les utilitaires qui permette d'effacer 
+// un fichier sur le serveur
+const fs = require('fs')
+const { promisify } = require('util')
+const unlinkAsync = promisify(fs.unlink)
+
 // Récupérer tous le portfolios depuis la bdd.
 exports.getPortfolios = (req, res) => {
 
@@ -29,6 +35,7 @@ exports.getPortfolios = (req, res) => {
   });
 }
 
+
 // Récupérer un portfolio à partir de son id depuis la bdd.
 exports.getPortfolioById = (req, res) => {
 
@@ -49,6 +56,7 @@ exports.getPortfolioById = (req, res) => {
     return res.json(foundPortfolio);
   });
 }
+
 
 // Sauvegarder un portfolio dans la bdd
 exports.savePortfolio = (req, res) => {
@@ -82,12 +90,24 @@ exports.savePortfolio = (req, res) => {
 }
 
 // Mettre à jour un portfolio de la bdd.
-exports.updatePortfolio = (req, res) => {
+exports.updatePortfolio = async (req, res) => {
   const portfolioId = req.params.id;
+  const portfolioFile = decodeURIComponent(req.params.file);
 
   // Seuls les attributs mis à jour peuvent être passés dans l'objet
   // portfolio qui doit permettre la mise à jour.
   const portfolioData = req.body;
+
+  console.log('portfolioId', portfolioId); ///////////////////////////////////////
+  console.log('portfolioFile', portfolioFile); ///////////////////////////////////////
+
+  // Si le chemin de l'image n'a pas changé, on ne la supprime pas
+  if (portfolioData.file !== portfolioFile) {
+    // On supprime l'image associée au portfolioCard en passant son chemin
+    // à la fonction unlinkAsync()
+    await unlinkAsync(portfolioFile).catch(error => console.log('unlinkAsyncError', error))
+  }
+  
 
   // On récupère le portfolio de l'on souhaite mettre à jour.
   Portfolio.findById(portfolioId, (err, foundPortfolio) => {
@@ -110,8 +130,17 @@ exports.updatePortfolio = (req, res) => {
   })
 }
 
-exports.deletePortfolio = (req, res) => {
+
+exports.deletePortfolio = async (req, res) => {
   const portfolioId = req.params.id;
+  const portfolioFile = decodeURIComponent(req.params.file);
+
+  console.log('portfolioId', portfolioId); ///////////////////////////////////////
+  console.log('portfolioFile', portfolioFile); ///////////////////////////////////////
+
+  // On supprime l'image associée au portfolioCard en passant son chemin
+  // à la fonction unlinkAsync()
+  await unlinkAsync(portfolioFile).catch(error => console.log('unlinkAsyncError', error))
 
   // On supprime le portfolio de la bdd ayant l'attribut 
   // _id égal au portfolioId passé en paramètre de l'url.

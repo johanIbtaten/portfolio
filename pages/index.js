@@ -38,11 +38,11 @@ class Index extends React.Component {
     // rotation de la carte.
     // setInterval() renvoie un intervalID que l'on stocke
     // dans l'attribut this.cardAnimationInterval  
-    // this.cardAnimationInterval = setInterval(() => {
-    //   this.setState({
-    //     isFlipping: !this.state.isFlipping
-    //   });
-    // }, 1000);
+    this.cardAnimationInterval = setInterval(() => {
+      this.setState({
+        isFlipping: !this.state.isFlipping
+      });
+    }, 9000);
   }
 
   render() {

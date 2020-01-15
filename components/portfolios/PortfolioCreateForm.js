@@ -40,13 +40,17 @@ const validateInputs = (values) => {
   return errors;
 }
 
+const imgStyle = {
+  width: 300
+};
+
 // On récupère les props passées au composant dont la fonction
 // gestionnaire de soumission onSubmit
 const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
   <div>
     <Formik
       initialValues={initialValues}
-      /*validate={validateInputs}*/
+      validate={validateInputs}
       /*
       On récupère la fonction gestionnaire de soumission
       pour la passer en props à Formik. Elle pourra
@@ -66,10 +70,14 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
         // (Voir les props https://jaredpalmer.com/formik/docs/api/formik)
         ({ isSubmitting }) => (
         <Form>
+          {            
+            initialValues.file && 
+            <img style={imgStyle} src={'/'+initialValues.file} alt="upload-image" /> 
+          }
           { /*
           On crée un composant Formik Field qui affiche et passe des
           props au composant PortInput
-          */ } 
+          */ }
           <Field type="text"
                  name="title"
                  label="Title"

@@ -5,7 +5,7 @@ import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 
 import { Row, Col } from 'reactstrap';
 
-import { createPortfolio, uploadImage } from '../actions';
+import { uploadImageAndSavePortfolio } from '../actions';
 
 import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
@@ -41,11 +41,11 @@ class PortfolioNew extends React.Component {
   savePortfolio(portfolioData, {setSubmitting}) {
     console.log(portfolioData)
 
-    // On appelle la fonction createPortfolio() qui va
-    // sauvegarder le nouveau portfolio à partir des données 
-    // du formulaire
-    uploadImage(portfolioData)
-      .then((portfolio) => {
+    // On appelle la fonction createPortfolio() qui va sauvegarder 
+    // l'image dans un dossier uploads et ensuite le nouveau portfolio 
+    // dans la bdd à partir des données
+    uploadImageAndSavePortfolio(portfolioData, 'create')
+      .then(() => {
 
         // Une fois le portfolio sauvegardé 
         // on débloque le formulaire en mettant la props

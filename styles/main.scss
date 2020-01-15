@@ -64,9 +64,15 @@ html, body {
   box-shadow: 0 0.25rem 1.875rem rgba(42, 53, 79, 0.05) !important;
 }
 
+.op1 {
+  opacity: 0.4;
+}
+
 // ---------- Boostrap override ------------
 
 .btn {
   border-radius: 0.125rem;
   padding: .70rem 1.2rem;
 }
+
+

@@ -30,6 +30,7 @@ export default class PortfolioCard extends React.Component {
 
     var divStyle = {
       width: '100%',
+      zIndex: 2
       //height: '400px'
     };
 
@@ -68,11 +69,12 @@ export default class PortfolioCard extends React.Component {
         <Card className="portfolio-card">
         { /*        
           <CardImg className="imgView card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg" alt="Card image cap" />
+          <CardImg className="imgView card-img-top" src="https://via.placeholder.com/545x363?text=545x363+Min+Size" alt="Card image cap" />
         */ } 
-          <div style={divStyle}>
-            <CardImg style={imgStyle} className="imgView card-img-top" src={portfolio.file} alt="Card image cap" />
+        <div style={divStyle}>
+        <CardImg style={imgStyle} className="imgView card-img-top" src={portfolio.file} alt="Card image cap" />
           </div>
-          <CardBody className="shadow-soft">
+          <CardBody>
             <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
             <CardText className="portfolio-card-text">{portfolio.description}</CardText>
             <CardText className="portfolio-card-text font-weight-bolder mb-2">Technologies :</CardText>
@@ -84,15 +86,13 @@ export default class PortfolioCard extends React.Component {
                   </li>
               ))}
             </ul>
-            <a href="#" className="btn btn-icon" >
+            <a href={portfolio.githubLink} className="btn btn-icon" >
               <FontAwesomeIcon icon={['fab', 'github']} transform="grow-16"/>
             </a>
-            <a href="#" className="btn mr-2 btn-primary float-right">
+            <a href={portfolio.targetLink} className="btn mr-2 btn-primary float-right">
                   Voir le site
             </a>
-            <div className="readMore">
-              {children}
-            </div>
+            {children}
             
           </CardBody>
         </Card>

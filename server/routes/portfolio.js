@@ -23,12 +23,12 @@ router.get('/:id', portfolioCtrl.getPortfolioById);
 
 // Cette route permet de mettre à jour un portfolio en passant son id
 // dans l'url
-router.patch('/:id', checkJwt, checkRole('siteOwner'),
+router.patch('/:id/:file', checkJwt, checkRole('siteOwner'),
                portfolioCtrl.updatePortfolio);
 
 // Cette route permet de supprimer un portfolio en passant son id
 // dans l'url
-router.delete('/:id', checkJwt, checkRole('siteOwner'),
+router.delete('/:id/:file', checkJwt, checkRole('siteOwner'),
                portfolioCtrl.deletePortfolio);
 
 module.exports = router;

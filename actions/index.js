@@ -75,29 +75,15 @@ export const getPortfolioById = async (id) => {
 }
 
 
+export const uploadImageAndSavePortfolio = async (portfolioData, method, portfolioFile) => {
+  console.log('createPortfolio', portfolioData) ///////////////////////////////////////
+  console.log('createPortfolioAfter', portfolioData.file) ///////////////////////////////////////
 
-export const createPortfolio = async (portfolioData) => {
-
-  console.log(portfolioData);
-
-  //portfolioData.file = "uploads/1579012905286tree-736885_1280.jpg"
-  
-  return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
-  // return await axiosInstance.post('/portfolios', portfolioData)
-    .then(response => response.data)
-    // Si la bdd nous renvoie une erreur on la traite dans la
-    // fonction rejectPromise()
-    .catch(error => rejectPromise(error))
-}
-
-
-// Le client envoie une requête post au endpoint de server avec les
-// données portfolioData pour créer un portfolio dans la bdd et le
-// Bearer token JWT dans le header pour vérifier l'authentification 
-// et le rôle de l'utilisateur qui a le droit créer un nouveau portfolio.
-export const uploadImage = async (portfolioData) => {
-  console.log('createPortfolio', portfolioData)
-  console.log('createPortfolioAfter', portfolioData.file)
+  // Si le chemin de l'image n'a pas changé, on upload rien et
+  // on update juste la bdd
+  if (method === 'update' && portfolioData.file === portfolioFile) {
+    return updatePortfolio(portfolioData, portfolioFile)
+  }
 
   let imageFormObj = new FormData();
 
@@ -106,43 +92,50 @@ export const uploadImage = async (portfolioData) => {
 
   axios.post(`${API_URL}/image/uploadmulter`, imageFormObj)
     .then((data) => {
-      // console.log('reponse', data);
-      // console.log('reponseDoc', data.data.document);      
-      alert("Image has been successfully uploaded using multer");
+      console.log('reponse', data) ///////////////////////////////////////
+      console.log('reponseDoc', data.data.document) ///////////////////////////////////////      
+      // alert("Image has been successfully uploaded using multer"); ///////////////////////////////////////
 
       portfolioData.file = data.data.document.replace(/\\/g, "/");
-      //console.log('portfolioData', portfolioData)
 
-      // return Promise.resolve(createPortfolio(portfolioData))
-      return createPortfolio(portfolioData)
-      // if (data.data.success) {
-      //   //this.setDefaultImage("multer");
-      // }
+      if (method == 'create') {
+        return createPortfolio(portfolioData)
+      } else {
+        return updatePortfolio(portfolioData, portfolioFile)
+      }
+
+
     })
     .catch((err) => {
       alert("Error while uploading image using multer");
       //this.setDefaultImage("multer");
-  });
+  })
+}
+
+// Le client envoie une requête post au endpoint de server avec les
+// données portfolioData pour créer un portfolio dans la bdd et le
+// Bearer token JWT dans le header pour vérifier l'authentification 
+// et le rôle de l'utilisateur qui a le droit créer un nouveau portfolio.
+export const createPortfolio = async (portfolioData) => {
+  console.log(portfolioData) ///////////////////////////////////////
   
-  // return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
-  // // return await axiosInstance.post('/portfolios', portfolioData)
-  //   .then(response => response.data)
-  //   // Si la bdd nous renvoie une erreur on la traite dans la
-  //   // fonction rejectPromise()
-  //   .catch(error => rejectPromise(error))
+  return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
+    .then(response => response.data)
+    // Si la bdd nous renvoie une erreur on la traite dans la
+    // fonction rejectPromise()
+    .catch(error => rejectPromise(error))
 }
 
 
-
-
-export const updatePortfolio = async (portfolioData) => {
-  return await axiosInstance.patch(`/portfolios/${portfolioData._id}`, portfolioData, setAuthHeader())
+export const updatePortfolio = async (portfolioData, portfolioFile) => {
+  return await axiosInstance.patch(`/portfolios/${portfolioData._id}/${encodeURIComponent(portfolioFile)}`, portfolioData, setAuthHeader())
     .then(response => response.data)
     .catch(error => rejectPromise(error))
 }
 
-export const deletePortfolio = (portfolioId) => {
-  return axiosInstance.delete(`/portfolios/${portfolioId}`, setAuthHeader()).then(response => response.data);
+
+export const deletePortfolio = (portfolioId, portfolioFile) => {
+  return axiosInstance.delete(`/portfolios/${portfolioId}/${encodeURIComponent(portfolioFile)}`, setAuthHeader()).then(response => response.data);
 }
 
 // // ------------ BLOG ACTIONS --------------
