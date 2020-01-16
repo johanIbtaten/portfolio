@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const setStringType = (maxLength) => ({ type: String, required: true, maxlength: maxLength })
+const setStringType = (maxLength, required = true) => ({ type: String, required: required, maxlength: maxLength })
 
 // On initialise un nouveau schéma de données pour le modèle Portfolio,
 // on configure les contraintes des champs avec des objets 
@@ -10,9 +10,9 @@ const portfolioSchema = new Schema({
   userId: setStringType(512),
   title: setStringType(256),
   description: setStringType(2048),
-  technoList: setStringType(2048),
-  targetLink: setStringType(256),
-  githubLink: setStringType(256),
+  technoList: setStringType(2048, false),
+  targetLink: setStringType(256, false),
+  githubLink: setStringType(256, false),
   startDate: { type: Date, required: true},
   file: setStringType(512)
  

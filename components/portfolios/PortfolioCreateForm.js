@@ -1,56 +1,69 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, Alert } from 'reactstrap';
+import { Button, Alert, Col, Row } from 'reactstrap';
 import PortInput from '../form/PortInput';
 import PortDate from '../form/PortDate';
 
-import moment from 'moment';
 import PortInputFile from '../form/PortInputFile';
 
-const validateInputs = (values) => {
-  let errors = {};
+import * as Yup from 'yup';
 
-  // On récupère un tableau de tableau de paires clé-valeur
-  // à partir de l'objet values qui représente les noms des champs
-  // comme clés et leurs valeurs, ensuite on boucle sur chaque paire.
-  Object.entries(values).forEach(([key, value]) => {
-    // Si le champ n'existe dans l'objet values ou 
-    // que la clé est enDate
-    if (!values[key]) {
-      // Le champ est alors requis
-      errors[key] = `Field ${key} is required!`;
-    }
-  });
+// On utilise la librairie Yup pour créer un schéma de validation
+// qui transmettra ses données à Formik sous forme d'un objet errors
+const SignupSchema = Yup.object().shape({
+  title: Yup.string()
+    .required('Required'),
+  description: Yup.string()
+    .required('Required'),
+  startDate: Yup.string()
+    .nullable()
+    .required('Required'),
+  file: Yup.string()
+    .required('Required'),
+});
 
-  // On initialise une variable startDate avec la date
-  // du champ startDate du formulaire et on la formate avec
-  // la librairie moment()
-  const startDate = moment(values.startDate);
-  //const endDate = moment(values.endDate);
+// const validateInputs = (values) => {
+//   let errors = {};
 
-  // Si startDate et endDate existent et que la enDate 
-  // est avant la startDate ce qui est incohérent
-  // if (startDate && endDate && endDate.isBefore(startDate)) {
-  //   // Alors on ajoute un message d'erreur à l'objet errors
-  //   errors.endDate = 'End Date cannot be before start date!!!';
-  // }
+//   // On récupère un tableau de tableau de paires clé-valeur
+//   // à partir de l'objet values qui représente les noms des champs
+//   // comme clés et leurs valeurs, ensuite on boucle sur chaque paire.
+//   Object.entries(values).forEach(([key, value]) => {
+//     // Si le champ n'existe pas dans l'objet values et que la clé
+//     // est égale à githubLink ou targetLink
+//     if (!values[key]) {
+//       //if (key !== 'githubLink' || key !== 'targetLink') {
+//         // alors Le champ est requis
+//         errors[key] = `Field ${key} is required!`;
+//       //}
+//     }
+//   });
 
-  // On retourne l'objet errors qui contient les messages d'erreur 
-  // à afficher.
-  return errors;
-}
+//   // On initialise une variable startDate avec la date
+//   // du champ startDate du formulaire et on la formate avec
+//   // la librairie moment()
+//   // const startDate = moment(values.startDate);
+//   //const endDate = moment(values.endDate);
 
-const imgStyle = {
-  width: 300
-};
+//   // Si startDate et endDate existent et que la enDate 
+//   // est avant la startDate ce qui est incohérent
+//   // if (startDate && endDate && endDate.isBefore(startDate)) {
+//   //   // Alors on ajoute un message d'erreur à l'objet errors
+//   //   errors.endDate = 'End Date cannot be before start date!!!';
+//   // }
+
+//   // On retourne l'objet errors qui contient les messages d'erreur 
+//   // à afficher.
+//   return errors;
+// }
 
 // On récupère les props passées au composant dont la fonction
 // gestionnaire de soumission onSubmit
 const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
-  <div>
+  <Col md="12">
     <Formik
       initialValues={initialValues}
-      validate={validateInputs}
+      validationSchema={SignupSchema}
       /*
       On récupère la fonction gestionnaire de soumission
       pour la passer en props à Formik. Elle pourra
@@ -69,62 +82,71 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
         // des props passées en paramètre par Formik 
         // (Voir les props https://jaredpalmer.com/formik/docs/api/formik)
         ({ isSubmitting }) => (
-        <Form>
-          {            
-            initialValues.file && 
-            <img style={imgStyle} src={'/'+initialValues.file} alt="upload-image" /> 
-          }
-          { /*
-          On crée un composant Formik Field qui affiche et passe des
-          props au composant PortInput
-          */ }
-          <Field type="text"
-                 name="title"
-                 label="Title"
-                 component={PortInput}/>          
-          <Field type="textarea"
-                 name="description"
-                 label="Description"
-                 component={PortInput}/>
-          <Field type="textarea"
-                 rows="7"
-                 name="technoList"
-                 label="technoList"
-                 component={PortInput}/>
-          <Field type="text"
-                 name="targetLink"
-                 label="targetLink"
-                 component={PortInput}/>
-          <Field type="text"
-                 name="githubLink"
-                 label="githubLink"
-                 component={PortInput}/>            
-          <Field name="startDate"
-                 label="Start Date"
-                 initialDate={initialValues.startDate}
-                 component={PortDate}/>
-          <Field type="file"
-                 name="file"
-                 label="file"
-                 component={PortInputFile}/>     
-          { // Si il y a des erreurs au niveau de la sauvegarde
-            // du formulaire on affiche le message d'erreur
-            error &&
-            <Alert color="danger">
-              {error}
-            </Alert>
-          }
-          { /*
-          Si le formulaire est en train d'être soumis (isSubmitting à true)
-          on désactive le bouton de soumission pour éviter des erreurs.
-          */ } 
-          <Button color="success" size="lg" type="submit" disabled={isSubmitting}>
-            Create
-          </Button>
+        <Form className="FormPortfolio">
+          <Row>
+            <Col lg="2" > 
+              {            
+                initialValues.file && 
+                <img className="FormPortfolio__imgCurrent" src={'/'+initialValues.file} alt="Vignette actuelle" title="Vignette actuelle" /> 
+              }
+            </Col>
+
+            <Col lg="5">         
+              { /*
+              On crée un composant Formik Field qui affiche et passe des
+              props au composant PortInput
+              */ }
+              <Field type="text"
+              name="title"
+              label="Titre"
+              component={PortInput}/>       
+              <Field type="textarea"
+              name="description"
+              label="Description"
+              component={PortInput}/>
+              <Field type="textarea"
+              rows="7"
+              name="technoList"
+              label="Technologies"
+              component={PortInput}/>
+            </Col> 
+          
+            <Col lg="5">    
+              <Field type="text"
+                    name="githubLink"
+                    label="Lien GitHub"
+                    component={PortInput}/>            
+              <Field type="text"
+                    name="targetLink"
+                    label="Lien du site"
+                    component={PortInput}/>
+              <Field name="startDate"
+                    label="Date"
+                    initialDate={initialValues.startDate}
+                    component={PortDate}/>
+              <Field type="file"
+                    name="file"
+                    component={PortInputFile}/>     
+              { // Si il y a des erreurs au niveau de la sauvegarde
+                // du formulaire on affiche le message d'erreur
+                error &&
+                <Alert color="danger">
+                  {error}
+                </Alert>
+              }
+              { /*
+              Si le formulaire est en train d'être soumis (isSubmitting à true)
+              on désactive le bouton de soumission pour éviter des erreurs.
+              */ } 
+              <Button color="success" size="lg" type="submit" disabled={isSubmitting}>
+                Create
+              </Button>
+            </Col> 
+          </Row>
         </Form>
       )}
     </Formik>
-  </div>
+  </Col>
 );
 
 export default PortfolioCreateForm;

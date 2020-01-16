@@ -13,12 +13,6 @@ export default class PortInputFile extends React.Component {
     }
   }
 
-  // setDefaultImage(uploadType) {
-  //   this.setState({
-  //     multerImage: defaultImg
-  //   });   
-  // }
-
   handleChange(event) {
     const { setFieldValue } = this.props.form;
     const imgFile = event.currentTarget.files[0]    
@@ -42,8 +36,7 @@ export default class PortInputFile extends React.Component {
     };
 
     return (
-      <FormGroup>
-        <Label>{label}</Label>
+      <FormGroup className="inputFileGroup">        
         { /*
         On passe toutes les props de Field au composant Input
         */ } 
@@ -52,7 +45,7 @@ export default class PortInputFile extends React.Component {
           {...props}
           onChange={(event) => this.handleChange(event)}
         />
-        <img style={imgStyle} src={this.state.multerImage} alt="upload-image" />
+        <img className="FormPortfolio__imgCurrent" style={imgStyle} src={this.state.multerImage} alt="Image de Prévisualisation avant upload" />
         { // Si le champ a été cliqué ou visité (touched) et qu'il y a 
           // une erreur sur ce champ alors on affiche le message d'erreur
           touched[field.name] &&

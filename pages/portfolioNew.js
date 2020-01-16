@@ -75,7 +75,9 @@ class PortfolioNew extends React.Component {
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-create-page" title="Create New Portfolio">          
           <Row>
+          { /*
             <Col md="6">
+          */ } 
               { /* 
               On déclare le composant PortfolioCreateForm qui se 
               charge de créer le formulaire grâce à formik, on lui passe
@@ -95,7 +97,9 @@ class PortfolioNew extends React.Component {
                 this.savePortfolio dans la props onSubmit
                 */
                 onSubmit={this.savePortfolio} />
-            </Col>
+            { /*
+              </Col>
+            */ } 
           </Row>         
         </BasePage>
       </BaseLayout>

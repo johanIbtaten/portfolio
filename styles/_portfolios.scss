@@ -1,5 +1,3 @@
-// --------- PORTFOLIO PAGE -------------
-
 .portfolio-page {
   min-height: 100vh;
   padding: 150px 0 0;
@@ -15,9 +13,16 @@
       border-radius: 4px 4px 0 0;
     }
 
+    .imgViewWrapper {
+      width: 100%;
+      z-index: 2
+    }
+
     .imgView {
+      object-fit: cover;
       z-index: 2;
-      //border-radius: rem(45px);
+      width: 100%;
+      height: 245px;
       box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     }
 
@@ -69,18 +74,31 @@
   }
 
   .btn-icon {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
     color: $gray-600;
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     &:hover {
       color: $gray-800;
     }
+    &:focus,&:active:focus,&.active:focus,
+    &.focus,&:active.focus,&.active.focus {
+        outline: none !important;
+    }  
   }
 
   .create-port-btn {
     margin-bottom: 20px;
   }
-
 }
-
 
 
 
@@ -90,69 +108,29 @@
 
 .masonry {
   display: grid;
-  grid-gap: 1em;
+  grid-gap: rem(16px);
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-auto-rows: 0;    
 }
 
-// .masonry-content {
-//   overflow: hidden;
-  
-// }
-
-.masonry-brick {
-  color: #2f3640;
-  //background-color: #f5f6fa;
-  //background-color: pink;
-  transition: opacity .25s ease-in-out; 
+.masonry-brick img {
+  transition: opacity 0.2s ease-in-out; 
 }
 
 .masonry-brick:hover img {
    opacity: .9;
 }
 
-// .masonry-title,
-// .masonry-description {
-//   margin: 0;
-// }
+.FormPortfolio {
+  margin-bottom: rem(24px);
 
-// .masonry-title {
-//   font-weight: 700;
-//   font-size: 1.1rem;
-//   padding: 1rem 1.5rem;
-// }
+  &__imgCurrent {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: rem(16px);
+  }
+}
 
-// .masonry-description {
-//   padding: 1.5rem;
-//   font-size: .75rem;
-//   border-top: 1px solid #eee;
-//   color: #666;
-// }
-
-// .card {
-// //margin: 20px 0;
-// background: transparent;
-// &.card--wider {
-//   border: 0;
-//   background: transparent;
-  
-//   .view {
-//     z-index: 2;
-//     border-radius: .25rem;
-//     box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
-//   }
-  
-//   .card-body {
-//     z-index: 1;
-//     margin-right: 1rem;
-//     margin-left: 1rem;
-//     background: #fff;
-//     border: 1px solid #ddd;
-//     border-top: 0;
-//     height: 100%;
-//     border-radius: 0 0 .25rem .25rem;
-//     //box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-//   }    
-// }
-// }
-
+.inputFileGroup {
+  padding-top: rem(16px);
+}

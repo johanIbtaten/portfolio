@@ -66,7 +66,9 @@ class PortfolioEdit extends React.Component {
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-create-page" title="Update Portfolio">
           <Row>
+            { /*
             <Col md="6">
+            */ } 
               { /*
               On passe à la props initialValues l'objet portfolio
               qui permettra de pré-remplir les champs avec ses données
@@ -74,7 +76,9 @@ class PortfolioEdit extends React.Component {
               <PortfolioCreateForm initialValues={portfolio}
                                    error={error}
                                    onSubmit={this.updatePortfolio} />
-            </Col>
+            { /*
+              </Col>
+            */ } 
           </Row>
         </BasePage>
       </BaseLayout>
