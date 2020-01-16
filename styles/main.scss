@@ -1,16 +1,19 @@
-@import './shared/fonts';
-@import './shared/colors';
-@import './shared/mixins';
-@import './shared/functions';
+// VARIABLES
 @import './shared/variables';
 
+// BOOSTRAP
+@import "./vendors/bootstrap-custom-import";
 
-// PAGES
+@import './shared/fonts';
+@import './shared/mixins';
+@import './shared/functions';
+
+
+// PAGES et COMPOSANTS
 @import './index';
 @import './portfolios';
 @import './about';
 @import './cv';
-
 @import './header';
 
 html, body {
@@ -20,10 +23,10 @@ html, body {
 }
 
 .self-typed {
-  font-size: 31px;
+  font-size: rem(31px);
   font-weight: bold;
-  letter-spacing: 2px;
-  color: white;
+  letter-spacing: rem(2px);
+  color: $white;
 }
 
 .absolute {
@@ -36,32 +39,32 @@ html, body {
 
 .error {
   font-weight: 400;
-  color: red;
-  margin-top: 8px;
+  color: $danger;
+  margin-top: rem(8px);
   text-align: right;
 }
 
 // --------- Base page -------------
 
 .base-page {
-  padding-top: 170px;
-  color: $secondary;
-  background-color: #ecedee;
+  padding-top: rem(170px);
+  color: $secondaryPerso;
+  background-color: $base-page-white;
   min-height: 100vh;
 
   .page-header {
     .page-header-title {
       font-weight: 300;
-      color: $secondary;
+      color: $secondaryPerso;
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: rem(20px);
     }
   }
 }
 
 // ---------- Utilitaires ------------
 .shadow-soft {
-  box-shadow: 0 0.25rem 1.875rem rgba(42, 53, 79, 0.05) !important;
+  box-shadow: 0 rem(4px) rem(30px) rgba(42, 53, 79, 0.05) !important;
 }
 
 .op1 {
@@ -71,8 +74,8 @@ html, body {
 // ---------- Bootstrap override ------------
 
 .btn, .btn-icon {
-  border-radius: 0.125rem;
-  padding: .70rem 1.2rem;
+  border-radius: rem(2px);
+  padding: rem(11px) rem(19px);
 }
 
 
