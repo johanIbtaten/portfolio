@@ -75,7 +75,7 @@ class PortfolioEdit extends React.Component {
               */ } 
               <PortfolioCreateForm initialValues={portfolio}
                                    error={error}
-                                   onSubmit={this.updatePortfolio} />
+                                   onSubmit={this.updatePortfolio} editPage />
             { /*
               </Col>
             */ } 

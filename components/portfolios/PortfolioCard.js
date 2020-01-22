@@ -23,10 +23,23 @@ export default class PortfolioCard extends React.Component {
     });
   }
 
+  handleClickImg = (e, targetLink) => {
+    if (targetLink) {
+      e.stopPropagation();
+      window.open(targetLink, '_blank');
+    }
+  }
+
+  
+
   render() {
-    const { portfolio, children } = this.props;
+    const { portfolio, children, openPhotoSwipe } = this.props;
     const { isOpen } = this.state;
     const technoList = portfolio.technoList && portfolio.technoList.split(";").map(item => item.trim());
+
+    const galleryItems = (portfolio.targetLink && portfolio.targetLink.startsWith('ps:')) && portfolio.targetLink.split(':')[1]
+
+    const clickable = portfolio.targetLink ? "clickable" : ""
 
     return (      
       <Card className="portfolio-card">
@@ -34,7 +47,7 @@ export default class PortfolioCard extends React.Component {
           <CardImg className="imgView card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg" alt="Card image cap" />
           <CardImg className="imgView card-img-top" src="https://via.placeholder.com/545x363?text=545x363+Min+Size" alt="Card image cap" />
         */ } 
-        <div className="imgViewWrapper">
+        <div className={`imgViewWrapper ${clickable}`} onClick={(e) => this.handleClickImg(e, portfolio.targetLink)}>
           <CardImg className="imgView card-img-top" src={portfolio.file} alt="Card image cap" />
         </div>
         <CardBody>
@@ -42,7 +55,7 @@ export default class PortfolioCard extends React.Component {
           <CardText className="portfolio-card-text">{portfolio.description}</CardText>
           
           { technoList &&
-            <>
+            <div>
               <CardText className="portfolio-card-text font-weight-bolder mb-2">Technologies :</CardText>
               <ul className="fa-ul">            
                 { technoList.map((technoItemList, index) => (
@@ -51,22 +64,34 @@ export default class PortfolioCard extends React.Component {
                     </li>
                 ))}
               </ul>
-            </>
+            </div>
           }            
  
           { (portfolio.githubLink || portfolio.targetLink) &&
             <div className="clearfix">
-              { portfolio.githubLink &&
-                <a href={portfolio.githubLink} target="_blank" className="btn-icon" >
-                  <FontAwesomeIcon icon={['fab', 'github']} transform="grow-16"/>
+
+            { portfolio.githubLink &&
+              <a href={portfolio.githubLink} target="_blank" className="btn-icon" >
+                <FontAwesomeIcon icon={['fab', 'github']} transform="grow-16"/>
+              </a>
+            }
+
+            { portfolio.targetLink ? 
+              portfolio.targetLink.startsWith('ps:') ? 
+                <a  href="" className="btn mr-2 btn-primary float-right" onClick={(e) => openPhotoSwipe(e, galleryItems)}>
+                  Voir la galerie
                 </a>
-              }
- 
-              { portfolio.targetLink &&
+
+                :
+
                 <a href={portfolio.targetLink} target="_blank" className="btn mr-2 btn-primary float-right">
-                    Voir
-                </a>
-              }
+                  Voir
+                </a>               
+
+              :
+
+              null
+            }
             </div>
           }            
           {children}

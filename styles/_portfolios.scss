@@ -10,24 +10,24 @@
     background: transparent;
 
     .card-img {
-      border-radius: 4px 4px 0 0;
+      border-radius: 10px 10px 10px 10px;
     }
 
     .imgViewWrapper {
       width: 100%;
-      z-index: 2
+      z-index: 1;
     }
 
     .imgView {
       object-fit: cover;
-      z-index: 2;
+      z-index: 1;
       width: 100%;
       height: 245px;
       box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     }
 
     .card-body {
-      z-index: 1;
+      z-index: 0;
       margin-right: rem(16px);
       margin-left: rem(16px);
       padding: rem(24px);
@@ -62,7 +62,6 @@
     }
 
     &:hover {
-      cursor: pointer;
       transform: translateY(-5px);
     }
 
@@ -99,12 +98,6 @@
     margin-bottom: 20px;
   }
 }
-
-
-
-
-
-
 
 .masonry {
   display: grid;

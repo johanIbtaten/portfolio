@@ -59,7 +59,7 @@ const SignupSchema = Yup.object().shape({
 
 // On récupère les props passées au composant dont la fonction
 // gestionnaire de soumission onSubmit
-const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
+const PortfolioCreateForm = ({initialValues, onSubmit, error, editPage}) => (
   <Col md="12">
     <Formik
       initialValues={initialValues}
@@ -84,12 +84,12 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
         ({ isSubmitting }) => (
         <Form className="FormPortfolio">
           <Row>
-            <Col lg="2" > 
-              {            
-                initialValues.file && 
-                <img className="FormPortfolio__imgCurrent" src={'/'+initialValues.file} alt="Vignette actuelle" title="Vignette actuelle" /> 
-              }
-            </Col>
+            {            
+            initialValues.file && (
+              <Col lg="2" > 
+              <img className="FormPortfolio__imgCurrent" src={'/'+initialValues.file} alt="Vignette actuelle" title="Vignette actuelle" /> 
+              </Col>)
+            }
 
             <Col lg="5">         
               { /*
@@ -138,8 +138,8 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
               Si le formulaire est en train d'être soumis (isSubmitting à true)
               on désactive le bouton de soumission pour éviter des erreurs.
               */ } 
-              <Button color="success" size="lg" type="submit" disabled={isSubmitting}>
-                Create
+              <Button className="btn-xs-block-only" color="success" size="lg" type="submit" disabled={isSubmitting}>
+                { editPage ? "Mettre à jour" : "Créer"}
               </Button>
             </Col> 
           </Row>

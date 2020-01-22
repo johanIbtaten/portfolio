@@ -8,185 +8,70 @@ import { Router } from '../routes';
 
 import { getPortfolios, deletePortfolio } from '../actions';
 
+import { waitForImages } from '../actions/masonry';
+
+import {PhotoSwipe} from 'react-photoswipe'
+
 class Portfolios extends React.Component {
+  constructor(props) {
+    super(props);
+    this.galleryItems = '';
 
-  componentDidMount () {
-    /**
- * Set appropriate spanning to any masonry item 
- *
- * Get different properties we already set for the masonry, calculate 
- * height or spanning for any cell of the masonry grid based on its 
- * content-wrapper's height, the (row) gap of the grid, and the size 
- * of the implicit row tracks.
- *
- * @param item Object A brick/tile/cell inside the masonry
- */
-function resizeMasonryItem(item){
-  /* Get the grid object, its row-gap, and the size of its implicit rows */
-  var grid = document.getElementsByClassName('masonry')[0],
-      rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
-      rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-
-  /*
-   * Spanning for any brick = S
-   * Grid's row-gap = G
-   * Size of grid's implicitly create row-track = R
-   * Height of item content = H
-   * Net height of the item = H1 = H + G
-   * Net height of the implicit row-track = T = G + R
-   * S = H1 / T
-   */
-  var rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-
-  /* Set the spanning as calculated above (S) */
-  item.style.gridRowEnd = 'span '+rowSpan; 
- 
-}
-
-
-/**
- * Apply spanning to all the masonry items
- *
- * Loop through all the items and apply the spanning to them using 
- * `resizeMasonryItem()` function.
- *
- * @uses resizeMasonryItem
- */
-function resizeAllMasonryItems(){
-  // Get all item class objects in one list
-  var allItems = document.getElementsByClassName('masonry-brick');
-
-  /*
-   * Loop through the above list and execute the spanning function to
-   * each list-item (i.e. each masonry item)
-   */
-  for(var i=0;i>allItems.length;i++){
-    resizeMasonryItem(allItems[i]);
+    this.state = {
+      isOpen: false,
+      items1: [
+        {
+          src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+          w: 300,
+          h: 350,
+          title: 'Image 1'
+        },
+        {
+          src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+          w: 300,
+          h: 350,
+          title: 'Image 2'
+        },
+        {
+          src: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
+          w: 300,
+          h: 350,
+          title: 'Image 3'
+        }
+      ],
+      items2: [
+        {
+          src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+          thumbnail: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+          w: 1200,
+          h: 900,
+          title: 'Image 1 galleryItems'
+        },
+        {
+          src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+          thumbnail: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+          w: 1200,
+          h: 900,
+          title: 'Image 2 galleryItems'
+        },
+        {
+          src: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+          thumbnail: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+          w: 1200,
+          h: 900,
+          title: 'Image 3 galleryItems'
+        },
+        {
+          src: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+          thumbnail: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+          w: 1200,
+          h: 900,
+          title: 'Image 4 galleryItems'
+        }
+      ],
+      options: {}
+    };    
   }
-}
-
-/**
- * Resize the items when all the images inside the masonry grid 
- * finish loading. This will ensure that all the content inside our
- * masonry items is visible.
- *
- * @uses ImagesLoaded
- * @uses resizeMasonryItem
- */
-function waitForImages() {
-  var allItems = document.getElementsByClassName('masonry-brick');
-  for(var i=0;i<allItems.length;i++){
-    //imagesLoaded( allItems[i], function(instance) {
-      //var item = instance.elements[0];
-      //resizeMasonryItem(item);
-      
-      resizeMasonryItem(allItems[i]);
-    //} );
-  }
-}
-
-/* Resize all the grid items on the load and resize events */
-var masonryEvents = ['load', 'resize'];
-masonryEvents.forEach( function(event) {
-  window.addEventListener(event, resizeAllMasonryItems);
-} );
-
-/* Do a resize once more when all the images finish loading */
-waitForImages(); 
-}
-
-componentDidUpdate () {
-  /**
-* Set appropriate spanning to any masonry item 
-*
-* Get different properties we already set for the masonry, calculate 
-* height or spanning for any cell of the masonry grid based on its 
-* content-wrapper's height, the (row) gap of the grid, and the size 
-* of the implicit row tracks.
-*
-* @param item Object A brick/tile/cell inside the masonry
-*/
-function resizeMasonryItem(item){
-/* Get the grid object, its row-gap, and the size of its implicit rows */
-var grid = document.getElementsByClassName('masonry')[0],
-    rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
-    rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-
-/*
- * Spanning for any brick = S
- * Grid's row-gap = G
- * Size of grid's implicitly create row-track = R
- * Height of item content = H
- * Net height of the item = H1 = H + G
- * Net height of the implicit row-track = T = G + R
- * S = H1 / T
- */
-var rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-
-/* Set the spanning as calculated above (S) */
-item.style.gridRowEnd = 'span '+rowSpan; 
-
-}
-
-
-/**
-* Apply spanning to all the masonry items
-*
-* Loop through all the items and apply the spanning to them using 
-* `resizeMasonryItem()` function.
-*
-* @uses resizeMasonryItem
-*/
-function resizeAllMasonryItems(){
-// Get all item class objects in one list
-var allItems = document.getElementsByClassName('masonry-brick');
-
-/*
- * Loop through the above list and execute the spanning function to
- * each list-item (i.e. each masonry item)
- */
-for(var i=0;i>allItems.length;i++){
-  resizeMasonryItem(allItems[i]);
-}
-}
-
-/**
-* Resize the items when all the images inside the masonry grid 
-* finish loading. This will ensure that all the content inside our
-* masonry items is visible.
-*
-* @uses ImagesLoaded
-* @uses resizeMasonryItem
-*/
-function waitForImages() {
-var allItems = document.getElementsByClassName('masonry-brick');
-for(var i=0;i<allItems.length;i++){
-  //imagesLoaded( allItems[i], function(instance) {
-    //var item = instance.elements[0];
-    //resizeMasonryItem(item);
-    
-    resizeMasonryItem(allItems[i]);
-  //} );
-}
-}
-
-/* Resize all the grid items on the load and resize events */
-var masonryEvents = ['load', 'resize'];
-masonryEvents.forEach( function(event) {
-window.addEventListener(event, resizeAllMasonryItems);
-} );
-
-/* Do a resize once more when all the images finish loading */
-waitForImages(); 
-}
-
-
-
-
-
-
-
-
 
   static async getInitialProps() {
     let portfolios = [];     
@@ -200,6 +85,16 @@ waitForImages();
 
     return {portfolios};
   }
+
+
+  componentDidMount () {
+    waitForImages();
+  }
+
+  componentDidUpdate () {
+    waitForImages();
+  }  
+
 
   navigateToEdit(portfolioId, e) {
     e.stopPropagation();
@@ -229,63 +124,90 @@ waitForImages();
       .catch(err => console.error(err));
   }
 
+  // handleClick = (e, targetLink) => {
+  //   e.stopPropagation();
+  //   window.location.href=targetLink
+  // }
+  
+
+  openPhotoSwipe = (e, galleryItems) => {
+    e.preventDefault();
+    this.galleryItems = galleryItems
+    console.log('galleryItems', galleryItems);
+    this.setState({
+      isOpen: true,
+      options: {
+        closeOnScroll: false
+      }
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      isOpen: false
+    });
+  };
+
+  // getThumbnailContent = (item) => {
+  //   return (
+  //     <img src={item.thumbnail} with={120} height={90}/>
+  //   );
+  // };
+
   renderPortfolios(portfolios) {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
-    console.log("this.props.auth", this.props.auth);
-
-
-    
 
     return portfolios.map((portfolio, index) => {
-      return (
-       
-
-        
-          <div key={index} className="masonry-brick">
-            <div className="masonry-content">
-              <PortfolioCard portfolio={portfolio}>
+      return (        
+        <div key={index} className="masonry-brick">
+          <div className="masonry-content" /*onClick={(e) => this.handleClick(e, portfolio.targetLink)} href={portfolio.targetLink}*/>
+            <PortfolioCard portfolio={portfolio} openPhotoSwipe={this.openPhotoSwipe}>
               { // Si l'utilisateur est connecté et si il est le siteOwner
-                // alors on affiche les boutons d'édition et 
-                // de suppression de portfolio. Ces éléments JSX sont des
-                // enfants du composant PortfolioCard ils seront donc
-                // passés à ce composant dans la props children.
-                isAuthenticated && isSiteOwner &&
-                <div className="adminBar">              
-                  <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
-                  <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, encodeURIComponent(portfolio.file), e)} color="danger" className="float-right">Delete</Button>
-                </div>
+              // alors on affiche les boutons d'édition et 
+              // de suppression de portfolio. Ces éléments JSX sont des
+              // enfants du composant PortfolioCard ils seront donc
+              // passés à ce composant dans la props children.
+              isAuthenticated && isSiteOwner &&
+              <div className="adminBar">              
+                <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
+                <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, encodeURIComponent(portfolio.file), e)} color="danger" className="float-right">Delete</Button>
+              </div>
               }          
-              </PortfolioCard>        
-            </div>
-          </div>          
+            </PortfolioCard>        
+          </div>
+        </div>          
       )
     })
   }
-
+         
   render() {
     const { portfolios } = this.props;
     const { isAuthenticated, isSiteOwner } = this.props.auth;
-
+    
+    
     return (
       <BaseLayout {...this.props.auth}>
-      { /*      
-      <div className="background-image op1"></div>
-      */ }         
+        { /*      
+          <div className="background-image op1"></div>
+        */ }         
         <BasePage className="portfolio-page" title="Portfolios">
-        { isAuthenticated && isSiteOwner &&
-          <Button onClick={() => Router.pushRoute('/portfolios/new')}
-                  color="success"
-                  className="create-port-btn">Create Portfolio
-          </Button>
-        }
+          { isAuthenticated && isSiteOwner &&
+            <Button onClick={() => Router.pushRoute('/portfolios/new')}
+            color="success"
+            className="create-port-btn">Ajouter un portfolio
+            </Button>
+          }
           <div className="masonry">            
             { this.renderPortfolios(portfolios) }
           </div>
-       
-        </BasePage>
-      </BaseLayout>
-    )
-  }
+          <PhotoSwipe isOpen={this.state.isOpen} items={this.state[this.galleryItems]}
+                  options={this.state.options}
+                  onClose={this.handleClose}/>
+          
+          </BasePage>
+          </BaseLayout>
+          )
+        }
 }
 
 export default Portfolios;

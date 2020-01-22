@@ -78,30 +78,25 @@ export default class Header extends React.Component {
   }
 
 
-  renderBlogMenu() {
+  renderGoodiesMenu() {
     //const { isSiteOwner } = this.props;
 
     //if (isSiteOwner) {
       return (
         <Dropdown className="port-navbar-link port-dropdown-menu" nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
           <DropdownToggle className="port-dropdown-toggle" nav caret>
-            Blog
+            Goodies
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>
               <BsNavLink className="port-dropdown-item"
-                         route="/blogs"
-                         title="Blogs" />
+                         route="/snake"
+                         title="Snake" />
             </DropdownItem>
             <DropdownItem>
               <BsNavLink className="port-dropdown-item"
-                         route="/blogs/new"
-                         title="Create a Blog" />
-            </DropdownItem>
-            <DropdownItem>
-              <BsNavLink className="port-dropdown-item"
-                         route="/blogs/dashboard"
-                         title="Blogs Dashboard" />
+                         route="/photos"
+                         title="Photos" />
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -136,7 +131,7 @@ export default class Header extends React.Component {
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/about" title="About" />
               </NavItem>
-              {this.renderBlogMenu()}
+              {this.renderGoodiesMenu()}
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/portfolios" title="Portfolio" />
               </NavItem>
