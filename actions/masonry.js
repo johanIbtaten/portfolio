@@ -61,7 +61,7 @@ function resizeMasonryItem(item){
    * @uses resizeMasonryItem
    */
   export const waitForImages = () => {
-    var masonryEvents = ['load'/*, 'resize'*/];
+    var masonryEvents = ['load', 'resize'];
     masonryEvents.forEach( function(event) {
       window.addEventListener(event, resizeAllMasonryItems);
     } );

@@ -8,82 +8,82 @@ import {PhotoSwipe} from 'react-photoswipe'
 import {PhotoSwipeGallery} from 'react-photoswipe'
 
 class About extends React.Component {  
-  state = {
-    isOpen: false,
-    items: [
-      {
-        src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-        w: 300,
-        h: 350,
-        title: 'Image 1'
-      },
-      {
-        src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-        w: 300,
-        h: 350,
-        title: 'Image 2'
-      },
-      {
-        src: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
-        w: 300,
-        h: 350,
-        title: 'Image 3'
-      }
-    ],
-    galleryItems: [
-      {
-        src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-        thumbnail: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-        w: 1200,
-        h: 900,
-        title: 'Image 1'
-      },
-      {
-        src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-        thumbnail: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-        w: 1200,
-        h: 900,
-        title: 'Image 2'
-      },
-      {
-        src: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-        thumbnail: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-        w: 1200,
-        h: 900,
-        title: 'Image 3'
-      },
-      {
-        src: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-        thumbnail: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-        w: 1200,
-        h: 900,
-        title: 'Image 4'
-      }
-    ],
-    options: {}
-  };
+  // state = {
+  //   isOpen: false,
+  //   items: [
+  //     {
+  //       src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+  //       w: 300,
+  //       h: 350,
+  //       title: 'Image 1'
+  //     },
+  //     {
+  //       src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+  //       w: 300,
+  //       h: 350,
+  //       title: 'Image 2'
+  //     },
+  //     {
+  //       src: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
+  //       w: 300,
+  //       h: 350,
+  //       title: 'Image 3'
+  //     }
+  //   ],
+  //   galleryItems: [
+  //     {
+  //       src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+  //       thumbnail: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+  //       w: 1200,
+  //       h: 900,
+  //       title: 'Image 1'
+  //     },
+  //     {
+  //       src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+  //       thumbnail: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+  //       w: 1200,
+  //       h: 900,
+  //       title: 'Image 2'
+  //     },
+  //     {
+  //       src: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+  //       thumbnail: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+  //       w: 1200,
+  //       h: 900,
+  //       title: 'Image 3'
+  //     },
+  //     {
+  //       src: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+  //       thumbnail: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+  //       w: 1200,
+  //       h: 900,
+  //       title: 'Image 4'
+  //     }
+  //   ],
+  //   options: {}
+  // };
 
-  openPhotoSwipe = (e) => {
-    e.preventDefault();
-    this.setState({
-      isOpen: true,
-      options: {
-        closeOnScroll: false
-      }
-    });
-  };
+  // openPhotoSwipe = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     isOpen: true,
+  //     options: {
+  //       closeOnScroll: false
+  //     }
+  //   });
+  // };
 
-  handleClose = () => {
-    this.setState({
-      isOpen: false
-    });
-  };
+  // handleClose = () => {
+  //   this.setState({
+  //     isOpen: false
+  //   });
+  // };
 
-  getThumbnailContent = (item) => {
-    return (
-      <img src={item.thumbnail} with={120} height={90}/>
-    );
-  };
+  // getThumbnailContent = (item) => {
+  //   return (
+  //     <img src={item.thumbnail} with={120} height={90}/>
+  //   );
+  // };
 
   render() {
     return (
@@ -116,27 +116,28 @@ class About extends React.Component {
 
 
 
+            { /*
+              <div className='layout-page'>
+              <main className='layout-main'>
+                <div className='container'>
+                  <h2>PhotoSwipe</h2>
+                  <hr/>
+                  <button className='btn btn-primary' onClick={this.openPhotoSwipe}>
+                    Click me
+                  </button>
+                  <PhotoSwipe isOpen={this.state.isOpen} items={this.state.items}
+                    options={this.state.options}
+                    onClose={this.handleClose}/>
+                  <hr/>
+                  <h2>PhotoSwipeGallery</h2>
+                  <hr/>
+                  <PhotoSwipeGallery items={this.state.galleryItems}
+                    thumbnailContent={this.getThumbnailContent}/>
+                </div>
+              </main>
+            </div>
+            */ } 
 
-
-            <div className='layout-page'>
-            <main className='layout-main'>
-              <div className='container'>
-                <h2>PhotoSwipe</h2>
-                <hr/>
-                <button className='btn btn-primary' onClick={this.openPhotoSwipe}>
-                  Click me
-                </button>
-                <PhotoSwipe isOpen={this.state.isOpen} items={this.state.items}
-                  options={this.state.options}
-                  onClose={this.handleClose}/>
-                <hr/>
-                <h2>PhotoSwipeGallery</h2>
-                <hr/>
-                <PhotoSwipeGallery items={this.state.galleryItems}
-                  thumbnailContent={this.getThumbnailContent}/>
-              </div>
-            </main>
-          </div>
 
 
 

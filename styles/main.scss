@@ -52,6 +52,11 @@ html, body {
   color: $secondaryPerso;
   background-color: $base-page-white;
   min-height: 100vh;
+  background-image: url('/static/images/background-other.png');
+  background-repeat: repeat-x;
+  background-position-y: 124px;
+  background-position-x: 85px;
+  padding-bottom: rem(40px);
 
   .page-header {
     .page-header-title {
@@ -79,14 +84,36 @@ html, body {
   padding: rem(11px) rem(19px);
 }
 
+.navbar-dark .navbar-toggler {
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  &:focus,&:active:focus,&.active:focus,
+  &.focus,&:active.focus,&.active.focus {
+      outline: none !important;
+  }  
+}
+
+@include media-breakpoint-down(md) {
+  .port-navbar.port-base .port-navbar-link {
+    margin-bottom: 7px;
+  }
+
+  .navbar-collapse {
+    padding-top: rem(16px)
+  }
+}
+
+// ---------- Photoswipe ------------
 
 .pswp-thumbnail {
   display: inline-block;
-  width: 120px;
-  height: 90px;
   margin: 0 10px 10px 0;
   cursor: pointer;
   img {
     max-width: 100%;
   }
+}
+
+.pswp-thumbnail img {
+  object-fit: cover;
 }

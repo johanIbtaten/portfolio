@@ -15,7 +15,9 @@ import {PhotoSwipe} from 'react-photoswipe'
 class Portfolios extends React.Component {
   constructor(props) {
     super(props);
-    this.galleryItems = '';
+    // Variable qui contient la clé du state qui correspond à la 
+    // galerie à afficher.
+    this.galleryItems = 'items1';
 
     this.state = {
       isOpen: false,
@@ -132,8 +134,12 @@ class Portfolios extends React.Component {
 
   openPhotoSwipe = (e, galleryItems) => {
     e.preventDefault();
+
+    // galleryItems provient du onclick du bouton de la card qui
+    // doit ouvrir le photoswipe
     this.galleryItems = galleryItems
-    console.log('galleryItems', galleryItems);
+    console.log('galleryItems', galleryItems); ////////////////////////////////////////
+    
     this.setState({
       isOpen: true,
       options: {
@@ -147,12 +153,6 @@ class Portfolios extends React.Component {
       isOpen: false
     });
   };
-
-  // getThumbnailContent = (item) => {
-  //   return (
-  //     <img src={item.thumbnail} with={120} height={90}/>
-  //   );
-  // };
 
   renderPortfolios(portfolios) {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
@@ -201,9 +201,8 @@ class Portfolios extends React.Component {
             { this.renderPortfolios(portfolios) }
           </div>
           <PhotoSwipe isOpen={this.state.isOpen} items={this.state[this.galleryItems]}
-                  options={this.state.options}
-                  onClose={this.handleClose}/>
-          
+                    options={this.state.options}
+                    onClose={this.handleClose}/>
           </BasePage>
           </BaseLayout>
           )
@@ -211,5 +210,3 @@ class Portfolios extends React.Component {
 }
 
 export default Portfolios;
-
-// { isAuthenticated && isSiteOwner &&

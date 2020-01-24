@@ -90,8 +90,8 @@ export default class Header extends React.Component {
           <DropdownMenu>
             <DropdownItem>
               <BsNavLink className="port-dropdown-item"
-                         route="/snake"
-                         title="Snake" />
+                         route="/memory"
+                         title="Memory" />
             </DropdownItem>
             <DropdownItem>
               <BsNavLink className="port-dropdown-item"
@@ -121,7 +121,7 @@ export default class Header extends React.Component {
     return (
       <div> 
         <Navbar className= {`port-navbar port-base absolute ${className} ${menuOpenClass}`} color="transparent" dark expand="lg">
-          <NavbarBrand className="port-navbar-brand" href="/">Filip Jerga</NavbarBrand>
+          <NavbarBrand className="port-navbar-brand" href="/">Johan IBTATEN</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -131,7 +131,9 @@ export default class Header extends React.Component {
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/about" title="About" />
               </NavItem>
-              {this.renderGoodiesMenu()}
+              { isAuthenticated &&
+                this.renderGoodiesMenu()
+              }      
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/portfolios" title="Portfolio" />
               </NavItem>
