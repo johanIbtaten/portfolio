@@ -1,7 +1,7 @@
 .port-navbar.port-base {
   width: 100%;
   z-index: 15;
-  padding: rem(40px);
+  padding: rem(28px) rem(40px);
 
   .port-navbar {
     &-brand {
@@ -10,6 +10,8 @@
       text-transform: uppercase;
       letter-spacing: rem(1px);
       font-weight: bold;
+      line-height: 1.2;
+      text-align: right;
     }
 
     &-item {
@@ -38,6 +40,7 @@
 
     .port-dropdown-item {
       color: $secondaryPerso;
+      margin-bottom: 0;
 
       &.active {
         color: $navbar-orange;
@@ -56,6 +59,18 @@
   background-color: $secondaryPerso !important;
 }
 
+
+@include media-breakpoint-down(xs) {
+  .port-navbar.port-base {
+  padding: rem(16px) rem(24px);
+  }
+
+  .port-navbar.port-base.port-navbar-brand {
+    font-size: rem(22px);
+  }
+}
+
+
 .bg-transparent.menu-open {
   background-color: $secondaryPerso !important;
 }
@@ -72,3 +87,14 @@
 .dropdown-item:hover, .dropdown-item:focus {
   background-color: scale-color($base-page-white, $lightness: 60%);
 }
+
+.logo-ij {
+  width: 62px;
+}
+
+.navbar-brand {
+  span {
+    margin-right: 0.7rem;
+  }  
+}
+

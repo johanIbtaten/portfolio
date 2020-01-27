@@ -199,3 +199,13 @@
 
   margin-left: -100%;
 }
+
+@include media-breakpoint-down(xs) {
+  .main-section {
+    padding: 120px 0 0;
+  }
+
+  .hero-welcome-wrapper {
+    margin-bottom: rem(50px);
+  }
+}

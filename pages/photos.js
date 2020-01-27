@@ -7,9 +7,9 @@ import {PhotoSwipeGallery} from 'react-photoswipe'
 
 //import { snakeInit } from '../actions/snake';
 
-import { memoryInit } from '../actions/memory';
+//import { memoryInit } from '../actions/memory';
 
-import '../styles/memory.scss';
+//import '../styles/memory.scss';
 
 //import { getSecretData } from '../actions';
 
@@ -41,8 +41,8 @@ class Photos extends React.Component {
         ],
         galleryItems: [
           {
-            src: '/static/images/bread-2193537_1280.jpg',
-            thumbnail: '/static/images/bread-2193537_1280.jpg',
+            src: '/static/images/home-bg.jpg',
+            thumbnail: '/static/images/home-bg.jpg',
             w: 800,
             h: 800,
             title: ' syufu sdfu sdfyu sdyuf  sdufy usdy fu ysd usydf uysd fuiy sdi usdyf uiysd fuysd udyf sdyf  sudfy uisdyf sdfu sdufy uisdy f sdufyuisdy fuif usdyfui sydf'
@@ -70,7 +70,7 @@ class Photos extends React.Component {
           }
         ],
         options: {
-          bgOpacity: 0.8
+          //bgOpacity: 0.8
         }
       };
     

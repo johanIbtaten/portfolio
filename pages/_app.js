@@ -9,9 +9,7 @@ import '../fontawesome';
 
 // Styles
 import '../styles/main.scss';
-
-
-import '../static/pslib/photoswipe.css';
+import '../static/js/pslib/photoswipe.css';
 
 // Font Awesome imports
 import { config } from '@fortawesome/fontawesome-svg-core'

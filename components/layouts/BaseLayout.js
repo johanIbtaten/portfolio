@@ -11,6 +11,7 @@ const BaseLayout = (props) => {
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, nofollow" />
         
         <meta name="description" content="My name is Filip Jerga and I am an experienced software engineer and freelance developer. I have a Master's degree in Artificial Intelligence and several years of experience working on a wide range of technologies and projects from C++ development for ultrasound devices to modern mobile and web applications in React and Angular. Throughout my career, I have acquired advanced technical knowledge and the ability to explain programming topics clearly and in detail to a broad audience. I invite you to take my course, where I have put a lot of effort to explain web and software engineering concepts in a detailed, hands-on and understandable way." />
         <meta name="keywords" content="jerga portfolio, jerga developer, jerga freelancig, jerga programming"/>
@@ -27,6 +28,9 @@ const BaseLayout = (props) => {
         */ } 
 
         <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
+       
+        <script type="text/javascript" src="/static/js/masonry/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="/static/js/memory/memory.js"></script>
       </Head>
       <div className="layout-container" >
         <Header className={`port-nav-${headerType}`}

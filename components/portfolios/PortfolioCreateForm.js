@@ -8,18 +8,19 @@ import PortInputFile from '../form/PortInputFile';
 
 import * as Yup from 'yup';
 
+const required = "Ce champ est obligatoire"
 // On utilise la librairie Yup pour créer un schéma de validation
 // qui transmettra ses données à Formik sous forme d'un objet errors
 const SignupSchema = Yup.object().shape({
   title: Yup.string()
-    .required('Required'),
+    .required(required),
   description: Yup.string()
-    .required('Required'),
+    .required(required),
   startDate: Yup.string()
     .nullable()
-    .required('Required'),
+    .required(required),
   file: Yup.string()
-    .required('Required'),
+    .required(required),
 });
 
 // const validateInputs = (values) => {

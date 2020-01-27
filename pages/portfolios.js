@@ -12,6 +12,13 @@ import { waitForImages } from '../actions/masonry';
 
 import {PhotoSwipe} from 'react-photoswipe'
 
+import dynamic from 'next/dynamic'
+//const Masonry = dynamic(import ('masonry-layout'),{ssr:false});
+
+//const Masonry = dynamic(import('masonry-layout'))
+
+//import Masonry from 'masonry-layout';
+
 class Portfolios extends React.Component {
   constructor(props) {
     super(props);
@@ -91,10 +98,22 @@ class Portfolios extends React.Component {
 
   componentDidMount () {
     waitForImages();
+    var msnry = new Masonry( '.gallery-wrapper', {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true,
+      transitionDuration: '0.2s'
+    });
   }
 
   componentDidUpdate () {
     waitForImages();
+    // var msnry = new Masonry( '.gallery-wrapper', {
+    //   itemSelector: '.grid-item',
+    //   columnWidth: '.grid-sizer',
+    //   percentPosition: true,
+    //   transitionDuration: '0.4s'
+    // });
   }  
 
 
@@ -154,13 +173,13 @@ class Portfolios extends React.Component {
     });
   };
 
-  renderPortfolios(portfolios) {
+  /*renderPortfolios(portfolios) {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
 
     return portfolios.map((portfolio, index) => {
       return (        
         <div key={index} className="masonry-brick">
-          <div className="masonry-content" /*onClick={(e) => this.handleClick(e, portfolio.targetLink)} href={portfolio.targetLink}*/>
+          <div className="masonry-content">
             <PortfolioCard portfolio={portfolio} openPhotoSwipe={this.openPhotoSwipe}>
               { // Si l'utilisateur est connecté et si il est le siteOwner
               // alors on affiche les boutons d'édition et 
@@ -178,6 +197,34 @@ class Portfolios extends React.Component {
         </div>          
       )
     })
+  }*/
+
+
+
+  renderPortfolios(portfolios) {
+    const { isAuthenticated, isSiteOwner } = this.props.auth;
+
+    return portfolios.map((portfolio, index) => {
+      return (        
+        
+          <div className="col-xl-4 col-md-6 grid-item" key={index}>
+            <PortfolioCard portfolio={portfolio} openPhotoSwipe={this.openPhotoSwipe}>
+              { // Si l'utilisateur est connecté et si il est le siteOwner
+              // alors on affiche les boutons d'édition et 
+              // de suppression de portfolio. Ces éléments JSX sont des
+              // enfants du composant PortfolioCard ils seront donc
+              // passés à ce composant dans la props children.
+              isAuthenticated && isSiteOwner &&
+              <div className="adminBar">              
+                <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
+                <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, encodeURIComponent(portfolio.file), e)} color="danger" className="float-right">Delete</Button>
+              </div>
+              }          
+            </PortfolioCard>        
+          </div>
+                  
+      )
+    })
   }
          
   render() {
@@ -191,18 +238,36 @@ class Portfolios extends React.Component {
           <div className="background-image op1"></div>
         */ }         
         <BasePage className="portfolio-page" title="Portfolios">
+
           { isAuthenticated && isSiteOwner &&
             <Button onClick={() => Router.pushRoute('/portfolios/new')}
             color="success"
             className="create-port-btn">Ajouter un portfolio
             </Button>
           }
-          <div className="masonry">            
-            { this.renderPortfolios(portfolios) }
+
+          <div className="row gallery-wrapper clearfix">
+            <div className="col-xl-4 col-md-6 grid-sizer"></div>            
+              { this.renderPortfolios(portfolios) }
           </div>
+
+          { /*
+            <div className="masonry">            
+              { this.renderPortfolios(portfolios) }
+            </div>
+          */ } 
           <PhotoSwipe isOpen={this.state.isOpen} items={this.state[this.galleryItems]}
                     options={this.state.options}
                     onClose={this.handleClose}/>
+
+
+
+
+
+
+
+
+                    
           </BasePage>
           </BaseLayout>
           )

@@ -1,5 +1,4 @@
-export const memoryInit = () => {
-  
+const memoryInit = () => {
   const cards = document.querySelectorAll('.memory-card');
 
   let hasFlippedCard = false;
@@ -9,13 +8,7 @@ export const memoryInit = () => {
   let moves = 0;
   let counter = document.querySelector(".moves");
 
-  const stars = document.querySelectorAll(".fa-star");
-
-  cards.forEach(card => {    
-    card.addEventListener('click', flipCard);
-  })
-
-  startGame()
+  const stars = document.querySelectorAll(".fa-star");  
 
   function flipCard() {
     if (lockBoard) return;
@@ -31,7 +24,7 @@ export const memoryInit = () => {
       return;
     }
 
-    // Deucième click
+    // Deuxième click
     secondCard = this;
     moveCounter()
 
@@ -50,9 +43,6 @@ export const memoryInit = () => {
   function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
-
-    // firstCard.classList.add('match');
-    // secondCard.classList.add('match');
 
     resetBoard();
   }
@@ -74,7 +64,6 @@ export const memoryInit = () => {
   }
 
   function startGame() {
-    moves = 0;
     counter.innerHTML = moves + " Move"
     
     for (var i= 0; i < stars.length; i++){
@@ -82,16 +71,32 @@ export const memoryInit = () => {
     }
 
     cards.forEach(card => {
-      card.classList.remove('flip');   
+      card.classList.remove('flip');
+      card.removeEventListener('click', flipCard);
+      
+      resetBoard()
+
 
       setTimeout(() => {
-        resetBoard()
         let randomPos = Math.floor(Math.random() * 12);
         card.style.order = randomPos;
       }, 500);
     });
   };
 
+  
+  window.onresize = function() {
+    changeHeightGame();    
+  }
+  
+  changeHeightGame()
+  
+  startGame()
+
+  cards.forEach(card => {    
+    card.addEventListener('click', flipCard);
+  })
+  
 
   /**
    * Change la hauteur du conteneur memory
@@ -113,13 +118,7 @@ export const memoryInit = () => {
     // Comme l'unité px est déjà incluse dans la largeur
     // on donne à la hauteur de l'élément la valeur de la largeur
     memoryGame.style.height = widthMemory;
-  }
-
-  window.onresize = function() {
-    changeHeightGame();    
-  }
-
-  changeHeightGame()  
+  }  
 
   /**
    * Compte le nombre de moves
@@ -128,6 +127,7 @@ export const memoryInit = () => {
     moves++;
     counter.innerHTML = moves + ((moves > 1) ? " Moves":" Move");
 
+    // Setting rates based on moves
     if (moves > 8 && moves < 12){
       stars[2].style.visibility = "collapse";
     } else if (moves > 13) {
@@ -136,7 +136,6 @@ export const memoryInit = () => {
       stars[0].style.visibility = "collapse";     
     }
   }
-
 }
 
 

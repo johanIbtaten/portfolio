@@ -89,7 +89,7 @@ class About extends React.Component {
     return (
       <BaseLayout title="Filip Jerga - Learn More About Me" {...this.props.auth}>
         <BasePage className="about-page">
-          <Row className="mt-5">
+          <Row className="mt-md-5">
             <Col md="6">
               <div className="left-side">
                 <h1 className="title fadein">Hello, Welcome</h1>

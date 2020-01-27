@@ -24,7 +24,7 @@ export default class PortfolioCard extends React.Component {
   }
 
   handleClickImg = (e, targetLink) => {
-    if (targetLink) {
+    if (targetLink && !targetLink.startsWith('ps:')) {
       e.stopPropagation();
       window.open(targetLink, '_blank');
     }
@@ -39,14 +39,10 @@ export default class PortfolioCard extends React.Component {
 
     const galleryItems = (portfolio.targetLink && portfolio.targetLink.startsWith('ps:')) && portfolio.targetLink.split(':')[1]
 
-    const clickable = portfolio.targetLink ? "clickable" : ""
+    const clickable = portfolio.targetLink && !portfolio.targetLink.startsWith('ps:') ? "clickable lighter" : ""
 
     return (      
-      <Card className="portfolio-card">
-        { /*        
-          <CardImg className="imgView card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg" alt="Card image cap" />
-          <CardImg className="imgView card-img-top" src="https://via.placeholder.com/545x363?text=545x363+Min+Size" alt="Card image cap" />
-        */ } 
+      <Card className="portfolio-card">        
         <div className={`imgViewWrapper ${clickable}`} onClick={(e) => this.handleClickImg(e, portfolio.targetLink)}>
           <CardImg className="imgView card-img-top" src={portfolio.file} alt="Card image cap" />
         </div>
@@ -79,17 +75,13 @@ export default class PortfolioCard extends React.Component {
             { portfolio.targetLink ? 
               portfolio.targetLink.startsWith('ps:') ? 
                 <a  href="" className="btn mr-2 btn-primary float-right" onClick={(e) => openPhotoSwipe(e, galleryItems)}>
-                  Voir la galerie
-                </a>
-
-                :
-
-                <a href={portfolio.targetLink} target="_blank" className="btn mr-2 btn-primary float-right">
                   Voir
-                </a>               
-
+                </a>
+                :
+                <a href={portfolio.targetLink} target="_blank" className="btn mr-2 btn-primary float-right">
+                  Voir <FontAwesomeIcon icon={['fas', 'external-link-alt']} />
+                </a>          
               :
-
               null
             }
             </div>

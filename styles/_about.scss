@@ -1,10 +1,16 @@
 .about-page {
   .left-side {
     margin-top: 10vh;
-
     color: $secondaryPerso;
     text-align: left;
+
+    @include media-breakpoint-down(sm) {
+      margin-top: 0;
+      margin-bottom: 3rem;
+    }
   }
+
+
 
   .fadein {
     opacity: 0;
