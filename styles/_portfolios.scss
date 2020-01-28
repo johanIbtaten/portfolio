@@ -95,13 +95,16 @@
     line-height: 1.5;
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    @include media-breakpoint-down(md) {
+      color: $gray-800;
+    }
     &:hover {
       color: $gray-800;
     }
     &:focus,&:active:focus,&.active:focus,
     &.focus,&:active.focus,&.active.focus {
         outline: none !important;
-    }  
+    }
   }
 
   .create-port-btn {

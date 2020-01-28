@@ -67,7 +67,7 @@ export default class PortfolioCard extends React.Component {
             <div className="clearfix">
 
             { portfolio.githubLink &&
-              <a href={portfolio.githubLink} target="_blank" className="btn-icon" >
+              <a href={portfolio.githubLink} target="_blank" className="btn-icon" title="Voir le dépôt">
                 <FontAwesomeIcon icon={['fab', 'github']} transform="grow-16"/>
               </a>
             }
