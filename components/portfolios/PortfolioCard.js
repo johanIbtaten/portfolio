@@ -4,8 +4,6 @@ import { Card, CardImg, CardHeader, CardBody, CardText, CardTitle, Button } from
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Router } from '../../routes';
-
 export default class PortfolioCard extends React.Component {
 
   constructor(props) {

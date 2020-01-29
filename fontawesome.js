@@ -6,11 +6,12 @@ import {
     faCheckCircle,
     faStar,
     faRedo,
-    faExternalLinkAlt
+    faExternalLinkAlt,
+    faMobileAlt
   } from '@fortawesome/free-solid-svg-icons';
 
 import { 
-    // faAddressBook as faAddressBookRegular
+    faEnvelope,
   } from '@fortawesome/free-regular-svg-icons';
 
 import {
@@ -23,5 +24,7 @@ library.add(
     faGithub,
     faStar,
     faRedo,
-    faExternalLinkAlt
+    faExternalLinkAlt,
+    faEnvelope,
+    faMobileAlt
 );

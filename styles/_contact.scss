@@ -1,0 +1,23 @@
+.contact-page {
+    li {
+      font-size: rem(16px);
+      font-weight: 400;
+      line-height: 1.6;
+      padding: rem(6px) 0 rem(15px) rem(18px);
+      font-size: rem(18px);
+      
+      a:hover {
+          text-decoration: none;
+        }
+    }
+
+    .fa-ul {
+      margin-left: rem(37px);
+      margin-bottom: rem(24px);
+    }
+    
+    .fa-li {
+      top: 10px;
+    }
+
+  }
