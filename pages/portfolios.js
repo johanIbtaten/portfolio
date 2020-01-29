@@ -8,16 +8,7 @@ import { Router } from '../routes';
 
 import { getPortfolios, deletePortfolio } from '../actions';
 
-import { waitForImages } from '../actions/masonry';
-
 import {PhotoSwipe} from 'react-photoswipe'
-
-import dynamic from 'next/dynamic'
-//const Masonry = dynamic(import ('masonry-layout'),{ssr:false});
-
-//const Masonry = dynamic(import('masonry-layout'))
-
-//import Masonry from 'masonry-layout';
 
 class Portfolios extends React.Component {
   constructor(props) {
@@ -97,7 +88,6 @@ class Portfolios extends React.Component {
 
 
   componentDidMount () {
-    waitForImages();
     var msnry = new Masonry( '.gallery-wrapper', {
       itemSelector: '.grid-item',
       columnWidth: '.grid-sizer',
@@ -105,17 +95,6 @@ class Portfolios extends React.Component {
       transitionDuration: '0.2s'
     });
   }
-
-  componentDidUpdate () {
-    waitForImages();
-    // var msnry = new Masonry( '.gallery-wrapper', {
-    //   itemSelector: '.grid-item',
-    //   columnWidth: '.grid-sizer',
-    //   percentPosition: true,
-    //   transitionDuration: '0.4s'
-    // });
-  }  
-
 
   navigateToEdit(portfolioId, e) {
     e.stopPropagation();
@@ -157,7 +136,6 @@ class Portfolios extends React.Component {
     // galleryItems provient du onclick du bouton de la card qui
     // doit ouvrir le photoswipe
     this.galleryItems = galleryItems
-    console.log('galleryItems', galleryItems); ////////////////////////////////////////
     
     this.setState({
       isOpen: true,
@@ -172,34 +150,6 @@ class Portfolios extends React.Component {
       isOpen: false
     });
   };
-
-  /*renderPortfolios(portfolios) {
-    const { isAuthenticated, isSiteOwner } = this.props.auth;
-
-    return portfolios.map((portfolio, index) => {
-      return (        
-        <div key={index} className="masonry-brick">
-          <div className="masonry-content">
-            <PortfolioCard portfolio={portfolio} openPhotoSwipe={this.openPhotoSwipe}>
-              { // Si l'utilisateur est connecté et si il est le siteOwner
-              // alors on affiche les boutons d'édition et 
-              // de suppression de portfolio. Ces éléments JSX sont des
-              // enfants du composant PortfolioCard ils seront donc
-              // passés à ce composant dans la props children.
-              isAuthenticated && isSiteOwner &&
-              <div className="adminBar">              
-                <Button onClick={(e) => this.navigateToEdit(portfolio._id, e)} color="warning">Edit</Button>{' '}
-                <Button onClick={(e) => this.displayDeleteWarning(portfolio._id, encodeURIComponent(portfolio.file), e)} color="danger" className="float-right">Delete</Button>
-              </div>
-              }          
-            </PortfolioCard>        
-          </div>
-        </div>          
-      )
-    })
-  }*/
-
-
 
   renderPortfolios(portfolios) {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
@@ -233,10 +183,7 @@ class Portfolios extends React.Component {
     
     
     return (
-      <BaseLayout {...this.props.auth}>
-        { /*      
-          <div className="background-image op1"></div>
-        */ }         
+      <BaseLayout {...this.props.auth}>     
         <BasePage className="portfolio-page" title="Portfolios">
 
           { isAuthenticated && isSiteOwner &&
@@ -250,23 +197,10 @@ class Portfolios extends React.Component {
             <div className="col-xl-4 col-md-6 grid-sizer"></div>            
               { this.renderPortfolios(portfolios) }
           </div>
-
-          { /*
-            <div className="masonry">            
-              { this.renderPortfolios(portfolios) }
-            </div>
-          */ } 
+        
           <PhotoSwipe isOpen={this.state.isOpen} items={this.state[this.galleryItems]}
                     options={this.state.options}
                     onClose={this.handleClose}/>
-
-
-
-
-
-
-
-
                     
           </BasePage>
           </BaseLayout>
