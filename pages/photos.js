@@ -19,54 +19,104 @@ class Photos extends React.Component {
 
     state = {
         isOpen: false,
-        items: [
-          {
-            src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-            w: 300,
-            h: 350,
-            title: ' syufu sdfu sdfyu sdyuf  sdufy usdy fu ysd usydf uysd fuiy sdi usdyf uiysd fuysd udyf sdyf  sudfy uisdyf sdfu sdufy uisdy f sdufyuisdy fuif usdyfui sydf'
-          },
-          {
-            src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-            w: 300,
-            h: 350,
-            title: 'Image 2'
-          },
-          {
-            src: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
-            w: 300,
-            h: 350,
-            title: 'Image 3'
-          }
-        ],
         galleryItems: [
           {
-            src: '/static/images/home-bg.jpg',
-            thumbnail: '/static/images/home-bg.jpg',
-            w: 800,
-            h: 800,
-            title: ' syufu sdfu sdfyu sdyuf  sdufy usdy fu ysd usydf uysd fuiy sdi usdyf uiysd fuysd udyf sdyf  sudfy uisdyf sdfu sdufy uisdy f sdufyuisdy fuif usdyfui sydf'
+            src: '/static/images/galleries/photos/beauval-totem.jpg',
+            w: 941,
+            h: 1320,
+            title: '<span class="badge badge-light">Beauval</span><br/>Totem',
+            thumbnail: '/static/images/galleries/photos/th_beauval-totem.jpg'
           },
           {
-            src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-            thumbnail: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-            w: 1200,
-            h: 900,
-            title: 'Image 2'
+            src: '/static/images/galleries/photos/central-park.jpg',
+            w: 720,
+            h: 960,
+            title: '<span class="badge badge-light">New York</span><br/>Central Park',
+            thumbnail: '/static/images/galleries/photos/th_central-park.jpg'
           },
           {
-            src: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-            thumbnail: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-            w: 1200,
-            h: 900,
-            title: 'Image 3'
+            src: '/static/images/galleries/photos/chat-santorin.jpg',
+            w: 990,
+            h: 1320,
+            title: '<span class="badge badge-light">Santorin</span><br/>Chat grec',
+            thumbnail: '/static/images/galleries/photos/th_chat-santorin.jpg'
           },
           {
-            src: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-            thumbnail: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-            w: 1200,
-            h: 900,
-            title: 'Image 4'
+            src: '/static/images/galleries/photos/corail-illumination.jpg',
+            w: 990,
+            h: 1320,
+            title: '<span class="badge badge-light">Paris</span><br/>Corail illumination',
+            thumbnail: '/static/images/galleries/photos/th_corail-illumination.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/deauville.jpg',
+            w: 1320,
+            h: 990,
+            title: '<span class="badge badge-light">Deauville</span><br/>Piscine',
+            thumbnail: '/static/images/galleries/photos/th_deauville.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/le-rayon-vert.jpg',
+            w: 990,
+            h: 1320,
+            title: '<span class="badge badge-light">Santorin</span><br/>Le rayon vert',
+            thumbnail: '/static/images/galleries/photos/th_le-rayon-vert.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/louvre.jpg',
+            w: 971,
+            h: 1320,
+            title: '<span class="badge badge-light">Paris</span><br/>Musée du Louvre',
+            thumbnail: '/static/images/galleries/photos/th_louvre.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/meduse-illumination.jpg',
+            w: 990,
+            h: 1320,
+            title: '<span class="badge badge-light">Paris</span><br/>Méduse illumination',
+            thumbnail: '/static/images/galleries/photos/th_meduse-illumination.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/metropolitain.jpg',
+            w: 742,
+            h: 1320,
+            title: '<span class="badge badge-light">Paris</span><br/>Métropolitain',
+            thumbnail: '/static/images/galleries/photos/th_metropolitain.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/mosaique.jpg',
+            w: 1320,
+            h: 990,
+            title: '<span class="badge badge-light">Paris</span><br/>Mosaïque',
+            thumbnail: '/static/images/galleries/photos/th_mosaique.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/ours-illumination.jpg',
+            w: 1320,
+            h: 1041,
+            title: '<span class="badge badge-light">Paris</span><br/>Ours illumination',
+            thumbnail: '/static/images/galleries/photos/th_ours-illumination.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/pandi-panda.jpg',
+            w: 1320,
+            h: 1320,
+            title: '<span class="badge badge-light">Beauval</span><br/>Pandi Panda',
+            thumbnail: '/static/images/galleries/photos/th_pandi-panda.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/paris-tuileries.jpg',
+            w: 990,
+            h: 1320,
+            title: '<span class="badge badge-light">Paris</span><br/>La grande roue',
+            thumbnail: '/static/images/galleries/photos/th_paris-tuileries.jpg'
+          },
+          {
+            src: '/static/images/galleries/photos/patisseries.jpg',
+            w: 1320,
+            h: 990,
+            title: '<span class="badge badge-light">Paris</span><br/>Pâtisseries',
+            thumbnail: '/static/images/galleries/photos/th_patisseries.jpg'
           }
         ],
         options: {
@@ -92,7 +142,7 @@ class Photos extends React.Component {
     
       getThumbnailContent = (item) => {
         return (
-          <img src={item.thumbnail} width={280} height={190}/>
+          <img src={item.thumbnail} width={140} height={90}/>
         );
       };
 

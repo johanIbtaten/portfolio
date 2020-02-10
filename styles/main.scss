@@ -49,6 +49,10 @@ html, body {
   text-align: right;
 }
 
+p {
+  line-height: 1.6;
+}
+
 // --------- Base page -------------
 
 .base-page {
@@ -100,7 +104,7 @@ html, body {
   }  
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(lg) {
   .port-navbar.port-base .port-navbar-link {
     margin-bottom: 7px;
   }
@@ -114,20 +118,57 @@ html, body {
 
 .pswp-thumbnail {
   display: inline-block;
-  margin: 0 10px 10px 0;
+  margin: 0 rem(20px) rem(20px) 0;
   cursor: pointer;
+  overflow: hidden;
   img {
     max-width: 100%;
+    object-fit: cover;
+    transition: all 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 
-.pswp-thumbnail img {
-  object-fit: cover;
+.pswp__caption__center { 
+  text-align: left !important;
+  padding: 1rem !important;
+  .badge { 
+    text-transform: uppercase;
+    font-size: rem(13px);
+    border-radius: 0;
+    font-weight: 400;
+    margin-bottom: rem(8px);
+  }
+
+  .badge-montage { 
+    background-color: #8b5e3c;
+    color: $white;
+  }
+  
+  .badge-retouche { 
+    background-color: #8b5e3c;
+    color: $white;
+  }
 }
 
-.pswp__caption__center { 
-  text-align: center !important;
-  padding: 1rem !important;
+.photos-page {
+  .pswp__caption__center { 
+    text-align: center !important;
+  }
+
+  @include media-breakpoint-down(xs) {
+    .container {
+      max-width: 320px;
+    }
+
+    .pswp-thumbnail {
+      margin: 0 rem(5px) rem(20px) 0;
+    }
+  }
+
+  
 }
 
 // ---------- Mansory ------------

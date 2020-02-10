@@ -102,6 +102,7 @@ const PortfolioCreateForm = ({initialValues, onSubmit, error, editPage}) => (
               label="Titre"
               component={PortInput}/>       
               <Field type="textarea"
+              rows="7"
               name="description"
               label="Description"
               component={PortInput}/>

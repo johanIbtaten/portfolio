@@ -14,7 +14,7 @@ class Index extends React.Component {
       isFlipping: false
     }
 
-    this.roles = ['Developer', 'Tech Lover', 'Team Player', 'Course Creater', 'React.js', 'Angular'];
+    this.roles = ['Développeur', 'Tech Lover', 'Designer', 'React.js', 'Next.js'];
   }
 
   componentDidMount() {
@@ -69,9 +69,9 @@ class Index extends React.Component {
                     <div className="front">
                       <img alt="Guy programming welcome picture" className="image" src="/static/images/section-1.jpg"/>
                       <div className="hero-section-content">
-                        <h2> Full Stack Web Developer </h2>
+                        <h2>Développeur <br/>Front-End / UX UI Designer</h2>
                         <div className="hero-section-content-intro">
-                          Have a look at my portfolio and job history. Don't be shy.
+                          Je vous invite à aller jeter un coup d'oeil à mon portfolio.
                         </div>
                       </div>
                       <div className="shadow-custom">
@@ -81,9 +81,9 @@ class Index extends React.Component {
                     <div className="back">
                       <img alt="Guy programming welcome picture" className="image" src="/static/images/section-2.jpg"/>
                       <div className="hero-section-content">
-                        <h2> Get Your Projects Done </h2>
+                        <h2> Je réalise vos projets web</h2>
                         <div className="hero-section-content-intro">
-                          Profesional and top quality service in web development.
+                          Je vous apporte un service professionnel et de qualité dans le développement de vos applications et sites web.
                         </div>
                       </div>
                       <div className="shadow-custom">
@@ -97,9 +97,13 @@ class Index extends React.Component {
               <Col md="6" className="hero-welcome-wrapper text-center text-md-left">
                 <div className="hero-welcome-text">
                   <h1>
-                    { isAuthenticated && <span> <b> {user.name} </b> </span> }
-                    Welcome to the portfolio website of Filip Jerga.
-                    Get informed, collaborate and discover projects I was working on through the years!
+                    { isAuthenticated && <span> <b> {user.name || user.nickname} </b> </span> }
+                    Bienvenue sur le site portfolio de Johan Ibtaten. Vous pourrez y découvrir mes travaux.
+                    Si vous vous connectez, vous aurez accès à un menu caché Goodies, alors n'hésitez pas.
+                    { /*
+                      Welcome to the portfolio website of Filip Jerga.
+                      Get informed, collaborate and discover projects I was working on through the years!
+                    */ } 
                   </h1>
                 </div>
                 <Typed
@@ -116,7 +120,9 @@ class Index extends React.Component {
 
                 <div className="hero-welcome-bio">
                   <h1>
-                    Let's take a look on my work.
+                    Regardons un peu mes travaux.
+                    { /*
+                    */ } 
                   </h1>
                 </div>
               </Col>            

@@ -13,6 +13,7 @@ import {PhotoSwipe} from 'react-photoswipe'
 class Portfolios extends React.Component {
   constructor(props) {
     super(props);
+    
     // Variable qui contient la clé du state qui correspond à la 
     // galerie à afficher.
     this.galleryItems = 'items1';
@@ -21,52 +22,70 @@ class Portfolios extends React.Component {
       isOpen: false,
       items1: [
         {
-          src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-          w: 300,
-          h: 350,
-          title: 'Image 1'
+          src: '/static/images/galleries/design/london-wei.jpg',
+          w: 933,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Affiche pour un week-end d’intégration<br/>// École de commerce ISEE'
         },
         {
-          src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-          w: 300,
-          h: 350,
-          title: 'Image 2'
+          src: '/static/images/galleries/design/fiche-thot.jpg',
+          w: 933,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Fiche parcours de formation sur le progiciel THOT<br/>// Société SICEM'
         },
         {
-          src: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
-          w: 300,
-          h: 350,
-          title: 'Image 3'
-        }
-      ],
-      items2: [
-        {
-          src: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-          thumbnail: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-          w: 1200,
-          h: 900,
-          title: 'Image 1 galleryItems'
+          src: '/static/images/galleries/design/catalogue-thot1.png',
+          w: 933,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Page du catalogue de formation sur le progiciel THOT<br/>// Société SICEM'
         },
         {
-          src: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-          thumbnail: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-          w: 1200,
-          h: 900,
-          title: 'Image 2 galleryItems'
+          src: '/static/images/galleries/design/catalogue-thot2.png',
+          w: 933,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Page du catalogue de formation sur le progiciel THOT<br/>// Société SICEM'
         },
         {
-          src: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-          thumbnail: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-          w: 1200,
-          h: 900,
-          title: 'Image 3 galleryItems'
+          src: '/static/images/galleries/design/archives-yvelines.jpg',
+          w: 1056,
+          h: 1320,
+          title: '<span class="badge badge-montage">Montage photo</span><br/>Fonds d’écran à partir d’images d’archives du patrimoine<br/>// Société SICEM'
         },
         {
-          src: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-          thumbnail: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-          w: 1200,
-          h: 900,
-          title: 'Image 4 galleryItems'
+          src: '/static/images/galleries/design/fiche-isee.jpg',
+          w: 905,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Fiche programme Bachelor<br/> // École de commerce ISEE'
+        },
+        {
+          src: '/static/images/galleries/design/retouche-photo.jpg',
+          w: 910,
+          h: 1320,
+          title: '<span class="badge badge-success">Retouche photo</span><br/>Retouche pour une image d’illustration<br/> // Magazine JetPulsion'
+        },
+        {
+          src: '/static/images/galleries/design/gala-annees-folles-affiche.jpg',
+          w: 910,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Affiche pour le Gala ISEE 2015<br/>// École de commerce ISEE'
+        },
+        {
+          src: '/static/images/galleries/design/gala-annees-folles-livret.jpg',
+          w: 910,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Livret d’invitation pour le gala ISEE 2015<br/>// École de commerce ISEE'
+        },
+        {
+          src: '/static/images/galleries/design/wei-lanta.png',
+          w: 910,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Affiche pour un week-end d’intégration<br/>// École de commerce ISEE'
+        },
+        {
+          src: '/static/images/galleries/design/gala-chic.jpg',
+          w: 933,
+          h: 1320,
+          title: '<span class="badge badge-danger">Print</span><br/>Affiche pour le Gala ISEE 2014<br/>// École de commerce ISEE'
         }
       ],
       options: {}

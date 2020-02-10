@@ -32,8 +32,10 @@ export default class PortfolioCard extends React.Component {
 
   render() {
     const { portfolio, children, openPhotoSwipe } = this.props;
-    const { isOpen } = this.state;
-    const technoList = portfolio.technoList && portfolio.technoList.split(";").map(item => item.trim());
+    //const { isOpen } = this.state;
+
+    // Permet de créer un item de liste après chaque '//' dans la chaîne de caractère
+    const technoList = portfolio.technoList && portfolio.technoList.split("//").map(item => item.trim());
 
     const galleryItems = (portfolio.targetLink && portfolio.targetLink.startsWith('ps:')) && portfolio.targetLink.split(':')[1]
 
@@ -45,8 +47,12 @@ export default class PortfolioCard extends React.Component {
           <CardImg className="imgView card-img-top" src={portfolio.file} alt="Card image cap" />
         </div>
         <CardBody>
-          <CardTitle className="portfolio-card-title">{portfolio.title}</CardTitle>
-          <CardText className="portfolio-card-text">{portfolio.description}</CardText>
+          <CardTitle className="portfolio-card-title">
+            <span dangerouslySetInnerHTML={{
+              __html: portfolio.title
+            }} />
+          </CardTitle>
+          <CardText className="portfolio-card-text">{portfolio.description}</CardText>        
           
           { technoList &&
             <div>
@@ -54,7 +60,13 @@ export default class PortfolioCard extends React.Component {
               <ul className="fa-ul">            
                 { technoList.map((technoItemList, index) => (
                     <li key={index}>
-                      <FontAwesomeIcon icon="check-circle" listItem />{technoItemList}
+                      <FontAwesomeIcon icon="check-circle" listItem />
+                      { /*
+                      La props dangerouslySetInnerHTML permet de transformer une string en HTML
+                      */ } 
+                      <span dangerouslySetInnerHTML={{
+                        __html: technoItemList
+                      }} />
                     </li>
                 ))}
               </ul>

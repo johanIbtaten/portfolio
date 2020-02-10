@@ -26,10 +26,6 @@
       font-size: rem(18px);
       text-transform: uppercase;
 
-      @media (max-width: 1060px) {
-        padding-right: 0.1rem;
-      }
-
       &.active {
       color: $navbar-orange;
       }

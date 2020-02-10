@@ -33,7 +33,7 @@ const BsNavLink = (props) => {
 // gère l'authentification auth0 
 const Login = () => {
   return (
-    <span onClick={auth0.login} className="nav-link port-navbar-link clickable"> Login </span>
+    <span onClick={auth0.login} className="nav-link port-navbar-link clickable"> Connexion </span>
   )
 }
 
@@ -42,7 +42,7 @@ const Login = () => {
 // gère l'authentification auth0 
 const Logout = () => {
   return (
-    <span onClick={auth0.logout} className="nav-link port-navbar-link clickable"> Logout </span>
+    <span onClick={auth0.logout} className="nav-link port-navbar-link clickable"> Déconnexion </span>
   )
 }
 
@@ -114,7 +114,7 @@ export default class Header extends React.Component {
 
     return (
       <div> 
-        <Navbar className= {`port-navbar port-base absolute ${className} ${menuOpenClass}`} color="transparent" dark expand="lg">
+        <Navbar className= {`port-navbar port-base absolute ${className} ${menuOpenClass}`} color="transparent" dark expand="xl">
           
             <NavbarBrand className="port-navbar-brand d-flex" href="/"><span>Johan <br />IBTATEN</span><img className="logo-ij" src="/static/images/logo-ij.svg" alt="Logo johan IBTATEN" /></NavbarBrand>
             
@@ -123,10 +123,10 @@ export default class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem className="port-navbar-item">
-                <BsNavLink route="/" title="Home" />
+                <BsNavLink route="/" title="Accueil" />
               </NavItem>
               <NavItem className="port-navbar-item">
-                <BsNavLink route="/about" title="About" />
+                <BsNavLink route="/about" title="À&nbsp;propos" />
               </NavItem>
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/portfolios" title="Portfolio" />

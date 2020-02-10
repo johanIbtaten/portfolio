@@ -2,3 +2,4 @@
 /.next
 /server/config/dev.js
 /uploads
+/static/images/galleries
