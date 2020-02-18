@@ -116,10 +116,25 @@ export default class Header extends React.Component {
       <div> 
         <Navbar className= {`port-navbar port-base absolute ${className} ${menuOpenClass}`} color="transparent" dark expand="xl">
           
+          { /*
             <NavbarBrand className="port-navbar-brand d-flex" href="/"><span>Johan <br />IBTATEN</span><img className="logo-ij" src="/static/images/logo-ij.svg" alt="Logo johan IBTATEN" /></NavbarBrand>
+          */ } 
+            <NavbarBrand className="port-navbar-brand d-flex" href="/"><img className="logo-ij" src="/static/images/logo-ij-v3.svg" alt="JOHAN IBTATEN" /></NavbarBrand>
             
           
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler onClick={this.toggle}>
+          <div className={`burger burger-rotate ${menuOpenClass}`}>
+            <div className="burger-lines"></div>
+          </div>
+          { /*
+            <div id="nav-icon3" className= {isOpen ? 'open' : ''}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          */ } 
+        </NavbarToggler>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem className="port-navbar-item">

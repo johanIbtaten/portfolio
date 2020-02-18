@@ -54,56 +54,50 @@ class Index extends React.Component {
       // est authentifié ou pas.
       <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth}
                   headerType="index"
-                  title="Filip Jerga - Portfolio">
+                  title="Johan IBTATEN - Portfolio">
         <div className="main-section">
-          <div className="background-image">
-          { /*
-            <img src="/static/images/background-index.png" />
-          */ } 
-          </div>
           <Container>
             <Row>            
               <Col md="6">
-                <div className={`mx-auto ml-md-0 mb-5 mb-md-0 flip-container ${isFlipping ? 'isFlipping' : ''}`}>
+                <div className={`mx-auto ml-md-0 mb-sm-5 mb-md-0 flip-container ${isFlipping ? 'isFlipping' : ''}`}>
                   <div className="flipper">
+                  
                     <div className="front">
-                      <img alt="Guy programming welcome picture" className="image" src="/static/images/section-1.jpg"/>
-                      <div className="hero-section-content">
-                        <h2>Développeur <br/>Front-End / UX UI Designer</h2>
-                        <div className="hero-section-content-intro">
+                      <img alt="Logo illustration version design Johan IBTATEN" className="image" src="/static/images/logo-illustration1.svg"/>
+                      <div className="hero-section-content mt-2 text-md-left text-center">
+                        <h2><span>Développeur Front</span><br/>UX / UI Designer</h2>
+                        <div className="hero-section-content-intro mt-4 d-none d-md-block">
                           Je vous invite à aller jeter un coup d'oeil à mon portfolio.
                         </div>
                       </div>
-                      <div className="shadow-custom">
-                        <div className="shadow-inner"> </div>
-                      </div>
                     </div>
+
                     <div className="back">
-                      <img alt="Guy programming welcome picture" className="image" src="/static/images/section-2.jpg"/>
-                      <div className="hero-section-content">
-                        <h2> Je réalise vos projets web</h2>
-                        <div className="hero-section-content-intro">
-                          Je vous apporte un service professionnel et de qualité dans le développement de vos applications et sites web.
+                      <div className="image-wrapper text-center donuts">
+                        <img alt="Logo illustration version donuts Johan IBTATEN" className="image levitate" src="/static/images/logo-illustration2.svg"/>
+                        <img alt="Nuage et étoiles du logo version donuts" className="position-absolute cloud-and-stars d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/cloud-and-stars.svg"/>
+                        <img alt="Nuage haut du logo version donuts" className="position-absolute cloud-up d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/cloud-up.svg"/>
+                        <img alt="Nuage bas du logo version donuts" className="position-absolute cloud-down d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/cloud-down.svg"/>
+                        <img alt="Ombre du logo version donuts" className="position-absolute shadow-donuts shadow-scale d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/shadow-donuts.svg"/>
+                      </div>
+                      <div className="hero-section-content mt-3 mt-sm-5 mt-md-3  mt-lg-5 text-md-left text-center">
+                        <h2>Je réalise tous <br/>vos projets web</h2>
+                        <div className="hero-section-content-intro mt-4 d-none d-md-block">
+                        En vous apportant un service professionnel et de qualité.
                         </div>
                       </div>
-                      <div className="shadow-custom">
-                        <div className="shadow-inner"> </div>
-                      </div>
                     </div>
+
                   </div>
                 </div>
               </Col>
 
-              <Col md="6" className="hero-welcome-wrapper text-center text-md-left">
-                <div className="hero-welcome-text">
+              <Col md="6" className="hero-welcome-wrapper text-center text-md-left pl-md-5 mb-5">
+                <div className="hero-welcome-text mb-5 mt-4 mt-sm-0">
                   <h1>
                     { isAuthenticated && <span> <b> {user.name || user.nickname} </b> </span> }
-                    Bienvenue sur le site portfolio de Johan Ibtaten. Vous pourrez y découvrir mes travaux.
+                    Bienvenue sur mon site portfolio. Vous pourrez y découvrir mes travaux. 
                     Si vous vous connectez, vous aurez accès à un menu caché Goodies, alors n'hésitez pas.
-                    { /*
-                      Welcome to the portfolio website of Filip Jerga.
-                      Get informed, collaborate and discover projects I was working on through the years!
-                    */ } 
                   </h1>
                 </div>
                 <Typed
@@ -117,14 +111,6 @@ class Index extends React.Component {
                   className="self-typed"
                   cursorChar="|"
                 />
-
-                <div className="hero-welcome-bio">
-                  <h1>
-                    Regardons un peu mes travaux.
-                    { /*
-                    */ } 
-                  </h1>
-                </div>
               </Col>            
             </Row>
           </Container>        

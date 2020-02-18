@@ -4,8 +4,8 @@ import Head from 'next/head';
 
 const BaseLayout = (props) => {
   const { className, children, isAuthenticated, user, isSiteOwner, cannonical } = props;
-  const headerType = props.headerType || 'default';
-  const title = props.title || 'Filip Jerga Portfolio';
+  const headerType = props.headerType || '';
+  const title = props.title || 'Johan Ibtaten - Développeur Front-End, UX / UI designer - Portfolio';
   return (
     <React.Fragment>
       <Head>
@@ -13,27 +13,32 @@ const BaseLayout = (props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex, nofollow" />
         
-        <meta name="description" content="My name is Filip Jerga and I am an experienced software engineer and freelance developer. I have a Master's degree in Artificial Intelligence and several years of experience working on a wide range of technologies and projects from C++ development for ultrasound devices to modern mobile and web applications in React and Angular. Throughout my career, I have acquired advanced technical knowledge and the ability to explain programming topics clearly and in detail to a broad audience. I invite you to take my course, where I have put a lot of effort to explain web and software engineering concepts in a detailed, hands-on and understandable way." />
-        <meta name="keywords" content="jerga portfolio, jerga developer, jerga freelancig, jerga programming"/>
+        <meta name="description" content="Je m'appelle Johan Ibtaten, je suis développeur Front-End et UX / UI designer expérimenté. J'habite à Paris." />
+        <meta name="keywords" content="Johan Ibtaten portfolio, Johan Ibtaten développeur, Johan Ibtaten design, Johan Ibtaten programmation"/>
         
-        <meta property="og:title" content="Filip Jerga - programmer, developer, bloger" />
+        <meta property="og:title" content="Johan Ibtaten - Développeur Front-End, UX / UI designer" />
         <meta property="og:locale" content="en_EU" />
         <meta property="og:url" content={`${process.env.BASE_URL}`}/>
         <meta property="og:type" content="website"/>
-        <meta property="og:description" content="My name is Filip Jerga and I am an experienced software engineer and freelance developer."/>
+        <meta property="og:description" content="Je m'appelle Johan Ibtaten et je suis développeur Front-End et UX / UI designer expérimenté."/>
         
         {cannonical && <link rel="cannonical" href={`${process.env.BASE_URL}${cannonical}`}/>}
-        { /*
-          <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>        
-        */ } 
 
-        <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
-       
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
+        <link rel="manifest" href="/static/site.webmanifest" />
+        <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5" />
+        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="msapplication-config" content="/static/browserconfig.xml" />
+        <meta name="theme-color" content="#ffffff"></meta>
+
         <script type="text/javascript" src="/static/js/masonry/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="/static/js/memory/memory.js"></script>
       </Head>
       <div className="layout-container" >
-        <Header className={`port-nav-${headerType}`}
+        <Header className={`port-nav-default ${headerType}`}
                 isAuthenticated={isAuthenticated}
                 user={user}
                 isSiteOwner={isSiteOwner}/>

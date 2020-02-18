@@ -143,12 +143,6 @@ class Portfolios extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // handleClick = (e, targetLink) => {
-  //   e.stopPropagation();
-  //   window.location.href=targetLink
-  // }
-  
-
   openPhotoSwipe = (e, galleryItems) => {
     e.preventDefault();
 
@@ -202,8 +196,8 @@ class Portfolios extends React.Component {
     
     
     return (
-      <BaseLayout {...this.props.auth}>     
-        <BasePage className="portfolio-page" title="Portfolios">
+      <BaseLayout {...this.props.auth} title="Johan IBTATEN - Mon portfolio">
+        <BasePage className="portfolio-page" title="Portfolio">
 
           { isAuthenticated && isSiteOwner &&
             <Button onClick={() => Router.pushRoute('/portfolios/new')}

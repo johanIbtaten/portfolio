@@ -61,6 +61,7 @@
     "yup": "^0.28.0"
   },
   "devDependencies": {
-    "cross-env": "^6.0.3"
+    "cross-env": "^6.0.3",
+    "next-purgecss": "^3.1.2"
   }
 }

@@ -23,41 +23,6 @@ const SignupSchema = Yup.object().shape({
     .required(required),
 });
 
-// const validateInputs = (values) => {
-//   let errors = {};
-
-//   // On récupère un tableau de tableau de paires clé-valeur
-//   // à partir de l'objet values qui représente les noms des champs
-//   // comme clés et leurs valeurs, ensuite on boucle sur chaque paire.
-//   Object.entries(values).forEach(([key, value]) => {
-//     // Si le champ n'existe pas dans l'objet values et que la clé
-//     // est égale à githubLink ou targetLink
-//     if (!values[key]) {
-//       //if (key !== 'githubLink' || key !== 'targetLink') {
-//         // alors Le champ est requis
-//         errors[key] = `Field ${key} is required!`;
-//       //}
-//     }
-//   });
-
-//   // On initialise une variable startDate avec la date
-//   // du champ startDate du formulaire et on la formate avec
-//   // la librairie moment()
-//   // const startDate = moment(values.startDate);
-//   //const endDate = moment(values.endDate);
-
-//   // Si startDate et endDate existent et que la enDate 
-//   // est avant la startDate ce qui est incohérent
-//   // if (startDate && endDate && endDate.isBefore(startDate)) {
-//   //   // Alors on ajoute un message d'erreur à l'objet errors
-//   //   errors.endDate = 'End Date cannot be before start date!!!';
-//   // }
-
-//   // On retourne l'objet errors qui contient les messages d'erreur 
-//   // à afficher.
-//   return errors;
-// }
-
 // On récupère les props passées au composant dont la fonction
 // gestionnaire de soumission onSubmit
 const PortfolioCreateForm = ({initialValues, onSubmit, error, editPage}) => (

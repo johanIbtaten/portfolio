@@ -12,8 +12,9 @@ class Memory extends React.Component {
 
     render() {
         return (
-            <BaseLayout {...this.props.auth}>
+            <BaseLayout {...this.props.auth} title="Johan IBTATEN - Memory">
                 <BasePage className="memory-page" title="Memory">
+
                     <section className="score-panel">                    
                         <span className="moves">0 Move</span>
                         <ul className="stars">
@@ -25,6 +26,7 @@ class Memory extends React.Component {
                             <FontAwesomeIcon icon={['fas', 'redo']} />
                         </div>                        
                     </section>
+                    
                     <section className="memory-game">
                         <div className="memory-card" data-framework="aurelia">
                         <img className="front-face" src="/static/images/memory/aurelia.svg" alt="Aurelia" />

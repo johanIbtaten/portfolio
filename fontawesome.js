@@ -7,7 +7,8 @@ import {
     faStar,
     faRedo,
     faExternalLinkAlt,
-    faMobileAlt
+    faMobileAlt,
+    faPaperPlane
   } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -26,5 +27,6 @@ library.add(
     faRedo,
     faExternalLinkAlt,
     faEnvelope,
-    faMobileAlt
+    faMobileAlt,
+    faPaperPlane
 );

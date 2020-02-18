@@ -1,6 +1,6 @@
 .about-page {
   .left-side {
-    margin-top: 10vh;
+    //margin-top: 10vh;
     color: $secondaryPerso;
     text-align: left;
 
@@ -39,4 +39,35 @@
     from { opacity: 0; }
     to   { opacity: 1; }
   }
+}
+
+
+.organic-radius {
+  border-radius: 63% 37% 30% 70%/50% 45% 55% 50%;
+}
+
+.border-primary {
+  border-color: $bg-nav !important;
+  border-color: white !important;
+}
+
+.profile-image img {
+  border-width: .125rem;
+  border-style: solid;
+  padding: .25rem;
+  background-color: white;
+  max-width: 210px;
+}
+
+.description {
+  position: relative;
+}
+
+.description::after {
+  content: '”';
+  font-size: rem(108px);
+  font-weight: 800;
+  right: 0;
+  bottom: -150px;
+  position: absolute;
 }

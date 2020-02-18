@@ -3,14 +3,16 @@
 //-----------------------------
 
 // Colors
-$primary: #048DD3;
+//$primary: #048DD3;
+$primary: #007ded;
 
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
+  wide: 1445px
 ) !default;
 
 //-----------------------------
@@ -21,15 +23,22 @@ $grid-breakpoints: (
 $global-font-size: 1rem;
 
 // Colors
-$secondaryPerso: #2C3E50 !default;
-$tertiaryPerso: #F27D48;
+//$secondaryPerso: #2C3E50;
+$secondaryPerso: #555555;
+//$tertiaryPerso: #F27D48;
 
-$navbar-orange: #dba919;
+//$navbar-orange: #dba919;
+//$navbar-orange: $secondaryPerso;
 $base-page-white: #ecedee;
 
-$gradient1: #00aeef;
-$gradient2: #096fb9;
+$bg-nav: #f7931e;
+$bg-nav-darker: #f15a24;
+// $gradient1: #00aeef;
+// $gradient2: #096fb9;
 
+$line-h-home: 1.3;
+$font-size-min-home: 16px;
+$font-size-max-home: 26px;
 
 
 

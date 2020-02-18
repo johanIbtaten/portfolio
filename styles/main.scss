@@ -25,13 +25,7 @@ html, body {
   height:100%;
   width:100%;
   font-family: 'Montserrat', 'Helvetica';
-}
-
-.self-typed {
-  font-size: rem(31px);
-  font-weight: bold;
-  letter-spacing: rem(2px);
-  color: $white;
+  background-color: $base-page-white;
 }
 
 .absolute {
@@ -51,6 +45,13 @@ html, body {
 
 p {
   line-height: 1.6;
+}
+
+::selection {
+  background: $bg-nav; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: $bg-nav; /* Gecko Browsers */
 }
 
 // --------- Base page -------------

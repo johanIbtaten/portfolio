@@ -6,6 +6,6 @@ module.exports = {
   'process.env.CLIENT_ID': 'jM9RnI7cuQoTkWL2fFjI5tRIfPwPhStt'
 }
 
-// auth0.com
+// auth0.com compte test
 // bonojo75@gmail.com
 // aA123456789!

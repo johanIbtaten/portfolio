@@ -5,16 +5,6 @@ import withAuth from '../components/hoc/withAuth'
 
 import {PhotoSwipeGallery} from 'react-photoswipe'
 
-//import { snakeInit } from '../actions/snake';
-
-//import { memoryInit } from '../actions/memory';
-
-//import '../styles/memory.scss';
-
-//import { getSecretData } from '../actions';
-
-//const cards = null
-
 class Photos extends React.Component {
 
     state = {
@@ -120,7 +110,6 @@ class Photos extends React.Component {
           }
         ],
         options: {
-          //bgOpacity: 0.8
         }
       };
     
@@ -148,7 +137,7 @@ class Photos extends React.Component {
 
     render() {
         return (
-            <BaseLayout {...this.props.auth}>
+            <BaseLayout {...this.props.auth} title="Johan IBTATEN - Mes photos">
               <BasePage className="photos-page" title="Photos">
               <PhotoSwipeGallery items={this.state.galleryItems}
               thumbnailContent={this.getThumbnailContent} options={this.state.options}/>

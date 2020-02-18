@@ -8,20 +8,18 @@ class About extends React.Component {
 
   render() {
     return (
-      <BaseLayout title="Filip Jerga - Learn More About Me" {...this.props.auth}>
+      <BaseLayout title="Johan IBTATEN - À propos" {...this.props.auth}>
         <BasePage className="about-page">
           <Row className="mt-md-5">
             <Col md="6">
-              <div className="left-side">
-                <h1 className="title fadein">Bonjour, bienvenue,</h1>
-                <h4 className="subtitle fadein">faisons connaissance...</h4>
-                { /*
-                  <p className="subsubTitle fadein">Vous lirez ici une courte description sur moi.</p>
-                */ } 
+              <div className="left-side text-center">
+                <div class="profile-image fadein mb-4"><img src="/static/images/portrait.jpg" class="card-img-top organic-radius border-primary" alt="image" /></div>
+                <h1 className="title fadein text-left ml-0 ml-sm-5">Bonjour, bienvenue,</h1>
+                <h4 className="subtitle fadein text-left ml-0 ml-sm-5">faisons connaissance...</h4>
               </div>
             </Col>
             <Col md="6">
-              <div className="fadein">
+              <div className="fadein description">
                 <p>
                 Je m'appelle Johan Ibtaten, je suis développeur et designer web expérimenté. J'habite à Paris dans le 15ème arrondissement.</p>
                 <p>
@@ -38,7 +36,7 @@ class About extends React.Component {
                   C'est cette double casquette de développeur et de designer qui fait ma singularité. 
                   Je peux réaliser seul toute la partie Font-End d'une application web de la conception graphique à l'intégration en passant par le développement.
                 </p>
-                <p>
+                <p className="text-right">
                   Deux passions, un seul métier.
                 </p>
               </div>

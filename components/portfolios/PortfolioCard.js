@@ -127,12 +127,3 @@ export default class PortfolioCard extends React.Component {
     
   }
 }
-
-
-// Remote workers, here's how to dodge
-// According to some historical records, some people out there have boundless energy, loads of free time, and ambition...
-
-// react.js, next.js ;
-// Responsive, css in js;
-// Auth0, JWT token;
-// MongoDB Atlas, Endpoints

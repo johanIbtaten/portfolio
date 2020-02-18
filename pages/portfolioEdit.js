@@ -3,7 +3,7 @@ import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
 import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 
-import { Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
 
 import { uploadImageAndSavePortfolio, getPortfolioById } from '../actions';
 
@@ -63,12 +63,9 @@ class PortfolioEdit extends React.Component {
     const { portfolio } = this.props;
 
     return (
-      <BaseLayout {...this.props.auth}>
+      <BaseLayout {...this.props.auth} title="Johan IBTATEN - Update Portfolio">
         <BasePage className="portfolio-create-page" title="Update Portfolio">
           <Row>
-            { /*
-            <Col md="6">
-            */ } 
               { /*
               On passe à la props initialValues l'objet portfolio
               qui permettra de pré-remplir les champs avec ses données
@@ -76,9 +73,6 @@ class PortfolioEdit extends React.Component {
               <PortfolioCreateForm initialValues={portfolio}
                                    error={error}
                                    onSubmit={this.updatePortfolio} editPage />
-            { /*
-              </Col>
-            */ } 
           </Row>
         </BasePage>
       </BaseLayout>

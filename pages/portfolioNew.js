@@ -3,7 +3,7 @@ import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
 import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 
-import { Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
 
 import { uploadImageAndSavePortfolio } from '../actions';
 
@@ -72,12 +72,9 @@ class PortfolioNew extends React.Component {
     const {error} = this.state;
 
     return (
-      <BaseLayout {...this.props.auth}>
-        <BasePage className="portfolio-create-page" title="Create New Portfolio">          
+      <BaseLayout {...this.props.auth} title="Johan IBTATEN - Nouveau Portfolio">
+        <BasePage className="portfolio-create-page" title="Nouveau Portfolio">          
           <Row>
-          { /*
-            <Col md="6">
-          */ } 
               { /* 
               On déclare le composant PortfolioCreateForm qui se 
               charge de créer le formulaire grâce à formik, on lui passe
@@ -97,9 +94,6 @@ class PortfolioNew extends React.Component {
                 this.savePortfolio dans la props onSubmit
                 */
                 onSubmit={this.savePortfolio} />
-            { /*
-              </Col>
-            */ } 
           </Row>         
         </BasePage>
       </BaseLayout>
@@ -109,11 +103,3 @@ class PortfolioNew extends React.Component {
 
 // Cette page est autorisée seulemement pour le siteOwner connecté
 export default withAuth('siteOwner')(PortfolioNew);
-
-//export default PortfolioNew;
-//savePortfolio() {
-    // setTimeout(() => {
-    //   alert(JSON.stringify(portfolioData, null, 2));
-    //   setSubmitting(false);
-    // }, 400);
-    // setSubmitting(true);

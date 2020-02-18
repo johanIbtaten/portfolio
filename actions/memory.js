@@ -31,7 +31,7 @@ export const memoryInit = () => {
       return;
     }
 
-    // Deucième click
+    // Deuxième click
     secondCard = this;
     moveCounter()
 
@@ -50,9 +50,6 @@ export const memoryInit = () => {
   function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
-
-    // firstCard.classList.add('match');
-    // secondCard.classList.add('match');
 
     resetBoard();
   }

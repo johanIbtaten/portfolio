@@ -21,6 +21,20 @@
 
 @font-face {
     font-family: Montserrat;
+    src: url("/static/font/Montserrat-Black.ttf");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("/static/font/Montserrat-ExtraBold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Montserrat;
     src: url("/static/font/Montserrat-Italic.ttf");
     font-weight: normal;
     font-style: italic;
