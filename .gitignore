@@ -1,5 +1,5 @@
 /node_modules
 /.next
 /server/config/dev.js
-/uploads
-/static/images/galleries
+#/uploads
+#/static/images/galleries
