@@ -125,7 +125,7 @@ class Portfolios extends React.Component {
     // On affiche une boite de dialogue confirm() avant de valider
     // la suppression et on récupère la réponse sous forme d'un
     // booléen isConfirm à true on répond oui au confirm()
-    const isConfirm = confirm('Are you sure you want to delete this portfolio???');
+    const isConfirm = confirm('Êtes-vous sûr de vouloir supprimer ce portfolio ?');
 
     // La suppression est confirmée
     if (isConfirm) {

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { getCookies, getCookieFromReq } from '../helpers/utils';
 
-const API_URL = "http://localhost:3000";
+const API_URL = process.env.BASE_URL;
 
 // On configure axios
 const axiosInstance = axios.create({
@@ -30,24 +30,24 @@ const setAuthHeader = (req) => {
   return undefined;
 }
 
-export const getSecretData = async (req) => {
-  // On déclare l'url du endpoint que l'on souhaite requêter
-  const url = 'http://localhost:3000/api/v1/secret';
+// export const getSecretData = async (req) => {
+//   // On déclare l'url du endpoint que l'on souhaite requêter
+//   const url = 'http://localhost:3000/api/v1/secret';
 
-  try {
-    // On requête le endpoint avec axios en lui passant
-    // l'url, le header modifié avec setAuthHeader pour que
-    // le endpoint du serveur puisse vérifier que l'utilisateur
-    // qui effectue la requête est bien authentifié avec son token JWT
-    // si oui axios retourne la réponse, sinon axios retourne 
-    // une erreur 401 
-    return await axios.get(url, setAuthHeader(req)).then(response => response.data)
+//   try {
+//     // On requête le endpoint avec axios en lui passant
+//     // l'url, le header modifié avec setAuthHeader pour que
+//     // le endpoint du serveur puisse vérifier que l'utilisateur
+//     // qui effectue la requête est bien authentifié avec son token JWT
+//     // si oui axios retourne la réponse, sinon axios retourne 
+//     // une erreur 401 
+//     return await axios.get(url, setAuthHeader(req)).then(response => response.data)
   
-    // On catch une éventuelle erreur 401 UnauthorizedError
-  } catch (error) {
-    console.log(error)
-  }
-}
+//     // On catch une éventuelle erreur 401 UnauthorizedError
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 const rejectPromise = (resError) => {
   let error = {};
@@ -100,7 +100,7 @@ export const uploadImageAndSavePortfolio = async (portfolioData, method, portfol
 
     })
     .catch((err) => {
-      alert("Error while uploading image using multer");
+      alert("Erreur lors de l'upload de l'image avec multer");
       //this.setDefaultImage("multer");
   })
 }
