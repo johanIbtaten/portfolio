@@ -19,7 +19,7 @@ const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 const config = require('./config');
 
-const Book = require('./models/book');
+//const Book = require('./models/book');
 
 const robotsOptions = {
   root: path.join(__dirname, "../static"),
@@ -28,16 +28,16 @@ const robotsOptions = {
   }
 }
 
-let secretData = [
-    {
-        title: 'SecretData 1',
-        description: 'Plans how to build spaceship'
-    },
-    {
-        title: 'SecretData 2',
-        description: 'My secret passwords'
-    }
-]
+// let secretData = [
+//     {
+//         title: 'SecretData 1',
+//         description: 'Plans how to build spaceship'
+//     },
+//     {
+//         title: 'SecretData 2',
+//         description: 'My secret passwords'
+//     }
+// ]
 
 // On récupère la connect string depuis l'attribut DB_URI 
 // de l'objet importé config déclaré dans dev.js
@@ -58,7 +58,7 @@ app.prepare()
 
   server.use('/uploads', express.static('uploads'));
 
-  server.use('/api/v1/books', bookRoutes);
+  //server.use('/api/v1/books', bookRoutes);
 
   // On passe en argument les routes portfolioRoutes
   // avec comme base du enpoint /api/v1/portfolios
@@ -77,9 +77,9 @@ app.prepare()
   // authService.checkJWT est un middleware appelé avant la fonction
   // qui renvoie la réponse.
   // server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
-  server.get('/api/v1/secret', checkJwt, (req, res) => {
-    return res.json(secretData);
-  })
+  // server.get('/api/v1/secret', checkJwt, (req, res) => {
+  //   return res.json(secretData);
+  // })
 
   server.get('/api/v1/onlysiteowner', checkJwt, checkRole('siteOwner'), (req, res) => {
     return res.json(secretData);
