@@ -65,8 +65,6 @@ exports.savePortfolio = (req, res) => {
   // de la requête.
   const portfolioData = req.body;
 
-  console.log(portfolioData);
-
   // Si il y a les données du user (payload du token JWT) dans 
   // la requête, on crée un userId à partir de l'attibut sub du user
   const userId = req.user && req.user.sub;
@@ -97,9 +95,6 @@ exports.updatePortfolio = async (req, res) => {
   // Seuls les attributs mis à jour peuvent être passés dans l'objet
   // portfolio qui doit permettre la mise à jour.
   const portfolioData = req.body;
-
-  console.log('portfolioId', portfolioId); ///////////////////////////////////////
-  console.log('portfolioFile', portfolioFile); ///////////////////////////////////////
 
   // Si le chemin de l'image n'a pas changé, on ne la supprime pas
   if (portfolioData.file !== portfolioFile) {
@@ -134,9 +129,6 @@ exports.updatePortfolio = async (req, res) => {
 exports.deletePortfolio = async (req, res) => {
   const portfolioId = req.params.id;
   const portfolioFile = decodeURIComponent(req.params.file);
-
-  console.log('portfolioId', portfolioId); ///////////////////////////////////////
-  console.log('portfolioFile', portfolioFile); ///////////////////////////////////////
 
   // On supprime l'image associée au portfolioCard en passant son chemin
   // à la fonction unlinkAsync()

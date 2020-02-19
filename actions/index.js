@@ -76,9 +76,6 @@ export const getPortfolioById = async (id) => {
 
 
 export const uploadImageAndSavePortfolio = async (portfolioData, method, portfolioFile) => {
-  console.log('createPortfolio', portfolioData) ///////////////////////////////////////
-  console.log('createPortfolioAfter', portfolioData.file) ///////////////////////////////////////
-
   // Si le chemin de l'image n'a pas changé, on upload rien et
   // on update juste la bdd
   if (method === 'update' && portfolioData.file === portfolioFile) {
@@ -92,10 +89,6 @@ export const uploadImageAndSavePortfolio = async (portfolioData, method, portfol
 
   axios.post(`${API_URL}/image/uploadmulter`, imageFormObj)
     .then((data) => {
-      console.log('reponse', data) ///////////////////////////////////////
-      console.log('reponseDoc', data.data.document) ///////////////////////////////////////      
-      // alert("Image has been successfully uploaded using multer"); ///////////////////////////////////////
-
       portfolioData.file = data.data.document.replace(/\\/g, "/");
 
       if (method == 'create') {
@@ -117,8 +110,6 @@ export const uploadImageAndSavePortfolio = async (portfolioData, method, portfol
 // Bearer token JWT dans le header pour vérifier l'authentification 
 // et le rôle de l'utilisateur qui a le droit créer un nouveau portfolio.
 export const createPortfolio = async (portfolioData) => {
-  console.log(portfolioData) ///////////////////////////////////////
-  
   return await axiosInstance.post('/portfolios', portfolioData, setAuthHeader())
     .then(response => response.data)
     // Si la bdd nous renvoie une erreur on la traite dans la

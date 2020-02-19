@@ -39,8 +39,6 @@ class PortfolioNew extends React.Component {
   // elle va être passée en props au composant Formik avec
   // la props onSubmit
   savePortfolio(portfolioData, {setSubmitting}) {
-    console.log(portfolioData)
-
     // On appelle la fonction createPortfolio() qui va sauvegarder 
     // l'image dans un dossier uploads et ensuite le nouveau portfolio 
     // dans la bdd à partir des données

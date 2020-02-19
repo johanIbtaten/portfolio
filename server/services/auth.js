@@ -36,9 +36,6 @@ const checkRole = role => (req, res, next) => {
   // avant de la passer au suivant.
   const user = req.user;
 
-  console.log('usercheckRole', user);
-  console.log("NAMESPACE", NAMESPACE);
-
   // Si il y a un user, une valeur user[namespace + '/role']
   // qui correspond à son role stocké dans son token JWT
   // et que cette valeur est égale au role passé

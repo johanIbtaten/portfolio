@@ -148,7 +148,6 @@ class Auth0 {
           // is valid and optional expiration, audience, 
           // or issuer are valid. If not, it will throw the error.
           const verifiedToken = jwt.verify(token, cert);
-          //console.log(verifiedToken);
           const expiresAt = verifiedToken.exp * 1000;
 
           return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
