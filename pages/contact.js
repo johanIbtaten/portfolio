@@ -16,10 +16,10 @@ class Contact extends React.Component {
             <Col className="d-flex flex-column justify-content-center align-items-center mt-5">
               <div className="content-wrapper position-relative">
               
-              <img alt="Nuage page contact" className="position-absolute cloud-contact-1 d-lg-block" src="/static/images/cloud-contact.svg"/>
-              <img alt="Nuage page contact" className="position-absolute cloud-contact-2 d-lg-block" src="/static/images/cloud-contact.svg"/>
-              <img alt="Nuage page contact" className="position-absolute cloud-contact-3 d-lg-block" src="/static/images/cloud-contact.svg"/>
-              <img alt="Nuage page contact" className="position-absolute cloud-contact-4 d-lg-block" src="/static/images/cloud-contact.svg"/>
+              <img alt="Nuage page contact" className="position-absolute cloud-contact-1" src="/static/images/cloud-contact.svg"/>
+              <img alt="Nuage page contact" className="position-absolute cloud-contact-2 d-sm-block d-none" src="/static/images/cloud-contact.svg"/>
+              <img alt="Nuage page contact" className="position-absolute cloud-contact-3" src="/static/images/cloud-contact.svg"/>
+              <img alt="Nuage page contact" className="position-absolute cloud-contact-4 d-lg-block d-none" src="/static/images/cloud-contact.svg"/>
               
               <FontAwesomeIcon icon={['fas', 'paper-plane']} className="position-absolute plane plane-1" />
               <FontAwesomeIcon icon={['fas', 'paper-plane']} className="position-absolute plane plane-2" />
