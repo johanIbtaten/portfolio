@@ -97,7 +97,7 @@ class Index extends React.Component {
                   <h1>
                     { isAuthenticated && <span> <b> {user.name || user.nickname} </b> </span> }
                     Bienvenue sur mon site portfolio. Vous pourrez y découvrir mes travaux. 
-                    Si vous vous connectez, vous aurez accès à un menu caché Goodies, alors n'hésitez pas.
+                    Si vous vous connectez, vous aurez accès à un menu caché Goodies, alors n'hésitez&nbsp;pas.
                   </h1>
                 </div>
                 <Typed
