@@ -82,8 +82,8 @@ class Index extends React.Component {
                         <img alt="Logo version donuts nuages" className="image d-sm-none" src="/static/images/logo-donuts-nuages.svg"/>
                       </div>
                       <div className="hero-section-content mt-3 mt-sm-5 mt-md-3  mt-lg-5 text-md-left text-center">
-                        <h2>Je réalise tous <br/>vos projets web</h2>
-                        <div className="hero-section-content-intro mt-4 d-sm-none d-md-block">
+                        <h2>Je réalise <br/><span className="d-none d-sm-block">vos projets web</span><span className="d-sm-none">vos sites vitrines<br/> et applications web</span></h2>
+                        <div className="hero-section-content-intro mt-4 d-none d-md-block">
                         En vous apportant un service professionnel et de qualité.
                         </div>
                       </div>
