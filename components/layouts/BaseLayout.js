@@ -36,6 +36,7 @@ const BaseLayout = (props) => {
 
         <script type="text/javascript" src="/static/js/masonry/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="/static/js/memory/memory.js"></script>
+        
       </Head>
       <div className="layout-container" >
         <Header className={`port-nav-default ${headerType}`}

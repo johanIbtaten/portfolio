@@ -63,7 +63,7 @@ class Index extends React.Component {
                   <div className="flipper">
                   
                     <div className="front">
-                      <img alt="Logo illustration version design Johan IBTATEN" className="image" src="/static/images/logo-illustration1.svg"/>
+                      <img alt="Logo illustration version design Johan IBTATEN" className="image levitate" src="/static/images/logo-illustration1.svg"/>
                       <div className="hero-section-content mt-2 text-md-left text-center">
                         <h2><span>Développeur Front</span><br/>UX / UI Designer</h2>
                         <div className="hero-section-content-intro mt-4 d-none d-md-block">
@@ -74,15 +74,16 @@ class Index extends React.Component {
 
                     <div className="back">
                       <div className="image-wrapper text-center donuts">
-                        <img alt="Logo illustration version donuts Johan IBTATEN" className="image levitate" src="/static/images/logo-illustration2.svg"/>
+                        <img alt="Logo illustration version donuts Johan IBTATEN" className="image levitate d-sm-block d-none" src="/static/images/logo-illustration2.svg"/>
                         <img alt="Nuage et étoiles du logo version donuts" className="position-absolute cloud-and-stars d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/cloud-and-stars.svg"/>
                         <img alt="Nuage haut du logo version donuts" className="position-absolute cloud-up d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/cloud-up.svg"/>
                         <img alt="Nuage bas du logo version donuts" className="position-absolute cloud-down d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/cloud-down.svg"/>
                         <img alt="Ombre du logo version donuts" className="position-absolute shadow-donuts shadow-scale d-lg-block d-md-none d-sm-block d-xs-none" src="/static/images/shadow-donuts.svg"/>
+                        <img alt="Logo version donuts nuages" className="image d-sm-none" src="/static/images/logo-donuts-nuages.svg"/>
                       </div>
                       <div className="hero-section-content mt-3 mt-sm-5 mt-md-3  mt-lg-5 text-md-left text-center">
                         <h2>Je réalise tous <br/>vos projets web</h2>
-                        <div className="hero-section-content-intro mt-4 d-none d-md-block">
+                        <div className="hero-section-content-intro mt-4 d-sm-none d-md-block">
                         En vous apportant un service professionnel et de qualité.
                         </div>
                       </div>
