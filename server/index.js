@@ -9,7 +9,9 @@ var ImageRouter = require('./routes/image');
 //const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const bookRoutes = require('./routes/book');
+//const bookRoutes = require('./routes/book');
+//const Book = require('./models/book');
+
 const portfolioRoutes = require('./routes/portfolio');
 
 const {checkJwt, checkRole} = require('./services/auth');
@@ -19,7 +21,8 @@ const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 const config = require('./config');
 
-//const Book = require('./models/book');
+var sslRedirect = require('heroku-ssl-redirect');
+
 
 const robotsOptions = {
   root: path.join(__dirname, "../static"),
@@ -52,6 +55,8 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true})
 app.prepare()
 .then(() => {
   const server = express();
+
+  server.use(sslRedirect());
 
   // using bodyParser to parse JSON bodies into JS objects
   server.use(bodyParser.json());
