@@ -24,12 +24,10 @@ class Index extends React.Component {
     // Quand la page index est montée on appelle la fonction
     // animateCard()
     this.animateCard();
-    const browser = Bowser.getParser(window.navigator.userAgent);
 
-    console.log(`The current browser name is "${browser.getBrowserName()}"`);
-    console.log(`The current browser name is "${browser.satisfies({ chrome: ">10" })}"`);
+    const browser = Bowser.getParser(window.navigator.userAgent);
     this.setState({
-      isChrome: browser.satisfies({ chrome: ">10" })
+      isChrome: browser.satisfies({ chrome: ">10", edge: ">80" })
     });
     
   }
