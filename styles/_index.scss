@@ -220,8 +220,8 @@
 }
 
 // Flip le conteneur au survol ou à l'intervalle de temps
-.flip-container:hover .flipper, .flip-container.hover .flipper
-, .flip-container.isFlipping  .flipper 
+.flip-container:hover .flipper.chrome-flip, .flip-container.hover .flipper.chrome-flip
+, .flip-container.isFlipping .flipper.chrome-flip
 {
   transform: rotateY(180deg);
 }
