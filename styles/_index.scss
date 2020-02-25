@@ -1,12 +1,10 @@
 .cover {
-  //background-image: linear-gradient(45deg,$gradient1 0%,$gradient2 100%);
   position: relative;
   background-color: $bg-nav;
 }
 
 .wrapper {
   min-height: 100vh;
-  //min-width: 100vw;
   margin-top: 0;
   position: relative;
 }
@@ -30,9 +28,10 @@
     margin-bottom: rem(10px);
   }
 
-  perspective: 1000px;
+  -webkit-perspective: 1000px;
+
+          perspective: 1000px;
   color: $white;
-  //width: 400px;
   width: 100%;
   position: relative;
 
@@ -42,30 +41,16 @@
     padding: 0 rem(15px) 0;
 
     &-intro {
-      //font-size: rem(26px);
       line-height: $line-h-home;
-
       @include fluid-type($font-size-min-home, $font-size-max-home, 0px, map-get($map: $grid-breakpoints, $key: lg));
-
-      // @include media-breakpoint-between(sm, md) {
-      //   font-size: rem(20px);
-      // }
     }
   }
 }
 
-// .hero-section-intro, .hero-welcome-text > h1 {
-//   @include fluid-type($font-size-min-home, $font-size-max-home, 0px, map-get($map: $grid-breakpoints, $key: lg));
-// }
-
 .self-typed {
-  //font-size: rem(31px);
   font-weight: bold;
   letter-spacing: rem(1px);
   color: $white;
-  // @include media-breakpoint-between(md, md) {
-  //   font-size: rem(20px);
-  // }
   @include fluid-type(16px, 31px, 0px, map-get($map: $grid-breakpoints, $key: lg));
 }
 
@@ -116,14 +101,11 @@
 
 .hero-welcome-text > h1 {
   color: $white;
-  //text-transform: uppercase;
-  //font-size: rem(26px);
   margin-top: rem(105px);
   max-width: 480px;
   line-height: $line-h-home;
   @include fluid-type($font-size-min-home, $font-size-max-home, 0px, map-get($map: $grid-breakpoints, $key: lg));
   @include media-breakpoint-between(xs, md) {
-    //font-size: rem(20px);
     margin-left: auto;
     margin-right: auto;
   }
@@ -136,16 +118,12 @@
   .fa-stack {
     font-size: rem(28px);
   }
-
-  // .list-inline-item {
-  //   > a {
-  //     color: #373737;
-  //   }
-  // }
 }
 
 .hero-welcome-wrapper {
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 
 }
 
@@ -174,32 +152,10 @@
   }
 }
 
-// .shadow-custom {
-//   width: 100%;
-//   height: 100%;
-//   position: absolute;
-//   top: 0;
-//   box-shadow: rem(-17px) rem(13px) rem(41px) rgba(13,78,158,0.6);
-//   border: 2px solid scale-color($primary, $lightness: 23%);
-  
-
-//   .shadow-inner {
-//     width: 100%;
-//     height: 100%;
-//     box-shadow: rem(-17px) rem(13px) rem(13px) rgba(0,0,0,0.09);
-//   }
-// }
-
-// .shadow-custom-2 {
-//   border: 2px solid #f37d49;
-//   box-shadow: rem(-17px) rem(13px) rem(41px) rgba(13,78,158,0.3);
-// }
-
 .cover-0 {
 }
 
 .cover-1 {
-  //background-image: linear-gradient(45deg, rgb(254, 202, 83), rgb(253, 157, 97));
 }
 
 .service-link {
@@ -214,33 +170,40 @@
   }
 }
 
-// Conteneur, détermine la perspective
 .flip-container {
-	perspective: 1000px;
+	-webkit-perspective: 1000px;
+	        perspective: 1000px;
 }
 
-// Flip le conteneur au survol ou à l'intervalle de temps
 .flip-container:hover .flipper.chrome-flip, .flip-container.hover .flipper.chrome-flip
 , .flip-container.isFlipping .flipper.chrome-flip
 {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
-// Détermine la taille de la carte
 .flip-container, .front, .back {
 	width: 100%;
-	//max-width: 400px;
 }
 
-// Détermine la vitesse de la rotation
 .flipper {
+	-webkit-transition: 0.6s;
+	-o-transition: 0.6s;
 	transition: 0.6s;
-	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
 
   position: relative;
   
+  display: -webkit-box;
+  
+  display: -ms-flexbox;
+  
   display: flex;
-  flex-flow: row nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
 
   max-width: 490px;
   @include media-breakpoint-between(xs, md) {
@@ -252,11 +215,7 @@
 
 .flipper h2 {
   font-weight: 800;
-  //letter-spacing: rem(1px);
-  //font-size: rem(42px);
-  
   @include fluid-type(16px, 42px, 0px, map-get($map: $grid-breakpoints, $key: lg));
-  //@include fluid-type(17px, 42px, map-get($map: $grid-breakpoints, $key: xs), map-get($map: $grid-breakpoints, $key: lg));
   @include media-breakpoint-up(lg) {
     white-space: nowrap;
   }
@@ -266,33 +225,29 @@
 }
 
 .front, .back {
-  // N'affiche pas le dos au moment de la rotation
-	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
 
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+          box-sizing: border-box;
   width: 100%;
-  flex: none;  
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;  
 }
 
 .front {
-  // Positionne le panneau front au-dessus du panneau back
   z-index: 2;
   
-	// pour firefox 31
-  transform: rotateY(0deg);
-
-  // Place l'image de fond du panneau
-  //background-color: $primary;
-
+  -webkit-transform: rotateY(0deg);
+  
+          transform: rotateY(0deg);
 }
 
 .back {
-  // Effectue la rotation du panneau back
-  transform: rotateY(180deg);
-
-  //background-image: url('/static/images/section-2.jpg');
-  //background-color: $tertiaryPerso;
-
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   margin-left: -100%;
 }
 
@@ -305,13 +260,6 @@
     margin-bottom: rem(50px);
   }
 }
-
-
-
-
-
-
-
 
 @-webkit-keyframes levitate {
   0% {
@@ -387,7 +335,9 @@
   }
 }
 .shadow-scale {
-  transform-origin: center;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
   -webkit-animation-duration: 3s;
   animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;

@@ -14,7 +14,7 @@ class Index extends React.Component {
 
     this.state = {
       isFlipping: false,
-      isChrome:false
+      isValidBrowser:false
     }
 
     this.roles = ['Développeur', 'Tech Lover', 'Designer', 'React.js', 'Next.js'];    
@@ -27,7 +27,7 @@ class Index extends React.Component {
 
     const browser = Bowser.getParser(window.navigator.userAgent);
     this.setState({
-      isChrome: browser.satisfies({ chrome: ">10", edge: ">80" })
+      isValidBrowser: browser.satisfies({ chrome: ">10", edge: ">80", safari: ">4" })
     });
     
   }
@@ -54,7 +54,7 @@ class Index extends React.Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const { isFlipping, isChrome } = this.state;
+    const { isFlipping, isValidBrowser } = this.state;
 
     return (
       // On destructure la props this.props.auth pour la passer
@@ -68,9 +68,8 @@ class Index extends React.Component {
           <Container>
             <Row>            
               <Col md="6">
-                {this.isChrome}
-                <div className={`mx-auto ml-md-0 mb-sm-5 mb-md-0 flip-container ${isFlipping && isChrome ? 'isFlipping' : ''}`}>
-                <div className={`flipper ${isChrome ? 'chrome-flip' : ''}`}>
+                <div className={`mx-auto ml-md-0 mb-sm-5 mb-md-0 flip-container ${isFlipping && isValidBrowser ? 'isFlipping' : ''}`}>
+                <div className={`flipper ${isValidBrowser ? 'chrome-flip' : ''}`}>
 
                     <div className="front">
                       <img alt="Logo illustration version design Johan IBTATEN" className="image levitate" src="/static/images/logo-illustration1.svg"/>
@@ -83,7 +82,7 @@ class Index extends React.Component {
                     </div>
                     
                     <div className="back">                   
-                      { isChrome &&
+                      { isValidBrowser &&
                         <>
                         <div className="image-wrapper text-center donuts">
                           <img alt="Logo illustration version donuts Johan IBTATEN" className="image levitate d-sm-block d-none" src="/static/images/logo-illustration2.svg"/>
