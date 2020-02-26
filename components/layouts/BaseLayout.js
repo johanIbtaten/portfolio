@@ -9,6 +9,9 @@ const BaseLayout = (props) => {
   return (
     <React.Fragment>
       <Head>
+        { /*
+          <script src="/static/js/mconsole.js"></script>
+        */ } 
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex, nofollow" />
@@ -36,7 +39,7 @@ const BaseLayout = (props) => {
 
         <script type="text/javascript" src="/static/js/masonry/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="/static/js/memory/memory.js"></script>
-        
+                
       </Head>
       <div className="layout-container" >
         <Header className={`port-nav-default ${headerType}`}

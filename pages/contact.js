@@ -6,24 +6,9 @@ import { Row, Col } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import Bowser from "bowser";
-
 class Contact extends React.Component {
-  
-  state = {
-    isSafari:false
-  }
-
-  componentDidMount() {
-    const browser = Bowser.getParser(window.navigator.userAgent);
-    console.log(Bowser.parse(window.navigator.userAgent));
-    this.setState({
-      isSafari: browser.satisfies({ safari: ">3" })
-    });    
-  }
-
+ 
   render() {
-    const { isSafari } = this.state;
 
     return (
       <BaseLayout headerType="contact-page-nav" title="Johan IBTATEN - Contact" {...this.props.auth}>
@@ -33,11 +18,7 @@ class Contact extends React.Component {
               <div className="content-wrapper position-relative">
               <img alt="Nuage page contact" className="position-absolute cloud-contact-1" src="/static/images/cloud-contact.svg"/>
               <img alt="Nuage page contact" className="position-absolute cloud-contact-2 d-sm-block d-none" src="/static/images/cloud-contact.svg"/>
-              { !isSafari &&
-                <>
-                <img alt="Nuage page contact" className="position-absolute cloud-contact-3" src="/static/images/cloud-contact.svg"/>
-                </>
-              }               
+              <img alt="Nuage page contact" className="position-absolute cloud-contact-3" src="/static/images/cloud-contact.svg"/>
               <img alt="Nuage page contact" className="position-absolute cloud-contact-4 d-lg-block d-none" src="/static/images/cloud-contact.svg"/>
               <FontAwesomeIcon icon={['fas', 'paper-plane']} className="position-absolute plane plane-1" />
               <FontAwesomeIcon icon={['fas', 'paper-plane']} className="position-absolute plane plane-2" />

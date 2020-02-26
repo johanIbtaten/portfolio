@@ -68,6 +68,9 @@ p {
   padding-bottom: rem(40px);
   @include media-breakpoint-down(xs) {
     padding-top: 8.5rem;
+    &.samsung {
+      padding-top: 9.2rem;
+    }
   }
 
   .page-header {

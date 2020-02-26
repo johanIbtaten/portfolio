@@ -14,7 +14,8 @@ class Index extends React.Component {
 
     this.state = {
       isFlipping: false,
-      isValidBrowser:false
+      isValidBrowser:false,
+      isSamsungBrowser:false
     }
 
     this.roles = ['Développeur', 'Tech Lover', 'Designer', 'React.js', 'Next.js'];    
@@ -26,8 +27,11 @@ class Index extends React.Component {
     this.animateCard();
 
     const browser = Bowser.getParser(window.navigator.userAgent);
+    const browserObject = browser
+
     this.setState({
-      isValidBrowser: browser.satisfies({ chrome: ">10", edge: ">80", safari: ">4" })
+      isValidBrowser: browser.satisfies({ chrome: ">10", edge: ">80", safari: ">4", mobile: {'Samsung Internet for Android': '>=4'} }),
+      isSamsungBrowser: browser.satisfies({ mobile: {'Samsung Internet for Android': '>=4'} })
     });
     
   }
@@ -54,7 +58,7 @@ class Index extends React.Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const { isFlipping, isValidBrowser } = this.state;
+    const { isFlipping, isValidBrowser, isSamsungBrowser } = this.state;
 
     return (
       // On destructure la props this.props.auth pour la passer
@@ -64,9 +68,9 @@ class Index extends React.Component {
       <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth}
                   headerType="index"
                   title="Johan IBTATEN - Portfolio">
-        <div className="main-section">
+        <div className={`main-section ${isSamsungBrowser ? 'samsung' : ''}`}>
           <Container>
-            <Row>            
+            <Row>
               <Col md="6">
                 <div className={`mx-auto ml-md-0 mb-sm-5 mb-md-0 flip-container ${isFlipping && isValidBrowser ? 'isFlipping' : ''}`}>
                 <div className={`flipper ${isValidBrowser ? 'chrome-flip' : ''}`}>
