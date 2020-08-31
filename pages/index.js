@@ -18,7 +18,7 @@ class Index extends React.Component {
       isSamsungBrowser:false
     }
 
-    this.roles = ['Développeur', 'Tech Lover', 'Designer', 'React.js', 'Next.js'];    
+    this.roles = ['Développeur', 'Tech Lover', 'Designer', 'Vue.js', 'React.js', 'Next.js'];    
   }
 
   componentDidMount() {

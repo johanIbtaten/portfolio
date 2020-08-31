@@ -21,11 +21,11 @@ class About extends React.Component {
             <Col md="6">
               <div className="fadein description">
                 <p>
-                Je m'appelle Johan Ibtaten, je suis développeur et designer web expérimenté. J'habite à Paris dans le 15ème arrondissement.</p>
+                Je m'appelle Johan Ibtaten, je suis développeur front et designer web expérimenté. J'habite à Paris dans le 15ème arrondissement.</p>
                 <p>
                 J'ai fait des études et suivi diverses formations dans le domaine du développement informatique.
-                J'ai pu travailler sur un large spectre de technologies allant du Java sur les systèmes 
-                Android à des applications web modernes en React JS en passant par PHP et WordPress. 
+                J'ai pu travailler sur un large spectre de technologies allant du Java EE, Java sur les systèmes 
+                Android à des applications web modernes en Vue.js et React JS en passant par PHP et WordPress. 
                 Même si mon domaine d'expertise est plutôt orienté Front-End, j'ai de solides connaissances en Back-End.
                 </p>
                 <p>
@@ -34,7 +34,7 @@ class About extends React.Component {
                 </p>
                 <p>
                   C'est cette double casquette de développeur et de designer qui fait ma singularité. 
-                  Je peux réaliser seul toute la partie Font-End d'une application web de la conception graphique à l'intégration en passant par le développement.
+                  Je peux réaliser seul toute la partie Font-End d'une application web de la conception graphique à l'intégration en passant par le développement front.
                 </p>
                 <p className="text-right">
                   Deux passions, un seul métier.
